@@ -2,50 +2,63 @@
 @tailwind components;
 @tailwind utilities;
 
+/* TT Supermolot Neue — place the TTF file at public/fonts/TTSupermolotNeue-ExpandedMedium.ttf */
+@font-face {
+  font-family: 'TTSupermolot';
+  src: url('/fonts/TT%20Supermolot%20Neue%20Trial%20Expanded%20Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Hero animation keyframes */
+@keyframes hero-slide-down {
+  from { opacity: 0; transform: translateY(-14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes hero-slide-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes hero-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes hero-pop-in {
+  from { opacity: 0; transform: scale(0.45); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes hero-reveal-down {
+  from { clip-path: inset(0 0 100% 0); }
+  to   { clip-path: inset(0 0 0%   0); }
+}
+@keyframes hero-draw-right {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0%   0 0); }
+}
+
 @layer base {
 	:root {
-		--background: 0 0% 100%;
-		--foreground: 207 20% 30%; /* #404D60 */
+		--background: 40 20% 97%;
+		--foreground: 0 0% 10%;
 		--card: 0 0% 100%;
-		--card-foreground: 207 20% 30%;
+		--card-foreground: 0 0% 10%;
 		--popover: 0 0% 100%;
-		--popover-foreground: 207 20% 30%;
-		--primary: 199 100% 20%; /* #004767 */
+		--popover-foreground: 0 0% 10%;
+		--primary: 359 61% 50%; /* #CB3234 */
 		--primary-foreground: 0 0% 100%;
-		--secondary: 207 20% 96%;
-		--secondary-foreground: 207 20% 30%;
-		--muted: 207 20% 96%;
-		--muted-foreground: 206 36% 46%; /* #4B86A1 */
-		--accent: 184 97% 40%; /* #03BFCB */
-		--accent-foreground: 0 0% 100%;
+		--secondary: 0 0% 95%;
+		--secondary-foreground: 0 0% 10%;
+		--muted: 0 0% 95%;
+		--muted-foreground: 0 0% 40%;
+		--accent: 0 0% 95%;
+		--accent-foreground: 0 0% 10%;
 		--destructive: 0 84.2% 60.2%;
 		--destructive-foreground: 0 0% 100%;
-		--border: 207 20% 90%; /* #E8ECF1 */
-		--input: 207 20% 90%;
-		--ring: 199 100% 20%;
+		--border: 0 0% 90%;
+		--input: 0 0% 90%;
+		--ring: 359 61% 50%;
 		--radius: 0.5rem;
-	}
-
-	.dark {
-		--background: 207 20% 25%; /* Dark blue-grey */
-		--foreground: 0 0% 94%;
-		--card: 199 100% 20%; /* #004767 */
-		--card-foreground: 0 0% 94%;
-		--popover: 207 20% 25%;
-		--popover-foreground: 0 0% 94%;
-		--primary: 199 100% 20%; /* #004767 */
-		--primary-foreground: 0 0% 100%;
-		--secondary: 207 20% 25%;
-		--secondary-foreground: 0 0% 98%;
-		--muted: 207 20% 96%;
-		--muted-foreground: 206 36% 46%;
-		--accent: 184 97% 40%; /* #03BFCB */
-		--accent-foreground: 0 0% 100%;
-		--destructive: 0 62.8% 30.6%;
-		--destructive-foreground: 0 0% 98%;
-		--border: 207 20% 90%;
-		--input: 207 20% 90%;
-		--ring: 184 97% 40%;
 	}
 }
 
@@ -54,116 +67,78 @@
 		@apply border-border;
 	}
 
-	/* Light grey background with blue-grey text colors */
-	html,
-	body {
-		@apply bg-[#F5F7FA] text-[#404D60];
+	html, body {
+		background-color: #F8F8F6;
+		color: #1a1a1a;
+		font-family: 'Poppins', sans-serif;
 	}
 
-	/* Override any default styles */
 	h1, h2, h3, h4, h5, h6 {
-		@apply text-[#004767];
+		color: #1a1a1a;
+		font-weight: 700;
 	}
 
 	p {
-		@apply text-[#404D60];
+		color: #555555;
 	}
 
 	a {
-		@apply text-[#4B86A1] hover:text-accent transition-colors;
+		color: inherit;
+		text-decoration: none;
 	}
 }
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-	width: 10px;
+	width: 8px;
 }
-
 ::-webkit-scrollbar-track {
-	@apply bg-gray-100;
+	background: #F2F2F0;
 }
-
 ::-webkit-scrollbar-thumb {
-	@apply bg-grey rounded-full;
+	background: #CB3234;
+	border-radius: 4px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
-	@apply bg-primary;
+	background: #A8282A;
 }
 
-/* Google Translate Styling */
-.google-translate-container {
-  display: inline-block;
+/* Section label style */
+.section-label {
+	font-size: 0.75rem;
+	font-weight: 600;
+	letter-spacing: 0.15em;
+	text-transform: uppercase;
+	color: #CB3234;
 }
 
-.goog-te-combo {
-  background-color: #1e293b !important;
-  color: white !important;
-  border: 1px solid #475569 !important;
-  border-radius: 0.5rem !important;
-  padding: 0.5rem 1rem !important;
-  font-size: 0.875rem !important;
-  cursor: pointer !important;
+/* Red underline decoration */
+.red-underline {
+	position: relative;
+	display: inline-block;
+}
+.red-underline::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	bottom: -8px;
+	width: 48px;
+	height: 3px;
+	background-color: #CB3234;
 }
 
-.goog-te-combo:hover {
-  background-color: #334155 !important;
-}
-
-/* Hide Google Translate banner */
-.goog-te-banner-frame {
-  display: none !important;
-}
-
-body {
-  top: 0 !important;
-}
-
-.skiptranslate {
-  display: inline-block !important;
-}
-
-/* Google Translate gadget styling */
-.goog-te-gadget {
-  color: transparent !important;
-  font-size: 0 !important;
-}
-
-.goog-te-gadget .goog-te-combo {
-  margin: 0 !important;
-}
-
-/* Hide "Powered by" text */
-.goog-te-gadget span {
-  display: none !important;
-}
-
-.goog-te-gadget > div {
-  display: inline-block !important;
-}
-
-/* Google Translate - Tamamen Gizli */
+/* Google Translate — completely hidden */
 #google_translate_element {
-  display: none !important;
+	display: none !important;
 }
-
-.goog-te-banner-frame {
-  display: none !important;
-}
-
-.goog-te-balloon-frame {
-  display: none !important;
-}
-
-body {
-  top: 0 !important;
-}
-
-.skiptranslate {
-  display: none !important;
-}
-
-/* Google Translate'in eklediği iframe'leri gizle */
+.goog-te-banner-frame,
+.goog-te-balloon-frame,
 iframe.goog-te-menu-frame {
-  display: none !important;
+	display: none !important;
+}
+body {
+	top: 0 !important;
+}
+.skiptranslate {
+	display: none !important;
 }

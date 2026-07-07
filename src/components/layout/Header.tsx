@@ -3,133 +3,157 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { useAuth, UserButton } from '@clerk/nextjs';
+import { Menu, X } from 'lucide-react';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [currentLang, setCurrentLang] = useState<'tr' | 'en'>('tr');
   const { isSignedIn } = useAuth();
 
-  const toggleLanguage = () => {
-    console.log('🔘 DİL DEĞİŞTİRME BAŞLADI');
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-    const newLang = currentLang === 'tr' ? 'en' : 'tr';
-
-    // Cookie'de sakla
-    document.cookie = `googtrans=/tr/${newLang}; path=/; max-age=31536000`;
-    document.cookie = `googtrans=/tr/${newLang}; domain=.leyonex.com; path=/; max-age=31536000`;
-
-    setCurrentLang(newLang);
-
-    console.log('🌍 Dil değişti:', newLang);
-    console.log('📍 Sayfa yenileniyor...');
-
-    // Sayfayı yenile (Google Translate cookie'den okuyacak)
-    window.location.reload();
-  };
-
-  // Sayfa yüklendiğinde cookie'den dili oku
   useEffect(() => {
     const cookies = document.cookie.split(';');
     const googtrans = cookies.find(c => c.trim().startsWith('googtrans='));
-
     if (googtrans) {
       const lang = googtrans.split('/')[2];
-      if (lang === 'en') {
-        setCurrentLang('en');
-      }
+      if (lang === 'en') setCurrentLang('en');
     }
   }, []);
 
+  const toggleLanguage = () => {
+    const newLang = currentLang === 'tr' ? 'en' : 'tr';
+    document.cookie = `googtrans=/tr/${newLang}; path=/; max-age=31536000`;
+    document.cookie = `googtrans=/tr/${newLang}; domain=.leyonex.com; path=/; max-age=31536000`;
+    setCurrentLang(newLang);
+    window.location.reload();
+  };
+
+  const navLinks = [
+    { href: '/', label: 'Ana Sayfa' },
+    { href: '/hakkimizda', label: 'Hakkımızda' },
+    { href: '/hizmetler', label: 'Hizmetler' },
+    { href: '/fuarlar', label: 'Fuar Takvimi' },
+    { href: '/projeler', label: 'Projeler' },
+    { href: '/iletisim', label: 'İletişim' },
+  ];
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur-sm border-b border-slate-800">
-      <nav className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20">
-          <Link href="/" className="text-2xl font-bold text-white">
-            LEYONEX
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled ? 'bg-white shadow-sm border-b border-[#E5E5E3]' : 'bg-white/95 backdrop-blur-sm'
+      }`}
+    >
+      <nav className="container mx-auto px-4 md:px-6">
+        <div className="flex items-center justify-between h-16 md:h-20">
+
+          {/* Logo */}
+          <Link href="/" className="flex flex-col leading-none">
+            <span
+              className="text-2xl tracking-tight text-[#1a1a1a]"
+              style={{ fontFamily: "'TTSupermolot', sans-serif", fontWeight: 500 }}
+            >
+              LEYONE<span className="text-[#CB3234]">X</span>
+            </span>
           </Link>
 
-          <div className="hidden md:flex items-center space-x-6">
-            <Link href="/" className="text-slate-300 hover:text-orange-500 transition-colors">
-              Ana Sayfa
-            </Link>
-            <Link href="/hakkimizda" className="text-slate-300 hover:text-orange-500 transition-colors">
-              Hakkımızda
-            </Link>
-            <Link href="/hizmetler" className="text-slate-300 hover:text-orange-500 transition-colors">
-              Hizmetler
-            </Link>
-            <Link href="/fuarlar" className="text-slate-300 hover:text-orange-500 transition-colors">
-              Fuarlar
-            </Link>
-            <Link href="/iletisim" className="text-slate-300 hover:text-orange-500 transition-colors">
-              İletişim
-            </Link>
+          {/* Desktop Nav */}
+          <div className="hidden md:flex items-center gap-6">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-sm font-medium text-[#555] hover:text-[#CB3234] transition-colors"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
 
-            {/* TR/EN Toggle - Cookie Based */}
+          {/* Desktop Actions */}
+          <div className="hidden md:flex items-center gap-3">
+            {/* TR/EN Toggle */}
             <button
               onClick={toggleLanguage}
-              className="flex items-center space-x-2 px-4 py-2 bg-orange-500 hover:bg-orange-600 rounded-lg transition-colors"
+              className="flex items-center gap-1 border border-[#E5E5E3] rounded-full px-3 py-1.5 text-xs font-semibold text-[#1a1a1a] hover:border-[#CB3234] transition-colors"
+              aria-label="Dil değiştir"
             >
-              <span className="text-xl">{currentLang === 'tr' ? '🇹🇷' : '🇬🇧'}</span>
-              <span className="text-white text-sm font-bold">{currentLang.toUpperCase()}</span>
-              <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
-              </svg>
+              <span className={currentLang === 'tr' ? 'text-[#CB3234]' : 'text-[#999]'}>TR</span>
+              <span className="text-[#ccc]">|</span>
+              <span className={currentLang === 'en' ? 'text-[#CB3234]' : 'text-[#999]'}>EN</span>
             </button>
 
             {isSignedIn ? (
-              <div className="flex items-center space-x-4">
-                <Link href="/uye/dashboard" className="text-slate-300 hover:text-orange-500 transition-colors">
+              <div className="flex items-center gap-3">
+                <Link
+                  href="/uye/dashboard"
+                  className="text-sm font-medium text-[#555] hover:text-[#CB3234] transition-colors"
+                >
                   Dashboard
                 </Link>
                 <UserButton afterSignOutUrl="/" />
               </div>
             ) : (
-              <Link href="/giris" className="px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors">
-                Giriş Yap
+              <Link
+                href="/teklif-al"
+                className="bg-[#CB3234] text-white text-sm font-semibold px-5 py-2.5 rounded-md hover:bg-[#A8282A] transition-colors"
+              >
+                Teklif Alın
               </Link>
             )}
           </div>
 
-          <button onClick={() => setIsOpen(!isOpen)} className="md:hidden text-white">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              {isOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
+          {/* Mobile Hamburger */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="md:hidden p-2 text-[#1a1a1a]"
+            aria-label="Menü"
+          >
+            {isOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
 
+        {/* Mobile Menu */}
         {isOpen && (
-          <div className="md:hidden py-4 space-y-4 border-t border-slate-800">
-            <Link href="/" className="block text-slate-300 hover:text-orange-500">Ana Sayfa</Link>
-            <Link href="/hakkimizda" className="block text-slate-300 hover:text-orange-500">Hakkımızda</Link>
-            <Link href="/hizmetler" className="block text-slate-300 hover:text-orange-500">Hizmetler</Link>
-            <Link href="/fuarlar" className="block text-slate-300 hover:text-orange-500">Fuarlar</Link>
-            <Link href="/iletisim" className="block text-slate-300 hover:text-orange-500">İletişim</Link>
-
-            <button
-              onClick={toggleLanguage}
-              className="w-full px-4 py-3 bg-orange-500 rounded-lg text-left flex items-center space-x-3 hover:bg-orange-600"
-            >
-              <span className="text-2xl">{currentLang === 'tr' ? '🇹🇷' : '🇬🇧'}</span>
-              <span className="text-sm font-bold text-white">
-                {currentLang === 'tr' ? 'Switch to English' : 'Türkçe\'ye geç'}
-              </span>
-            </button>
-
-            {isSignedIn ? (
-              <div className="space-y-4 pt-4 border-t border-slate-700">
-                <Link href="/uye/dashboard" className="block text-slate-300 hover:text-orange-500">Dashboard</Link>
-                <UserButton afterSignOutUrl="/" />
-              </div>
-            ) : (
-              <Link href="/giris" className="block px-4 py-2 bg-orange-500 text-white rounded-lg text-center">
-                Giriş Yap
+          <div className="md:hidden border-t border-[#E5E5E3] py-4 space-y-1 bg-white">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setIsOpen(false)}
+                className="block px-2 py-2.5 text-sm font-medium text-[#555] hover:text-[#CB3234] transition-colors"
+              >
+                {link.label}
               </Link>
-            )}
+            ))}
+
+            <div className="pt-3 mt-3 border-t border-[#E5E5E3] flex items-center justify-between px-2">
+              <button
+                onClick={toggleLanguage}
+                className="flex items-center gap-1 border border-[#E5E5E3] rounded-full px-3 py-1.5 text-xs font-semibold"
+              >
+                <span className={currentLang === 'tr' ? 'text-[#CB3234]' : 'text-[#999]'}>TR</span>
+                <span className="text-[#ccc]">|</span>
+                <span className={currentLang === 'en' ? 'text-[#CB3234]' : 'text-[#999]'}>EN</span>
+              </button>
+
+              {isSignedIn ? (
+                <UserButton afterSignOutUrl="/" />
+              ) : (
+                <Link
+                  href="/teklif-al"
+                  onClick={() => setIsOpen(false)}
+                  className="bg-[#CB3234] text-white text-sm font-semibold px-4 py-2 rounded-md"
+                >
+                  Teklif Alın
+                </Link>
+              )}
+            </div>
           </div>
         )}
       </nav>

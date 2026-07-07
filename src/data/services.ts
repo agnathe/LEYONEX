@@ -5,6 +5,7 @@ export interface Service {
   id: number;
   title: { tr: string; en: string };
   slug: string;
+  phase: 'fuar-oncesi' | 'fuar-zamani' | 'fuar-sonrasi';
   shortDescription: { tr: string; en: string };
   fullDescription: { tr: string; en: string };
   icon: string;
@@ -23,6 +24,7 @@ export const services: Service[] = [
       en: "Stand Design & Installation",
     },
     slug: "stand-tasarimi",
+    phase: 'fuar-oncesi',
     shortDescription: {
       tr: "Modüler, orta seviye, premium ve dijital ekranlı stand çözümleri",
       en: "Modular, medium, premium and digital display stand solutions",
@@ -71,6 +73,7 @@ export const services: Service[] = [
       en: "Hostess & Staff Support",
     },
     slug: "hostes-personel",
+    phase: 'fuar-zamani',
     shortDescription: {
       tr: "VIP, servis, formal ve İngilizce bilen profesyonel personel",
       en: "VIP, service, formal and English-speaking professional staff",
@@ -119,6 +122,7 @@ export const services: Service[] = [
       en: "Hotel & Accommodation",
     },
     slug: "otel-konaklama",
+    phase: 'fuar-oncesi',
     shortDescription: {
       tr: "3-5 yıldız otellerde fuar alanına yakın konaklama çözümleri",
       en: "Accommodation solutions in 3-5 star hotels close to the fair area",
@@ -160,6 +164,7 @@ export const services: Service[] = [
       en: "Stand Catering",
     },
     slug: "stand-ikramlari",
+    phase: 'fuar-zamani',
     shortDescription: {
       tr: "Kuru pasta, tatlı, çay/kahve, meyve ve premium ikram seçenekleri",
       en: "Cookies, desserts, tea/coffee, fruit and premium catering options",
@@ -179,6 +184,7 @@ export const services: Service[] = [
       en: "Photography & Video Shooting",
     },
     slug: "fotograf-video",
+    phase: 'fuar-zamani',
     shortDescription: {
       tr: "Stand görüntüleri, ürün odaklı, röportaj ve drone çekimleri",
       en: "Stand visuals, product-focused, interview and drone shootings",
@@ -198,6 +204,7 @@ export const services: Service[] = [
       en: "Transportation & Shuttle",
     },
     slug: "ulasim-shuttle",
+    phase: 'fuar-oncesi',
     shortDescription: {
       tr: "Günlük shuttle, VIP araç, grup ve havalimanı transfer hizmetleri",
       en: "Daily shuttle, VIP vehicle, group and airport transfer services",
@@ -217,6 +224,7 @@ export const services: Service[] = [
       en: "Corporate Gifts & Promotion",
     },
     slug: "kurumsal-hediye",
+    phase: 'fuar-oncesi',
     shortDescription: {
       tr: "Klasik, premium VIP ve kurumsal kıyafet promosyon ürünleri",
       en: "Classic, premium VIP and corporate apparel promotional products",
@@ -236,6 +244,7 @@ export const services: Service[] = [
       en: "Dinner & Gala",
     },
     slug: "aksam-yemegi-gala",
+    phase: 'fuar-zamani',
     shortDescription: {
       tr: "Gala yemeği, cocktail, özel davet ve VIP masa organizasyonları",
       en: "Gala dinner, cocktail, special invitation and VIP table organizations",
@@ -255,6 +264,7 @@ export const services: Service[] = [
       en: "Fair Consulting",
     },
     slug: "fuar-danismanligi",
+    phase: 'fuar-oncesi',
     shortDescription: {
       tr: "Fuar seçimi, bütçe planlama, strateji ve analiz hizmetleri",
       en: "Fair selection, budget planning, strategy and analysis services",
@@ -274,6 +284,7 @@ export const services: Service[] = [
       en: "Government Support Consulting",
     },
     slug: "devlet-destegi-danismanligi",
+    phase: 'fuar-oncesi',
     shortDescription: {
       tr: "Fuar katılımlarınız için devlet teşvik ve destek programları danışmanlığı",
       en: "Government incentive and support programs consulting for your fair participations",
@@ -284,6 +295,46 @@ export const services: Service[] = [
     },
     icon: "award",
     order: 10,
+    subServices: [],
+  },
+  {
+    id: 11,
+    title: {
+      tr: "Raporlama & Analiz",
+      en: "Reporting & Analysis",
+    },
+    slug: "raporlama-analiz",
+    phase: 'fuar-sonrasi',
+    shortDescription: {
+      tr: "Kapsamlı hizmet raporu ve fuar sonu iyileştirme anketi",
+      en: "Comprehensive service report and post-fair improvement survey",
+    },
+    fullDescription: {
+      tr: "Fuar sona erdikten sonra katılımınızı rakamlarla değerlendiriyoruz. Gelen ziyaretçi profili, bütçe gerçekleşmesi, hizmet kalitesi ve gelecek önerileri içeren detaylı rapor.",
+      en: "After the fair ends, we evaluate your participation with numbers. A detailed report containing visitor profile, budget realization, service quality and future recommendations.",
+    },
+    icon: "file-text",
+    order: 11,
+    subServices: [],
+  },
+  {
+    id: 12,
+    title: {
+      tr: "Hızlı Takip Planı",
+      en: "Fast Follow-up Plan",
+    },
+    slug: "hizli-takip",
+    phase: 'fuar-sonrasi',
+    shortDescription: {
+      tr: "Fuar sonrası 48 saat içinde nitelikli temas ve satış takip planı",
+      en: "Qualified contact and sales follow-up plan within 48 hours after the fair",
+    },
+    fullDescription: {
+      tr: "Fuardan toplanan kartlar ve nitelikli temaslar için 48 saatlik aksiyon planı hazırlıyoruz. CRM entegrasyonu ve öncelik sıralaması ile satış fırsatlarının soğumasını önleriz.",
+      en: "We prepare a 48-hour action plan for cards collected from the fair and qualified contacts. We prevent sales opportunities from cooling with CRM integration and prioritization.",
+    },
+    icon: "phone",
+    order: 12,
     subServices: [],
   },
 ];

@@ -3,7 +3,7 @@
 import { useState, useMemo } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Calendar, MapPin, Building } from "lucide-react";
+import { Calendar, MapPin, Building, ExternalLink } from "lucide-react";
 import { format } from "date-fns";
 import { tr } from "date-fns/locale";
 import { getUpcomingFairs } from "@/lib/data";
@@ -151,11 +151,25 @@ export default function FairsTable() {
                       <td className="px-6 py-4">
                         <div className="flex items-start gap-3">
                           <div className="flex-1">
-                            <div className="font-semibold text-[#2d2d2d] group-hover:text-primary transition-colors">
-                              {fair.name.tr}
-                            </div>
+                            {fair.website ? (
+                              <a
+                                href={fair.website}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1.5 font-semibold text-[#2d2d2d] hover:text-primary transition-colors group/link"
+                                onClick={(e) => e.stopPropagation()}
+                              >
+                                {fair.name.tr}
+                                <ExternalLink
+                                  size={12}
+                                  className="opacity-0 group-hover/link:opacity-60 transition-opacity flex-shrink-0"
+                                />
+                              </a>
+                            ) : (
+                              <span className="font-semibold text-[#2d2d2d]">{fair.name.tr}</span>
+                            )}
                             {isOngoing && (
-                              <Badge className="mt-1 bg-green-500 text-white text-xs">
+                              <Badge className="mt-1 bg-green-500 text-white text-xs block w-fit">
                                 Devam Ediyor
                               </Badge>
                             )}

@@ -17,7 +17,7 @@ export default cloudinary;
  */
 export async function uploadToCloudinary(
   file: string,
-  folder: string = 'luna360expo'
+  folder: string = 'leyonex'
 ) {
   try {
     const result = await cloudinary.uploader.upload(file, {
