@@ -18,15 +18,16 @@ export default function ProjectsVideoSection() {
         </div>
 
         {/* Video */}
-        <div className="max-w-4xl mx-auto rounded-xl overflow-hidden shadow-[0_8px_64px_rgba(0,0,0,0.6)] aspect-video">
-          <video
-            controls
-            preload="metadata"
-            className="w-full h-full object-cover"
-          >
-            <source src="/leyonex-video-cikis.mp4" type="video/mp4" />
-            Tarayıcınız video oynatmayı desteklemiyor.
-          </video>
+        <div className="max-w-4xl mx-auto rounded-xl overflow-hidden shadow-[0_8px_64px_rgba(0,0,0,0.6)]">
+          <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+            <iframe
+              src="https://www.youtube-nocookie.com/embed/N43uEoLjwt8?rel=0&modestbranding=1"
+              title="Leyonex Projeler"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="absolute inset-0 w-full h-full"
+            />
+          </div>
         </div>
 
         {/* Alt metin */}
