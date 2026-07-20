@@ -8,12 +8,6 @@ export default function StatsSection() {
 
   return (
     <section className="relative bg-[#111111] py-20 overflow-hidden">
-      {/* Background photo */}
-      <div
-        className="absolute inset-0 bg-cover bg-center pointer-events-none"
-        style={{ backgroundImage: "url('/images/stats-bg.png')", opacity: 0.18 }}
-        aria-hidden="true"
-      />
       {/* Giant X watermark */}
       <div
         className="absolute inset-0 flex items-center justify-end pointer-events-none select-none"

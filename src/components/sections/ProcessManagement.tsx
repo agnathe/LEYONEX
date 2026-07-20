@@ -8,7 +8,6 @@ const stages = [
     number: '01',
     phase: 'Fuar Öncesi',
     tag: 'STRATEJİ VE HAZIRLIK',
-    image: '/images/fuar-oncesi.jpg',
     items: [
       'Fuar stratejisi ve amaç belirleme',
       'Bütçe stratejisi ve optimizasyonu',
@@ -21,7 +20,6 @@ const stages = [
     number: '02',
     phase: 'Fuar Zamanı',
     tag: 'SAHA OPERASYONU',
-    image: '/images/fuar-zamani.jpg',
     items: [
       'Operasyon ve toplantı yönetimi',
       'İkram, personel, konaklama ve ulaşım koordinasyonu',
@@ -34,7 +32,6 @@ const stages = [
     number: '03',
     phase: 'Fuar Sonrası',
     tag: 'TAKİP VE RAPORLAMA',
-    image: '/images/fuar-sonrasi.jpg',
     items: [
       'Kayıtlı müşterilere hızlı dönüş yönlendirmesi',
       'Kapsamlı fuar inceleme ve iyileştirme raporu',
@@ -71,59 +68,44 @@ export default function ProcessManagement() {
             <button
               key={i}
               onClick={() => setActiveStage(i)}
-              className={`text-left border rounded-lg overflow-hidden transition-all duration-200 ${
+              className={`text-left p-8 border rounded-lg transition-all duration-200 ${
                 activeStage === i
                   ? 'border-[#CB3234] bg-white shadow-lg'
                   : 'border-[#E5E5E3] bg-[#F8F8F6] hover:border-[#CB3234]/40'
               }`}
             >
-              {/* Phase image */}
-              <div className="h-44 overflow-hidden">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={stage.image}
-                  alt={stage.phase}
-                  className={`w-full h-full object-cover transition-all duration-300 ${
-                    activeStage === i ? 'scale-105 saturate-100' : 'saturate-50 scale-100'
-                  }`}
+              {/* Stage number + arrow */}
+              <div className="flex items-start justify-between mb-6">
+                <span className={`text-sm font-bold ${activeStage === i ? 'text-[#CB3234]' : 'text-[#999]'}`}>
+                  {stage.number}
+                </span>
+                <ArrowRight
+                  size={16}
+                  className={`transition-colors mt-0.5 ${activeStage === i ? 'text-[#CB3234]' : 'text-[#ccc]'}`}
                 />
               </div>
 
-              {/* Card content */}
-              <div className="p-8">
-                {/* Stage number + arrow */}
-                <div className="flex items-start justify-between mb-4">
-                  <span className={`text-sm font-bold ${activeStage === i ? 'text-[#CB3234]' : 'text-[#999]'}`}>
-                    {stage.number}
-                  </span>
-                  <ArrowRight
-                    size={16}
-                    className={`transition-colors mt-0.5 ${activeStage === i ? 'text-[#CB3234]' : 'text-[#ccc]'}`}
-                  />
-                </div>
+              {/* Phase title */}
+              <h3 className="text-xl font-black text-[#1a1a1a] mb-1">{stage.phase}</h3>
+              <p className="text-xs font-semibold tracking-wider text-[#999] uppercase mb-6">
+                {stage.tag}
+              </p>
 
-                {/* Phase title */}
-                <h3 className="text-xl font-black text-[#1a1a1a] mb-1">{stage.phase}</h3>
-                <p className="text-xs font-semibold tracking-wider text-[#999] uppercase mb-6">
-                  {stage.tag}
-                </p>
-
-                {/* Items — only shown for active stage */}
-                {activeStage === i ? (
-                  <ul className="space-y-3">
-                    {stage.items.map((item, j) => (
-                      <li key={j} className="flex items-start gap-3 text-sm text-[#555]">
-                        <div className="w-4 h-4 rounded-full bg-[#CB3234] flex items-center justify-center flex-shrink-0 mt-0.5">
-                          <div className="w-1.5 h-1.5 bg-white rounded-full" />
-                        </div>
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                ) : (
-                  <p className="text-sm text-[#bbb]">Detaylar için tıklayın</p>
-                )}
-              </div>
+              {/* Items — only shown for active stage */}
+              {activeStage === i ? (
+                <ul className="space-y-3">
+                  {stage.items.map((item, j) => (
+                    <li key={j} className="flex items-start gap-3 text-sm text-[#555]">
+                      <div className="w-4 h-4 rounded-full bg-[#CB3234] flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <div className="w-1.5 h-1.5 bg-white rounded-full" />
+                      </div>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="text-sm text-[#bbb]">Detaylar için tıklayın</p>
+              )}
             </button>
           ))}
         </div>
