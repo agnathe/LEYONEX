@@ -2,7 +2,7 @@
 
 import type { CSSProperties } from 'react';
 import Link from 'next/link';
-import { ChevronDown, Target, LayoutGrid, Users, Briefcase, Car, Gift, BarChart2, Calendar, MapPin } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 
 const E = 'cubic-bezier(.4,0,.2,1)';
 const SPRING = 'cubic-bezier(.34,1.56,.64,1)';
@@ -13,21 +13,6 @@ function anim(name: string, dur: number, delay: number, easing = E): CSSProperti
   };
 }
 
-const services = [
-  { Icon: Target,    label: 'Strateji' },
-  { Icon: LayoutGrid, label: 'Stand' },
-  { Icon: Users,     label: 'Saha Operasyonu' },
-  { Icon: Briefcase, label: 'Seyahat & Konaklama' },
-  { Icon: Car,       label: 'Transfer' },
-  { Icon: Gift,      label: 'Promosyon & İkram' },
-  { Icon: BarChart2, label: 'Raporlama' },
-];
-
-const steps = [
-  { Icon: Calendar, num: '01', label: 'Pre-Fair',  sub: 'Planlama & hazırlık' },
-  { Icon: MapPin,   num: '02', label: 'On-Site',   sub: 'Uygulama & saha yönetimi' },
-  { Icon: BarChart2,num: '03', label: 'Post-Fair', sub: 'Raporlama & iyileştirme' },
-];
 
 export default function HeroSection() {
   return (
@@ -88,55 +73,20 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* ── RIGHT: cards ── */}
-          <div className="flex flex-col gap-3">
-
-            {/* Services card */}
-            <div className="bg-white rounded-xl shadow-[0_2px_24px_rgba(0,0,0,0.07),0_0_0_1px_rgba(0,0,0,0.04)] overflow-hidden"
-                 style={{ ...anim('hero-reveal-down', .44, 1.28), clipPath: 'inset(0 0 100% 0)' }}>
-              <div className="px-5 py-4 border-b border-[#E5E5E3]">
-                <p className="text-[13px] font-extrabold text-[#1a1a1a] mb-1">Hizmetlerimiz</p>
-                <div className="w-6 h-0.5 bg-[#CB3234]" />
-              </div>
-              {services.map(({ Icon, label }, i) => (
-                <div key={label}
-                     className="flex items-center gap-3.5 px-5 py-[9px] border-b border-[#F4F4F2] last:border-0"
-                     style={{ ...anim('hero-slide-up', .30, 1.66 + i * 0.16), opacity: 0 }}>
-                  <Icon size={17} stroke="#CB3234" strokeWidth={1.6} className="flex-shrink-0" />
-                  <span className="text-[12.5px] font-medium text-[#1a1a1a]">{label}</span>
-                </div>
-              ))}
-            </div>
-
-            {/* Process card */}
-            <div className="bg-white rounded-xl shadow-[0_2px_24px_rgba(0,0,0,0.07),0_0_0_1px_rgba(0,0,0,0.04)] px-5 py-4"
-                 style={{ ...anim('hero-fade-in', .4, 2.9), opacity: 0 }}>
-              <p className="text-[13px] font-extrabold text-[#1a1a1a] mb-1">Süreç Yönetimi</p>
-              <div className="w-5 h-0.5 bg-[#CB3234] mb-4" />
-
-              {/* Timeline */}
-              <div className="grid gap-0" style={{ gridTemplateColumns: '1fr 48px 1fr 48px 1fr' }}>
-                {steps.flatMap(({ Icon, num, label, sub }, i) => [
-                  <div key={num} className="flex flex-col items-center">
-                    <div className="w-9 h-9 rounded-full border-2 border-[#CB3234] bg-white flex items-center justify-center mb-2"
-                         style={{ ...anim('hero-pop-in', .38, 3.20 + i * 0.60, SPRING), opacity: 0 }}>
-                      <Icon size={14} stroke="#CB3234" strokeWidth={1.6} />
-                    </div>
-                    <div className="text-center" style={{ ...anim('hero-fade-in', .30, 3.46 + i * 0.60), opacity: 0 }}>
-                      <p className="text-[9.5px] font-bold text-[#CB3234] tracking-wide mb-0.5">{num}</p>
-                      <p className="text-[11px] font-bold text-[#1a1a1a] mb-0.5">{label}</p>
-                      <p className="text-[9.5px] text-[#666] leading-snug">{sub}</p>
-                    </div>
-                  </div>,
-                  ...(i < 2 ? [
-                    <div key={`line-${i}`}
-                         className="h-px bg-[#CB3234]"
-                         style={{ marginTop: '17px', ...anim('hero-draw-right', .34, 3.56 + i * 0.60), clipPath: 'inset(0 100% 0 0)' }} />
-                  ] : []),
-                ])}
-              </div>
-            </div>
-
+          {/* ── RIGHT: Hero image ── */}
+          <div
+            className="relative overflow-hidden rounded-xl shadow-[0_8px_48px_rgba(0,0,0,0.14)]"
+            style={{ ...anim('hero-reveal-down', .5, 0.9), clipPath: 'inset(0 0 100% 0)', minHeight: 420 }}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/hero.jpg"
+              alt="LEYONEX fuar yönetimi"
+              className="w-full h-full object-cover"
+              style={{ minHeight: 420 }}
+            />
+            {/* Subtle bottom gradient for text readability */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d0d]/40 via-transparent to-transparent" />
           </div>
         </div>
       </div>
