@@ -108,12 +108,9 @@ export default function PositioningSection() {
               Neden Leyonex
             </span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-black text-[#1a1a1a] mb-4">
-            Stand Firması veya Büyük Ajans Değil — Süreç Ortağı
+          <h2 className="text-4xl md:text-5xl font-black text-[#1a1a1a]">
+            Neden LEYONEX?
           </h2>
-          <p className="text-[#555] text-lg leading-relaxed">
-            Leyonex, standı kuran firma da değil yüksek maliyetli büyük ajans da değil. Fuar sürecinizin tamamını yöneten tek muhataptır.
-          </p>
         </div>
 
         {/* Comparison Table */}

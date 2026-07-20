@@ -1,10 +1,8 @@
-'use client';
-
-import { useState } from 'react';
+import Link from 'next/link';
 import type { LucideIcon } from 'lucide-react';
 import {
   Box, Users, Hotel, Coffee, Camera, Car,
-  Gift, Utensils, Lightbulb, FileText, Phone, Award, ChevronDown,
+  Gift, Utensils, Lightbulb, FileText, Phone, Award,
 } from 'lucide-react';
 
 interface ServiceDef {
@@ -21,7 +19,6 @@ interface PhaseDef {
   intro: string;
   bg: string;
   labelColor: string;
-  // Tailwind grid-cols classes tailored per phase item count
   gridCols: string;
   services: ServiceDef[];
 }
@@ -155,99 +152,27 @@ const phases: PhaseDef[] = [
   },
 ];
 
-// ── Service Card ──────────────────────────────────────────────────────────────
-
-function ServiceCard({ service, open, onToggle }: {
-  service: ServiceDef;
-  open: boolean;
-  onToggle: () => void;
-}) {
+function ServiceCard({ service }: { service: ServiceDef }) {
   const { Icon } = service;
-
   return (
-    <div
-      className={`
-        relative bg-white border transition-all duration-200 overflow-hidden
-        ${open
-          ? 'border-[#CB3234]/25 shadow-[0_4px_24px_rgba(203,50,52,0.07)]'
-          : 'border-[#E5E5E3] hover:border-[#CB3234]/20 hover:shadow-[0_2px_12px_rgba(0,0,0,0.05)]'
-        }
-      `}
-    >
-      {/* Red accent bar — slides in when open */}
-      <div
-        className={`absolute top-0 left-0 right-0 h-[2px] bg-[#CB3234] transition-transform duration-300 origin-left ${open ? 'scale-x-100' : 'scale-x-0'}`}
-        aria-hidden="true"
-      />
-
-      {/* Trigger */}
-      <button
-        type="button"
-        onClick={onToggle}
-        aria-expanded={open}
-        aria-controls={`detail-${service.id}`}
-        className="group w-full text-left p-6 flex flex-col focus:outline-none focus-visible:ring-2 focus-visible:ring-[#CB3234] focus-visible:ring-inset"
-      >
-        {/* Icon row */}
-        <div className="flex items-start justify-between mb-5">
-          <div className="w-9 h-9 flex items-center justify-center">
-            <Icon
-              size={20}
-              strokeWidth={1.5}
-              className={`transition-colors duration-200 ${open ? 'text-[#CB3234]' : 'text-[#1a1a1a] group-hover:text-[#CB3234]'}`}
-            />
-          </div>
-          <ChevronDown
-            size={14}
-            strokeWidth={2.5}
-            className={`transition-all duration-300 ${open ? 'rotate-180 text-[#CB3234]' : 'text-[#C0C0BE]'}`}
-          />
-        </div>
-
-        {/* Title */}
-        <h3 className={`text-sm font-bold mb-2 leading-snug transition-colors duration-200 ${open ? 'text-[#CB3234]' : 'text-[#1a1a1a]'}`}>
-          {service.title}
-        </h3>
-
-        {/* Short desc */}
-        <p className="text-xs text-[#888] leading-relaxed">
-          {service.shortDescription}
-        </p>
-      </button>
-
-      {/* Expandable detail — grid-rows animation, no layout shift */}
-      <div
-        id={`detail-${service.id}`}
-        role="region"
-        aria-label={`${service.title} detay`}
-        className={`grid transition-[grid-template-rows,opacity] duration-300 ease-in-out ${open ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}
-      >
-        <div className="overflow-hidden">
-          <div className="px-6 pb-6">
-            <div className="pt-4 border-t border-[#F0F0EE]">
-              <p className="text-xs text-[#555] leading-[1.85]">
-                {service.longDescription}
-              </p>
-            </div>
-          </div>
-        </div>
+    <div className="bg-white border border-[#E5E5E3] hover:border-[#CB3234]/25 hover:shadow-[0_2px_12px_rgba(0,0,0,0.05)] transition-all duration-200 p-6">
+      <div className="w-9 h-9 flex items-center justify-center mb-5">
+        <Icon size={20} strokeWidth={1.5} className="text-[#1a1a1a]" />
       </div>
+      <h3 className="text-sm font-bold mb-2 leading-snug text-[#1a1a1a]">
+        {service.title}
+      </h3>
+      <p className="text-xs text-[#888] leading-relaxed">
+        {service.shortDescription}
+      </p>
     </div>
   );
 }
 
-// ── Phase Section ─────────────────────────────────────────────────────────────
-
-function PhaseSection({ phase, expanded, onToggle }: {
-  phase: PhaseDef;
-  expanded: Set<string>;
-  onToggle: (id: string) => void;
-}) {
+function PhaseSection({ phase }: { phase: PhaseDef }) {
   return (
     <div className={`${phase.bg} py-14 md:py-20`}>
       <div className="container mx-auto px-4 md:px-6">
-
-        {/* Phase header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-1 mb-8">
           <div>
             <div className="flex items-center gap-2.5 mb-2">
@@ -263,15 +188,9 @@ function PhaseSection({ phase, expanded, onToggle }: {
           </span>
         </div>
 
-        {/* Cards — per-phase column count, gap-based (no gap-px), items-start */}
-        <div className={`grid ${phase.gridCols} gap-3 items-start`}>
+        <div className={`grid ${phase.gridCols} gap-3`}>
           {phase.services.map((service) => (
-            <ServiceCard
-              key={service.id}
-              service={service}
-              open={expanded.has(service.id)}
-              onToggle={() => onToggle(service.id)}
-            />
+            <ServiceCard key={service.id} service={service} />
           ))}
         </div>
       </div>
@@ -279,31 +198,26 @@ function PhaseSection({ phase, expanded, onToggle }: {
   );
 }
 
-// ── ServicesGrid ──────────────────────────────────────────────────────────────
-
 export default function ServicesGrid() {
-  const [expanded, setExpanded] = useState<Set<string>>(new Set());
-
-  const toggle = (id: string) => {
-    setExpanded((prev) => {
-      const next = new Set(prev);
-      if (next.has(id)) next.delete(id);
-      else next.add(id);
-      return next;
-    });
-  };
-
   return (
     <div>
-      {/* Phase sections */}
       {phases.map((phase) => (
-        <PhaseSection
-          key={phase.id}
-          phase={phase}
-          expanded={expanded}
-          onToggle={toggle}
-        />
+        <PhaseSection key={phase.id} phase={phase} />
       ))}
+
+      <div className="bg-[#F8F8F6] py-10 border-t border-[#E5E5E3]">
+        <div className="container mx-auto px-4 md:px-6 flex items-center justify-between flex-wrap gap-4">
+          <p className="text-sm text-[#555]">
+            Her hizmetin detaylı bilgisi ve referansları için:
+          </p>
+          <Link
+            href="/hizmetler"
+            className="inline-flex items-center gap-2 border border-[#1a1a1a] text-[#1a1a1a] font-bold px-6 py-2.5 text-sm hover:bg-[#1a1a1a] hover:text-white transition-colors"
+          >
+            Tüm Hizmetler →
+          </Link>
+        </div>
+      </div>
     </div>
   );
 }

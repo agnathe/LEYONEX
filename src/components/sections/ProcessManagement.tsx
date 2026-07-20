@@ -57,12 +57,9 @@ export default function ProcessManagement() {
               Süreç Yönetimi
             </span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-black text-[#1a1a1a] mb-4">
+          <h2 className="text-4xl md:text-5xl font-black text-[#1a1a1a]">
             Üç Aşama, Tek Sistem
           </h2>
-          <p className="text-[#555] text-lg leading-relaxed">
-            Fuar öncesinden fuar sonrasına kadar tüm süreç tek muhatapla, tek fatura ve denetlenebilir raporlarla yürür.
-          </p>
         </div>
 
         {/* Stage Cards */}
