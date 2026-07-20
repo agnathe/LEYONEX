@@ -21,7 +21,7 @@ const stages = [
     number: '02',
     phase: 'Fuar Zamanı',
     tag: 'SAHA OPERASYONU',
-    image: '/images/fuar-zamani.jpg',
+    image: '/images/fuar-zamani.png',
     items: [
       'Operasyon ve toplantı yönetimi',
       'İkram, personel, konaklama ve ulaşım koordinasyonu',
