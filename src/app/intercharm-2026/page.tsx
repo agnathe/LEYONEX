@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import Link from 'next/link';
-import { MapPin, Bus, Utensils } from 'lucide-react';
+import { MapPin, Bus, Utensils, ExternalLink } from 'lucide-react';
 
 const PAGE_CSS = `
 @font-face {
@@ -143,6 +143,23 @@ html { scroll-behavior: smooth; }
 .ic-photo-strip { display: grid; grid-template-columns: repeat(3,1fr); height: 180px; overflow: hidden; margin-bottom: 20px; }
 .ic-photo-strip img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.75); display: block; }
 .ic-footnote { font-size: 13px; color: #767676; line-height: 1.6; }
+
+/* ── 3D TOUR ── */
+.ic-tour-banner {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 16px;
+  border: 1px solid #0D0D0D; padding: 20px 28px; margin-bottom: 20px;
+  background: white;
+}
+.ic-tour-label { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: #767676; margin-bottom: 4px; }
+.ic-tour-text  { font-size: 14px; color: #0D0D0D; font-weight: 500; }
+.ic-tour-link-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 13px; font-weight: 600; color: white;
+  background: #0D0D0D; padding: 10px 20px; text-decoration: none;
+  transition: background 150ms; white-space: nowrap; flex-shrink: 0;
+}
+.ic-tour-link-btn:hover { background: #E31B23; }
 
 /* ── PRICING ── */
 .ic-table-note { font-size: 13px; color: #767676; margin: 16px 0 24px; }
@@ -418,6 +435,22 @@ export default function InterCharm2026() {
             <img src="/images/havuz.png" alt="Havuz ve spa" />
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/images/ibis-resepsiyon.png" alt="Ibis resepsiyon" />
+          </div>
+
+          {/* 3D Tour */}
+          <div className="ic-tour-banner ic-reveal">
+            <div>
+              <div className="ic-tour-label">Sanal Tur</div>
+              <div className="ic-tour-text">Oteli rezervasyon öncesinde 3D olarak gezebilirsiniz</div>
+            </div>
+            <a
+              href="https://accorkievskaya.ru/tour/?lang=en#node89,92.37,1.8,105,4"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ic-tour-link-btn"
+            >
+              3D Turu Başlat <ExternalLink size={14} />
+            </a>
           </div>
 
           <p className="ic-footnote ic-reveal">
