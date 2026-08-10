@@ -82,22 +82,44 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
 
               {/* Main content */}
-              <div className="lg:col-span-2">
+              <div className="lg:col-span-2 space-y-12">
+
+                {/* Hero quote */}
+                {service.heroText && (
+                  <blockquote className="border-l-4 border-[#CB3234] pl-6 py-1">
+                    <p className="text-lg text-[#1a1a1a] leading-relaxed font-medium">
+                      {service.heroText}
+                    </p>
+                  </blockquote>
+                )}
+
+                {/* Full description */}
                 {service.fullDescription?.tr && (
-                  <div className="mb-12">
-                    <h2 className="text-2xl font-black text-[#1a1a1a] mb-4">Hizmet Detayları</h2>
+                  <div>
+                    <h2 className="text-xl font-black text-[#1a1a1a] mb-4">Hizmet Hakkında</h2>
                     <p className="text-[#555] text-base leading-relaxed">
                       {service.fullDescription.tr}
                     </p>
                   </div>
                 )}
 
+                {/* Process */}
+                {service.processText && (
+                  <div>
+                    <h2 className="text-xl font-black text-[#1a1a1a] mb-4">Nasıl Çalışıyoruz?</h2>
+                    <p className="text-[#555] text-base leading-relaxed">
+                      {service.processText}
+                    </p>
+                  </div>
+                )}
+
+                {/* Scope */}
                 {service.subServices && service.subServices.length > 0 && (
                   <div>
-                    <h2 className="text-2xl font-black text-[#1a1a1a] mb-6">Kapsam</h2>
+                    <h2 className="text-xl font-black text-[#1a1a1a] mb-6">Hizmet Kapsamı</h2>
                     <div className="grid gap-3">
                       {service.subServices.map((sub: any, i: number) => (
-                        <div key={i} className="bg-white border border-[#E5E5E3] rounded p-5 flex gap-4 items-start">
+                        <div key={i} className="bg-white border border-[#E5E5E3] p-5 flex gap-4 items-start">
                           <div className="w-6 h-6 rounded-full bg-[#CB3234] flex items-center justify-center flex-shrink-0 mt-0.5">
                             <Check size={13} className="text-white" strokeWidth={2.5} />
                           </div>
@@ -112,18 +134,29 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
                     </div>
                   </div>
                 )}
+
+                {/* GEO block */}
+                {service.geoBlock && (
+                  <div className="bg-[#F8F8F6] border border-[#E5E5E3] p-6">
+                    <p className="text-xs font-bold uppercase tracking-wider text-[#CB3234] mb-3">Hızlı Cevap</p>
+                    <h3 className="text-base font-black text-[#1a1a1a] mb-3">{service.geoBlock.question}</h3>
+                    <p className="text-sm text-[#555] leading-relaxed">{service.geoBlock.answer}</p>
+                  </div>
+                )}
               </div>
 
               {/* Sidebar */}
               <div className="lg:col-span-1">
-                <div className="bg-white border border-[#E5E5E3] rounded p-7 sticky top-24">
-                  <h3 className="text-lg font-black text-[#1a1a1a] mb-2">Bu hizmet için teklif alın</h3>
+                <div className="bg-white border border-[#E5E5E3] p-7 sticky top-24">
+                  <h3 className="text-base font-black text-[#1a1a1a] mb-2">
+                    {service.ctaText ?? 'Bu hizmet için teklif alın'}
+                  </h3>
                   <p className="text-sm text-[#666] mb-6">
-                    24 saat içinde size özel fiyat hazırlayalım.
+                    24 saat içinde size özel dönüş yapıyoruz.
                   </p>
                   <Link
                     href="/teklif-al"
-                    className="flex items-center justify-center gap-2 w-full bg-[#CB3234] text-white font-bold py-3.5 rounded hover:bg-[#A8282A] transition-colors text-sm"
+                    className="flex items-center justify-center gap-2 w-full bg-[#CB3234] text-white font-bold py-3.5 hover:bg-[#A8282A] transition-colors text-sm"
                   >
                     Teklif Talep Formu
                     <ArrowRight size={15} />

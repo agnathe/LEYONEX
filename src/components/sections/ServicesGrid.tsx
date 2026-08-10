@@ -7,6 +7,7 @@ import {
 
 interface ServiceDef {
   id: string;
+  slug: string;
   Icon: LucideIcon;
   title: string;
   shortDescription: string;
@@ -34,6 +35,7 @@ const phases: PhaseDef[] = [
     services: [
       {
         id: 'danismanlik',
+        slug: 'fuar-danismanligi',
         Icon: Lightbulb,
         title: 'Fuar Danışmanlığı',
         shortDescription: 'Fuar seçimi, bütçe planlama, strateji ve analiz.',
@@ -42,6 +44,7 @@ const phases: PhaseDef[] = [
       },
       {
         id: 'stand-tasarim',
+        slug: 'stand-tasarimi',
         Icon: Box,
         title: 'Stand Tasarımı & Kurulumu',
         shortDescription: 'Modüler, orta seviye, premium ve dijital ekranlı çözümlerin tedarik yönetimi.',
@@ -50,6 +53,7 @@ const phases: PhaseDef[] = [
       },
       {
         id: 'otel',
+        slug: 'otel-konaklama',
         Icon: Hotel,
         title: 'Otel & Konaklama',
         shortDescription: 'Fuar alanına yakın 3–5 yıldız konaklama çözümleri.',
@@ -58,6 +62,7 @@ const phases: PhaseDef[] = [
       },
       {
         id: 'ulasim',
+        slug: 'ulasim-shuttle',
         Icon: Car,
         title: 'Ulaşım & Shuttle',
         shortDescription: 'Günlük shuttle, VIP araç ve havalimanı transferleri.',
@@ -66,6 +71,7 @@ const phases: PhaseDef[] = [
       },
       {
         id: 'hediye',
+        slug: 'kurumsal-hediye',
         Icon: Gift,
         title: 'Kurumsal Hediye & Promosyon',
         shortDescription: 'Klasik ve premium VIP promosyon ürünleri.',
@@ -84,6 +90,7 @@ const phases: PhaseDef[] = [
     services: [
       {
         id: 'hostes',
+        slug: 'hostes-personel',
         Icon: Users,
         title: 'Hostes & Personel',
         shortDescription: 'VIP, servis ve İngilizce bilen profesyonel ekip.',
@@ -92,6 +99,7 @@ const phases: PhaseDef[] = [
       },
       {
         id: 'ikram',
+        slug: 'stand-ikramlari',
         Icon: Coffee,
         title: 'Stand İkramları',
         shortDescription: 'Çay/kahve, ikram ve premium servis seçenekleri.',
@@ -100,6 +108,7 @@ const phases: PhaseDef[] = [
       },
       {
         id: 'fotograf',
+        slug: 'fotograf-video',
         Icon: Camera,
         title: 'Fotoğraf & Video',
         shortDescription: 'Stand, ürün, röportaj ve drone çekimleri.',
@@ -108,6 +117,7 @@ const phases: PhaseDef[] = [
       },
       {
         id: 'gala',
+        slug: 'aksam-yemegi-gala',
         Icon: Utensils,
         title: 'Akşam Yemeği & Gala',
         shortDescription: 'Gala, cocktail ve VIP masa organizasyonları.',
@@ -126,6 +136,7 @@ const phases: PhaseDef[] = [
     services: [
       {
         id: 'raporlama',
+        slug: 'raporlama-analiz',
         Icon: FileText,
         title: 'Raporlama & Analiz',
         shortDescription: 'Kapsamlı hizmet raporu ve iyileştirme anketi.',
@@ -134,6 +145,7 @@ const phases: PhaseDef[] = [
       },
       {
         id: 'takip',
+        slug: 'hizli-takip',
         Icon: Phone,
         title: 'Hızlı Takip Planı',
         shortDescription: 'Fuar sonrası 48 saat içinde temas planı.',
@@ -142,6 +154,7 @@ const phases: PhaseDef[] = [
       },
       {
         id: 'devlet',
+        slug: 'devlet-destegi-danismanligi',
         Icon: Award,
         title: 'Devlet Desteği Danışmanlığı',
         shortDescription: 'KOSGEB, TİM, TOBB teşvik başvuru yönetimi.',
@@ -155,17 +168,23 @@ const phases: PhaseDef[] = [
 function ServiceCard({ service }: { service: ServiceDef }) {
   const { Icon } = service;
   return (
-    <div className="bg-white border border-[#E5E5E3] hover:border-[#CB3234]/25 hover:shadow-[0_2px_12px_rgba(0,0,0,0.05)] transition-all duration-200 p-6">
+    <Link
+      href={`/hizmetler/${service.slug}`}
+      className="group bg-white border border-[#E5E5E3] hover:border-[#CB3234]/40 hover:shadow-[0_4px_16px_rgba(203,50,52,0.08)] transition-all duration-200 p-6 flex flex-col"
+    >
       <div className="w-9 h-9 flex items-center justify-center mb-5">
-        <Icon size={20} strokeWidth={1.5} className="text-[#1a1a1a]" />
+        <Icon size={20} strokeWidth={1.5} className="text-[#1a1a1a] group-hover:text-[#CB3234] transition-colors" />
       </div>
       <h3 className="text-sm font-bold mb-2 leading-snug text-[#1a1a1a]">
         {service.title}
       </h3>
-      <p className="text-xs text-[#888] leading-relaxed">
+      <p className="text-xs text-[#888] leading-relaxed flex-1">
         {service.shortDescription}
       </p>
-    </div>
+      <span className="mt-4 text-[10px] font-bold uppercase tracking-wider text-[#CB3234] opacity-0 group-hover:opacity-100 transition-opacity">
+        Detayları Gör →
+      </span>
+    </Link>
   );
 }
 

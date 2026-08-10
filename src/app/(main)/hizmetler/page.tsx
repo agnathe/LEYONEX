@@ -3,8 +3,8 @@ import Footer from "@/components/layout/Footer";
 import ServicesGrid from "@/components/sections/ServicesGrid";
 
 export const metadata = {
-  title: "Hizmetlerimiz - Leyonex",
-  description: "Fuar organizasyonu için tüm hizmetlerimizi keşfedin. Stand tasarımından danışmanlığa kadar.",
+  title: "Fuar Hizmetleri",
+  description: "Fuar danışmanlığından stand tasarımına, konaklama ve ulaşımdan fuar sonrası lead takibine — LEYONEX ile fuar sürecinizin her aşaması tek elden.",
 };
 
 export default function HizmetlerPage() {
