@@ -4,6 +4,7 @@ import { ClerkProvider } from '@clerk/nextjs';
 import { trTR } from '@clerk/localizations';
 import Script from 'next/script';
 import GoogleTranslate from '@/components/GoogleTranslate';
+import CookieConsent from '@/components/CookieConsent';
 import "./globals.css";
 
 const GA_ID = 'G-QMY8Q632RB';
@@ -98,6 +99,18 @@ export default function RootLayout({
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
           />
+          {/* Consent Mode v2 — varsayılan reddet, kullanıcı onayına kadar GA4 veri toplamaz */}
+          <Script id="consent-default" strategy="beforeInteractive">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('consent', 'default', {
+                analytics_storage: 'denied',
+                functionality_cookie: 'denied',
+                wait_for_update: 2000
+              });
+            `}
+          </Script>
           <Script
             src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
             strategy="afterInteractive"
@@ -112,6 +125,7 @@ export default function RootLayout({
           </Script>
           <GoogleTranslate />
           {children}
+          <CookieConsent />
         </body>
       </html>
     </ClerkProvider>
