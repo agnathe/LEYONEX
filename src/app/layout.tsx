@@ -2,8 +2,11 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import { ClerkProvider } from '@clerk/nextjs';
 import { trTR } from '@clerk/localizations';
+import Script from 'next/script';
 import GoogleTranslate from '@/components/GoogleTranslate';
 import "./globals.css";
+
+const GA_ID = 'G-QMY8Q632RB';
 
 const poppins = Poppins({
   weight: ["300", "400", "500", "600", "700"],
@@ -95,6 +98,18 @@ export default function RootLayout({
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
           />
+          <Script
+            src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+            strategy="afterInteractive"
+          />
+          <Script id="ga4-init" strategy="afterInteractive">
+            {`
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', '${GA_ID}');
+            `}
+          </Script>
           <GoogleTranslate />
           {children}
         </body>
