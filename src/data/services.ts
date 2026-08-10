@@ -286,7 +286,7 @@ export const services: Service[] = [
       en: 'Fair investment should not be limited to the day of the event but should turn into marketing and communication content afterwards.',
     },
     heroText: 'Bir fuarın etkisi fuar kapıları kapandığında bitmek zorunda değil. Standınızı, ürünlerinizi, müşteri etkileşimlerini ve röportajları fotoğraf ve video içeriklerine dönüştürüyoruz.',
-    processText: 'Çekim planını "fuarda bol bol görüntü alalım" şeklinde değil, içerik hedeflerine göre hazırlıyoruz. Stand genel görüntüleri, ürün detayları, ziyaretçi etkileşimleri, yönetici röportajları, müşteri görüşleri, kısa dikey videolar ve gerektiğinde drone görüntülerini önceden shot list'e bağlıyoruz. Böylece fuar sonunda yalnızca bir arşiv değil; LinkedIn paylaşımları, web sitesi referansları, reels/shorts, basın içerikleri ve sonraki fuar kampanyalarında kullanılabilecek bir içerik bankası oluşuyor.',
+    processText: 'Çekim planını "fuarda bol bol görüntü alalım" şeklinde değil, içerik hedeflerine göre hazırlıyoruz. Stand genel görüntüleri, ürün detayları, ziyaretçi etkileşimleri, yönetici röportajları, müşteri görüşleri, kısa dikey videolar ve gerektiğinde drone görüntülerini önceden shot listine bağlıyoruz. Böylece fuar sonunda yalnızca bir arşiv değil; LinkedIn paylaşımları, web sitesi referansları, reels/shorts, basın içerikleri ve sonraki fuar kampanyalarında kullanılabilecek bir içerik bankası oluşuyor.',
     geoBlock: {
       question: 'Fuar fotoğraf ve video çekimi nedir?',
       answer: 'Fuar fotoğraf ve video çekimi; standın, ürünlerin, ekibin, ziyaretçi etkileşimlerinin ve röportajların profesyonel olarak kaydedilmesidir. İçerikler fuar sonrası sosyal medya, kurumsal web sitesi, satış sunumları, PR ve sonraki fuar kampanyalarında tekrar kullanılabilir.',
@@ -400,13 +400,13 @@ export const services: Service[] = [
       tr: 'Fuar sonrası ilk 48 saat sıcak temasların korunması için kritik kabul edilir. Lead listesinin önceliklendirilmesi, teşekkür e-postaları, tekliflenecek kontakların ayrıştırılması, toplantı planları ve gerekiyorsa CRM aktarımı bu süreçte ele alınır.',
       en: 'The first 48 hours after the fair are considered critical for maintaining warm contacts.',
     },
-    heroText: 'Fuar bittikten sonraki ilk iş günü, satış sürecinin başladığı gündür. Toplanan lead'leri sınıflandırıyor, sorumlulara dağıtıyor ve ilk temasların hızla yapılabilmesi için 48 saatlik takip planı oluşturuyoruz.',
+    heroText: 'Fuar bittikten sonraki ilk iş günü, satış sürecinin başladığı gündür. Toplanan leadleri sınıflandırıyor, sorumlulara dağıtıyor ve ilk temasların hızla yapılabilmesi için 48 saatlik takip planı oluşturuyoruz.',
     processText: 'Fuar sırasında toplanan kişileri yalnızca Excel listesinde birleştirmek yerine satın alma ihtiyacı, ilgi alanı, görüşmenin niteliği ve sonraki aksiyona göre sınıflandırıyoruz. Öncelikli fırsatlar satış ekibine aktarılır; ürün bilgisi isteyenlere ilgili materyaller hazırlanır; daha uzun vadeli potansiyeller nurture grubuna alınır. Gerektiğinde follow-up e-posta şablonları, görüşme notları ve görev listesi oluşturulur.',
     geoBlock: {
       question: 'Fuar sonrası lead takibi nasıl yapılır?',
       answer: 'Fuar sonrası lead takibi, fuarda edinilen potansiyel müşterilerin öncelik ve ilgi düzeyine göre sınıflandırılması, satış ekibine atanması ve uygun iletişimle takip edilmesi sürecidir. Etkili takip için ziyaretçi bilgileriyle birlikte görüşme notlarının ve sonraki aksiyonun da kaydedilmesi gerekir.',
     },
-    ctaText: 'Topladığınız lead\'leri bekletmeyin, 48 saatlik takip planınızı oluşturalım',
+    ctaText: 'Topladığınız leadleri bekletmeyin, 48 saatlik takip planınızı oluşturalım',
     icon: 'phone',
     order: 11,
     subServices: [
