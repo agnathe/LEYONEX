@@ -70,7 +70,7 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
     url: `${BASE}/projeler/${slug}`,
     creator: { '@type': 'Organization', name: 'LEYONEX Fuarcılık', url: BASE },
     locationCreated: { '@type': 'Place', name: project.location.fairName, addressLocality: project.location.city },
-    ...(project.images?.[0] ? { image: project.images[0] } : {}),
+    ...(project.heroImage ? { image: project.heroImage } : {}),
   };
 
   const breadcrumbSchema = {
