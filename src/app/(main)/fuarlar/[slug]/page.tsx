@@ -54,8 +54,48 @@ export default async function FairDetailPage({ params }: FairDetailPageProps) {
   const isUpcoming = startDate > new Date();
   const isOngoing = startDate <= new Date() && endDate >= new Date();
 
+  const BASE = 'https://leyonex.com';
+
+  const eventSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Event',
+    name: fair.name.tr,
+    description: fair.description.tr,
+    startDate: fair.startDate,
+    endDate: fair.endDate,
+    eventStatus: 'https://schema.org/EventScheduled',
+    eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+    location: {
+      '@type': 'Place',
+      name: fair.location.venue,
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: fair.location.city,
+        addressCountry: fair.location.country,
+      },
+    },
+    organizer: {
+      '@type': 'Organization',
+      name: 'LEYONEX Fuarcılık',
+      url: BASE,
+    },
+    url: `${BASE}/fuarlar/${slug}`,
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Ana Sayfa', item: BASE },
+      { '@type': 'ListItem', position: 2, name: 'Fuar Takvimi', item: `${BASE}/fuarlar` },
+      { '@type': 'ListItem', position: 3, name: fair.name.tr, item: `${BASE}/fuarlar/${slug}` },
+    ],
+  };
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(eventSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <Header />
       <main className="min-h-screen pt-20">
         {/* Hero Section */}

@@ -60,8 +60,33 @@ export default async function ProjectDetailPage({ params }: ProjectDetailPagePro
     digital: "Dijital Ekranlı",
   };
 
+  const BASE = 'https://leyonex.com';
+
+  const creativeWorkSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'CreativeWork',
+    name: project.title.tr,
+    description: `${project.client} için ${project.location.fairName} fuarında stand tasarımı ve kurulumu — ${project.squareMeters} m², ${project.location.city}.`,
+    url: `${BASE}/projeler/${slug}`,
+    creator: { '@type': 'Organization', name: 'LEYONEX Fuarcılık', url: BASE },
+    locationCreated: { '@type': 'Place', name: project.location.fairName, addressLocality: project.location.city },
+    ...(project.images?.[0] ? { image: project.images[0] } : {}),
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Ana Sayfa', item: BASE },
+      { '@type': 'ListItem', position: 2, name: 'Projeler', item: `${BASE}/projeler` },
+      { '@type': 'ListItem', position: 3, name: project.title.tr, item: `${BASE}/projeler/${slug}` },
+    ],
+  };
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(creativeWorkSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <Header />
       <main className="min-h-screen pt-20">
         {/* Hero Section */}

@@ -42,8 +42,37 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
   const service = getServiceBySlug(slug);
   if (!service) notFound();
 
+  const BASE = 'https://leyonex.com';
+
+  const serviceSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: service!.title.tr,
+    description: service!.shortDescription.tr,
+    url: `${BASE}/hizmetler/${slug}`,
+    provider: {
+      '@type': 'Organization',
+      name: 'LEYONEX Fuarcılık',
+      url: BASE,
+    },
+    areaServed: ['TR', 'DE', 'RU', 'IT', 'AE'],
+    serviceType: 'Fuar Yönetimi ve Organizasyonu',
+  };
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Ana Sayfa', item: BASE },
+      { '@type': 'ListItem', position: 2, name: 'Hizmetler', item: `${BASE}/hizmetler` },
+      { '@type': 'ListItem', position: 3, name: service!.title.tr, item: `${BASE}/hizmetler/${slug}` },
+    ],
+  };
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <Header />
       <main className="min-h-screen pt-20 bg-[#F8F8F6]">
 
