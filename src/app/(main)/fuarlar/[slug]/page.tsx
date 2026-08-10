@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import Link from "next/link";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -14,6 +15,30 @@ interface FairDetailPageProps {
   params: Promise<{
     slug: string;
   }>;
+}
+
+export async function generateMetadata({ params }: FairDetailPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const fair = getFairBySlug(slug);
+  if (!fair) return {};
+
+  const startDate = new Date(fair.startDate);
+  const endDate = new Date(fair.endDate);
+  const dateStr = `${format(startDate, 'd MMM', { locale: tr })} – ${format(endDate, 'd MMM yyyy', { locale: tr })}`;
+  const title = fair.name.tr;
+  const description = `${fair.name.tr} — ${fair.location.city}, ${fair.location.country} | ${dateStr}. LEYONEX ile stand tasarımı, konaklama ve fuar organizasyonu.`;
+
+  return {
+    title,
+    description,
+    keywords: [fair.name.tr, fair.location.city, fair.sector.tr, 'fuar organizasyonu', 'stand tasarımı', 'LEYONEX'],
+    alternates: { canonical: `https://leyonex.com/fuarlar/${slug}` },
+    openGraph: {
+      title: `${title} | LEYONEX`,
+      description,
+      url: `https://leyonex.com/fuarlar/${slug}`,
+    },
+  };
 }
 
 export default async function FairDetailPage({ params }: FairDetailPageProps) {

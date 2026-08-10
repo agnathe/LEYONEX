@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { getServiceBySlug, getAllServices } from "@/lib/data";
@@ -7,6 +8,27 @@ import { ArrowLeft, ArrowRight, Check, Mail, Phone } from "lucide-react";
 
 interface ServiceDetailPageProps {
   params: Promise<{ slug: string }>;
+}
+
+export async function generateMetadata({ params }: ServiceDetailPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const service = getServiceBySlug(slug);
+  if (!service) return {};
+
+  const title = service.title.tr;
+  const description = `${service.shortDescription.tr} — LEYONEX ile fuar sürecinizde profesyonel destek alın.`;
+
+  return {
+    title,
+    description,
+    keywords: [title, 'fuar hizmeti', 'fuar organizasyonu', 'LEYONEX', service.phase.replace(/-/g, ' ')],
+    alternates: { canonical: `https://leyonex.com/hizmetler/${slug}` },
+    openGraph: {
+      title: `${title} | LEYONEX`,
+      description,
+      url: `https://leyonex.com/hizmetler/${slug}`,
+    },
+  };
 }
 
 const phaseLabel: Record<string, string> = {

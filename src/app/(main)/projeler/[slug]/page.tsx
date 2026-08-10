@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import Header from "@/components/layout/Header";
@@ -13,6 +14,35 @@ interface ProjectDetailPageProps {
   params: Promise<{
     slug: string;
   }>;
+}
+
+const standTypeLabelsStatic: Record<string, string> = {
+  modular: 'Modüler',
+  medium: 'Orta Seviye',
+  premium: 'Premium',
+  digital: 'Dijital Ekranlı',
+};
+
+export async function generateMetadata({ params }: ProjectDetailPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const project = getProjectBySlug(slug);
+  if (!project) return {};
+
+  const standLabel = standTypeLabelsStatic[project.standType] ?? 'Stand';
+  const title = project.title.tr;
+  const description = `${project.client} için ${project.location.fairName} fuarında ${standLabel.toLowerCase()} stand tasarımı ve kurulumu — ${project.squareMeters} m², ${project.location.city}. LEYONEX referans projesi.`;
+
+  return {
+    title,
+    description,
+    keywords: [project.client, project.location.fairName, standLabel, 'stand tasarımı', 'fuar standı', 'LEYONEX', project.location.city],
+    alternates: { canonical: `https://leyonex.com/projeler/${slug}` },
+    openGraph: {
+      title: `${title} | LEYONEX`,
+      description,
+      url: `https://leyonex.com/projeler/${slug}`,
+    },
+  };
 }
 
 export default async function ProjectDetailPage({ params }: ProjectDetailPageProps) {
