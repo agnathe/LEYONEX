@@ -11,8 +11,75 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Leyonex - Fuar Organizasyon",
-  description: "Profesyonel fuar organizasyon hizmetleri",
+  metadataBase: new URL('https://leyonex.com'),
+  title: {
+    template: '%s | LEYONEX',
+    default: 'LEYONEX — Fuar Yönetimi ve Organizasyon Hizmetleri',
+  },
+  description:
+    'Fuar stratejisinden stand tasarımına, saha operasyonundan raporlamaya — ' +
+    'LEYONEX fuar sürecinizi uçtan uca yönetir. ' +
+    'İstanbul merkezli, 10+ yıl sektör deneyimi.',
+  keywords: [
+    'fuar yönetimi', 'fuar organizasyonu', 'stand tasarımı', 'fuar danışmanlığı',
+    'yurtdışı fuar', 'fuar operasyonu', 'exhibition management turkey',
+    'fuar teşvik danışmanlığı', 'LEYONEX',
+  ],
+  authors: [{ name: 'Burkay Kartal', url: 'https://leyonex.com/hakkimizda' }],
+  creator: 'LEYONEX Fuarcılık',
+  publisher: 'LEYONEX Fuarcılık',
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, 'max-image-preview': 'large' },
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'tr_TR',
+    url: 'https://leyonex.com',
+    siteName: 'LEYONEX',
+    title: 'LEYONEX — Fuar Yönetimi ve Organizasyon Hizmetleri',
+    description:
+      'Fuar stratejisinden stand tasarımına, saha operasyonundan raporlamaya — ' +
+      'LEYONEX fuar sürecinizi uçtan uca yönetir.',
+    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'LEYONEX' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'LEYONEX — Fuar Yönetimi',
+    description: 'Fuar sürecinizi uçtan uca yöneten ortağınız.',
+    images: ['/og-image.png'],
+  },
+  alternates: {
+    canonical: 'https://leyonex.com',
+  },
+};
+
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: 'LEYONEX Fuarcılık',
+  url: 'https://leyonex.com',
+  logo: 'https://leyonex.com/logo.png',
+  description:
+    'Fuar stratejisi, stand tasarımı, saha operasyonu ve raporlama hizmetleriyle ' +
+    'B2B fuarlarınızı uçtan uca yöneten İstanbul merkezli fuar yönetim şirketi.',
+  foundingDate: '2014',
+  founder: { '@type': 'Person', name: 'Burkay Kartal' },
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'İstanbul',
+    addressCountry: 'TR',
+  },
+  contactPoint: {
+    '@type': 'ContactPoint',
+    telephone: '+90-543-960-70-76',
+    email: 'info@leyonex.com',
+    contactType: 'customer service',
+    availableLanguage: ['Turkish', 'English'],
+  },
+  areaServed: ['TR', 'DE', 'RU', 'IT', 'AE'],
+  sameAs: ['https://www.linkedin.com/company/leyonex'],
 };
 
 export default function RootLayout({
@@ -24,6 +91,10 @@ export default function RootLayout({
     <ClerkProvider localization={trTR}>
       <html lang="tr">
         <body className={poppins.className}>
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
+          />
           <GoogleTranslate />
           {children}
         </body>
