@@ -28,6 +28,24 @@ export default function CookieConsent() {
         functionality_cookie: decision,
       });
     }
+    if (decision === 'granted' && typeof window !== 'undefined') {
+      // LinkedIn Insight Tag — ilk kez onay verildiğinde anlık yükle
+      (window as any)._linkedin_partner_id = '9775924';
+      (window as any)._linkedin_data_partner_ids = (window as any)._linkedin_data_partner_ids || [];
+      (window as any)._linkedin_data_partner_ids.push('9775924');
+      if (!(window as any).lintrk) {
+        (window as any).lintrk = function(a: unknown, b: unknown) {
+          ((window as any).lintrk as { q: unknown[] }).q.push([a, b]);
+        };
+        (window as any).lintrk.q = [];
+        const s = document.createElement('script');
+        s.type = 'text/javascript';
+        s.async = true;
+        s.src = 'https://snap.licdn.com/li.lms-analytics/insight.min.js';
+        const b = document.getElementsByTagName('script')[0];
+        b.parentNode!.insertBefore(s, b);
+      }
+    }
     setVisible(false);
   };
 

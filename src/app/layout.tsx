@@ -8,6 +8,7 @@ import CookieConsent from '@/components/CookieConsent';
 import "./globals.css";
 
 const GA_ID = 'G-QMY8Q632RB';
+const LI_PARTNER_ID = '9775924';
 
 const poppins = Poppins({
   weight: ["300", "400", "500", "600", "700"],
@@ -119,6 +120,26 @@ export default function RootLayout({
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
               gtag('config', '${GA_ID}');
+            `}
+          </Script>
+          {/* LinkedIn Insight Tag — sadece önceki oturumda onay verildiyse yüklenir */}
+          <Script id="linkedin-insight" strategy="afterInteractive">
+            {`
+              (function() {
+                try {
+                  if (localStorage.getItem('leyonex-cookie-consent') !== 'granted') return;
+                  window._linkedin_partner_id = "${LI_PARTNER_ID}";
+                  window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+                  window._linkedin_data_partner_ids.push(window._linkedin_partner_id);
+                  (function(l){
+                    if(!l){window.lintrk=function(a,b){window.lintrk.q.push([a,b])};window.lintrk.q=[];}
+                    var s=document.createElement('script');s.type='text/javascript';s.async=true;
+                    s.src='https://snap.licdn.com/li.lms-analytics/insight.min.js';
+                    var b=document.getElementsByTagName('script')[0];
+                    b.parentNode.insertBefore(s,b);
+                  })(window.lintrk);
+                } catch(e){}
+              })();
             `}
           </Script>
           <GoogleTranslate />
