@@ -7,6 +7,7 @@ import StatsSection from "@/components/sections/StatsSection";
 import ServicesGrid from "@/components/sections/ServicesGrid";
 import PositioningSection from "@/components/sections/PositioningSection";
 import FeaturedProjects from "@/components/sections/FeaturedProjects";
+import RecentBlogPosts from "@/components/sections/RecentBlogPosts";
 import CTASection from "@/components/sections/CTASection";
 
 export default function Home() {
@@ -20,6 +21,7 @@ export default function Home() {
 				<ServicesGrid />
 				<PositioningSection />
 				<FeaturedProjects />
+				<RecentBlogPosts />
 				<CTASection />
 			</main>
 			<Footer />

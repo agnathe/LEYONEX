@@ -40,6 +40,7 @@ export default function Header() {
     { href: '/hizmetler', label: 'Hizmetler' },
     { href: '/fuarlar', label: 'Fuar Takvimi' },
     { href: '/projeler', label: 'Projeler' },
+    { href: '/blog', label: 'Blog' },
     { href: '/iletisim', label: 'İletişim' },
   ];
 

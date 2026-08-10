@@ -46,13 +46,11 @@ export const metadata: Metadata = {
     description:
       'Fuar stratejisinden stand tasarımına, saha operasyonundan raporlamaya — ' +
       'LEYONEX fuar sürecinizi uçtan uca yönetir.',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'LEYONEX' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'LEYONEX — Fuar Yönetimi',
     description: 'Fuar sürecinizi uçtan uca yöneten ortağınız.',
-    images: ['/og-image.png'],
   },
   alternates: {
     canonical: 'https://leyonex.com',
