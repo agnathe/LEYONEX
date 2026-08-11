@@ -5,6 +5,7 @@ import Footer from "@/components/layout/Footer";
 import { getAllBlogPosts } from "@/lib/data";
 import { BLOG_CATEGORIES, type BlogCategory } from "@/data/blog";
 import { ArrowRight, Clock, Calendar } from "lucide-react";
+import BlogCoverIllustration from "@/components/blog/BlogCoverIllustration";
 import { format } from "date-fns";
 import { tr } from "date-fns/locale";
 
@@ -98,9 +99,10 @@ export default function BlogPage() {
               className="group block bg-white border border-[#E5E5E3] hover:border-[#CB3234] transition-colors mb-10"
             >
               <div className="grid md:grid-cols-2 gap-0">
-                {/* Visual placeholder */}
-                <div className="bg-[#1a1a1a] min-h-[260px] md:min-h-[320px] flex items-end p-8">
-                  <div>
+                {/* Category illustration */}
+                <div className="relative min-h-[260px] md:min-h-[320px] flex items-end p-8 overflow-hidden">
+                  <BlogCoverIllustration category={featuredPost.category} />
+                  <div className="relative z-10">
                     <span className={`inline-block text-xs font-bold px-3 py-1 mb-4 ${CATEGORY_COLORS[featuredPost.category]}`}>
                       {BLOG_CATEGORIES[featuredPost.category]}
                     </span>
