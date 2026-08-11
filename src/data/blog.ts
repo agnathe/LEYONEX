@@ -110,7 +110,7 @@ export const blogPosts: BlogPost[] = [
         items: [
           "Sistem Kaydı: DYS kaydını tamamlayın, Kayıtlı Elektronik Posta (KEP) adresi ve nitelikli e-imza araçlarını aktif tutun.",
           "Fuar Ön Onay Denetimi: Fuarın \"Desteklenen Fuarlar Listesi\"nde olduğunu doğrulayın. Listede yoksa fuar başlangıcından en az 1 ay önce DYS üzerinden \"Fuar Ekleme Talebi\" oluşturun.",
-          "m² Bazlı Hesaplama: Stant yapımı, yer kirası ve nakliye için fatura inceleme zorunluluğu kalktı; bakanlığın fuar bazında açıkladığı m² katsayısı esas alınır.",
+          "m² Bazlı Destek Hesaplaması: Destek tutarı, Bakanlıkça fuar ve konum bazında belirlenen desteğe esas tutar ile fuarın metrekare bilgisi çarpılarak hesaplanır ve üst limitte durdurulur. Gözlemcinin görevlendirilmediği fuarlarda katılım ve metrekare bilgisinin tevsiki için fatura, sözleşme ve ödeme belgesi talep edilmektedir.",
           "Evrak Yükleme: Fuar bitiminden itibaren en geç 90 gün içinde DYS'ye tüm belgeleri yükleyin.",
           "İhracatçı Birlikleri Onayı: Başvuruyu bağlı olduğunuz birlik üzerinden sonuçlandırın.",
         ],
@@ -122,9 +122,10 @@ export const blogPosts: BlogPost[] = [
       {
         type: "ul",
         items: [
+          "Fatura — katılımcı firma adı, fuarın adı-tarihi ve stant metrekare bilgisini içermeli; gider kalemlerinin tamamı fatura ile belgelenmelidir",
           "Fuar katılım sözleşmesi",
           "Şirket adına düzenlenmiş banka onaylı ödeme dekontları — elden ödeme ve şirket dışı hesap transferleri kabul edilmez",
-          "Stant görselleri (fotoğraf ve video)",
+          "Stant görselleri (fotoğraf ve video — farklı açılardan, DYS'ye yüklenmek üzere)",
           "Fuar katılım belgesi",
           "İhracatçı Birlikleri dosya işlem bedeli makbuzu",
           "Pazarlama sözleşmesi ve kapasite raporu (imalatçı olmayan şirketler için)",
@@ -358,7 +359,7 @@ export const blogPosts: BlogPost[] = [
         type: "ul",
         items: [
           "Alev Geciktiricilik (Flame Retardant) Sertifikası: ahşap, kumaş, halı ve plastik malzemelerin DIN 4102 B1 veya EN 13501-1 standartlarına uygun yanmazlık sertifikalarına sahip olması ve bu belgelerin sahada hazır bulundurulması zorunludur",
-          "Elektrik ve Statik Güvenlik: kaçak akım rölesi zorunluluğu; kapalı tavan alanı 27,8 m²'yi geçen veya belirli yüksekliğin üzerindeki stantlarda onaylı statik projenin fuar yönetimine sunulması gerekir",
+          "Elektrik ve Statik Güvenlik: kaçak akım rölesi zorunluluğu; kapalı tavan alanı bulunan veya fuar idaresinin belirlediği eşik m² üzerindeki stantlarda onaylı statik projenin fuar yönetimine sunulması gerekir — kesin eşik değeri fuara ve ülkeye göre değişir, organizatörden yazılı teyit alınmalıdır",
           "Saha Çalışma Kuralları: montaj ve söküm günlerinde çelik burunlu iş ayakkabısı, reflektörlü yelek ve baret zorunludur; yüksek montajlarda emniyet kemeri şart koşulur",
         ],
       },
