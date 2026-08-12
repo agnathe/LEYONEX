@@ -9,6 +9,7 @@ import "./globals.css";
 
 const GA_ID = 'G-QMY8Q632RB';
 const LI_PARTNER_ID = '9775924';
+const CLARITY_ID = 'y13co04nmg';
 
 const poppins = Poppins({
   weight: ["300", "400", "500", "600", "700"],
@@ -120,6 +121,21 @@ export default function RootLayout({
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
               gtag('config', '${GA_ID}');
+            `}
+          </Script>
+          {/* Microsoft Clarity — sadece önceki oturumda onay verildiyse yüklenir */}
+          <Script id="clarity-init" strategy="afterInteractive">
+            {`
+              (function() {
+                try {
+                  if (localStorage.getItem('leyonex-cookie-consent') !== 'granted') return;
+                  (function(c,l,a,r,i,t,y){
+                    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+                    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+                  })(window,document,"clarity","script","${CLARITY_ID}");
+                } catch(e){}
+              })();
             `}
           </Script>
           {/* LinkedIn Insight Tag — sadece önceki oturumda onay verildiyse yüklenir */}

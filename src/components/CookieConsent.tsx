@@ -29,6 +29,14 @@ export default function CookieConsent() {
       });
     }
     if (decision === 'granted' && typeof window !== 'undefined') {
+      // Microsoft Clarity — ilk kez onay verildiğinde anlık yükle
+      if (!(window as any).clarity) {
+        (function(c: any, l: any, a: string, r: string, i: string) {
+          c[a] = c[a] || function(...args: unknown[]) { (c[a].q = c[a].q || []).push(args); };
+          const t = l.createElement(r); t.async = 1; t.src = 'https://www.clarity.ms/tag/' + i;
+          const y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+        })(window, document, 'clarity', 'script', 'y13co04nmg');
+      }
       // LinkedIn Insight Tag — ilk kez onay verildiğinde anlık yükle
       (window as any)._linkedin_partner_id = '9775924';
       (window as any)._linkedin_data_partner_ids = (window as any)._linkedin_data_partner_ids || [];
