@@ -1,11 +1,13 @@
 "use client";
 
 import { MessageCircle } from "lucide-react";
+import { trackEvent } from "@/lib/analytics";
 
 export default function WhatsAppButton() {
   const phoneNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "905xxxxxxxxx";
 
   const handleClick = () => {
+    trackEvent('whatsapp_click', { method: 'floating_button' });
     const message = encodeURIComponent(
       "Merhaba, Leyonex hakkında bilgi almak istiyorum."
     );

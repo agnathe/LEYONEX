@@ -4,6 +4,7 @@ import { useState } from "react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { ArrowRight, Loader2, Check, Mail, Phone, MapPin } from "lucide-react";
+import { trackEvent } from "@/lib/analytics";
 
 export default function IletisimPage() {
   const [formData, setFormData] = useState({
@@ -24,6 +25,7 @@ export default function IletisimPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
+      trackEvent('contact_form_submit', { form_location: 'iletisim_page' });
       setSent(true);
     } catch {
       setSent(true);
@@ -71,17 +73,27 @@ export default function IletisimPage() {
                 </p>
                 <div className="space-y-4">
                   {[
-                    { Icon: Mail,  label: 'E-posta',  value: 'info@leyonex.com' },
-                    { Icon: Phone, label: 'Telefon',  value: '+90 543 960 70 76' },
-                    { Icon: MapPin,label: 'Konum',    value: 'Ankara & İstanbul, Türkiye' },
-                  ].map(({ Icon, label: l, value }) => (
+                    { Icon: Mail,  label: 'E-posta',  value: 'info@leyonex.com',       href: 'mailto:info@leyonex.com',    event: null },
+                    { Icon: Phone, label: 'Telefon',  value: '+90 543 960 70 76',       href: 'tel:+905439607076',          event: 'phone_click' },
+                    { Icon: MapPin,label: 'Konum',    value: 'Ankara & İstanbul, Türkiye', href: null,                     event: null },
+                  ].map(({ Icon, label: l, value, href, event }) => (
                     <div key={l} className="flex items-start gap-3">
                       <div className="w-8 h-8 rounded bg-[#CB3234]/8 flex items-center justify-center flex-shrink-0 mt-0.5">
                         <Icon size={14} className="text-[#CB3234]" strokeWidth={1.8} />
                       </div>
                       <div>
                         <p className="text-[10px] font-bold uppercase tracking-wider text-[#999] mb-0.5">{l}</p>
-                        <p className="text-sm text-[#1a1a1a] font-medium">{value}</p>
+                        {href ? (
+                          <a
+                            href={href}
+                            onClick={() => event && trackEvent(event, { location: 'iletisim_page' })}
+                            className="text-sm text-[#1a1a1a] font-medium hover:text-[#CB3234] transition-colors"
+                          >
+                            {value}
+                          </a>
+                        ) : (
+                          <p className="text-sm text-[#1a1a1a] font-medium">{value}</p>
+                        )}
                       </div>
                     </div>
                   ))}

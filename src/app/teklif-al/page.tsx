@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import WhatsAppButton from '@/components/ui/WhatsAppButton';
+import { trackEvent } from '@/lib/analytics';
 
 interface FormData {
   // Firma Bilgileri
@@ -172,6 +173,24 @@ export default function TeklifAlPage() {
       const result = await response.json();
 
       if (result.success) {
+        trackEvent('generate_lead', {
+          form_name: 'quote_request',
+          fair_name: formData.fairName,
+          fair_location: formData.fairLocation,
+          stand_size: formData.standSize || undefined,
+          services_selected: [
+            formData.standDesign && 'stand_tasarimi',
+            formData.hostesService && 'hostes',
+            formData.accommodationService && 'konaklama',
+            formData.cateringService && 'ikram',
+            formData.photographyService && 'fotograf_video',
+            formData.transportationService && 'ulasim',
+            formData.giftService && 'kurumsal_hediye',
+            formData.galaService && 'gala',
+            formData.consultingService && 'danismanlik',
+          ].filter(Boolean),
+          budget_range: formData.budget || 'belirtilmedi',
+        });
         alert('✅ Talebiniz başarıyla gönderildi! En kısa sürede size dönüş yapacağız.');
         window.location.reload();
       } else {
@@ -185,7 +204,10 @@ export default function TeklifAlPage() {
   };
 
   const nextStep = () => {
-    if (step < 4) setStep(step + 1);
+    if (step < 4) {
+      trackEvent('quote_form_step', { step_from: step, step_to: step + 1 });
+      setStep(step + 1);
+    }
   };
 
   const prevStep = () => {
