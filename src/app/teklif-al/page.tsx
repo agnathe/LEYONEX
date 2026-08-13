@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef, useCallback } from 'react';
+import Link from 'next/link';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import { trackEvent } from '@/lib/analytics';
@@ -209,9 +210,9 @@ export default function FuarBilgiFormuPage() {
             <p className="text-[#666] text-sm leading-relaxed mb-8">
               Fuar bilgi formunuzu inceleyip en kısa sürede sizinle iletişime geçeceğiz.
             </p>
-            <a href="/" className="inline-flex items-center gap-2 bg-[#CB3234] text-white font-bold px-6 py-3 text-sm hover:bg-[#A8282A] transition-colors">
+            <Link href="/" className="inline-flex items-center gap-2 bg-[#CB3234] text-white font-bold px-6 py-3 text-sm hover:bg-[#A8282A] transition-colors">
               Ana Sayfaya Dön <ArrowRight size={14} />
-            </a>
+            </Link>
           </div>
         </main>
         <Footer />
@@ -447,7 +448,7 @@ export default function FuarBilgiFormuPage() {
               {/* 06 — Stand İhtiyaçları */}
               <div className="bg-white border border-[#E5E5E3] p-8 flex flex-col gap-6">
                 <SectionHeader num="06" title="STAND İHTİYAÇLARI" sub="Stand requirements" />
-                <p className="text-[13px] text-[#999] -mt-3">Her alan için önem derecesini seçin. Boş bırakılanlar "gerekmiyor" sayılır.</p>
+                <p className="text-[13px] text-[#999] -mt-3">Her alan için önem derecesini seçin. Boş bırakılanlar &ldquo;gerekmiyor&rdquo; sayılır.</p>
 
                 <div className="flex justify-end gap-2 pb-2">
                   <span className="w-[120px] text-center text-[11px] font-bold tracking-wider text-[#CB3234]">OLMAZSA OLMAZ</span>
@@ -475,7 +476,7 @@ export default function FuarBilgiFormuPage() {
 
                 {/* Kapsam checkboxları */}
                 <div>
-                  <Label>LEYONEX&apos;TEN BEKLEDİĞİNİZ KAPSAM / SCOPE</Label>
+                  <Label>LEYONEX&apos;TEN BEKLEDİĞİNİZ KAPSAM / SCOPE EXPECTED FROM LEYONEX</Label>
                   <div className="flex flex-wrap gap-2 mt-2">
                     {KAPSAM.map(opt => (
                       <label key={opt}
