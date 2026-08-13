@@ -80,7 +80,7 @@ export async function POST(request: NextRequest) {
 
     // E-posta gönder - TEST MODUNDA SADECE SENİN E-POSTANA GİDECEK
     const { data, error } = await resend.emails.send({
-      from: 'Leyonex Teklif Sistemi <onboarding@resend.dev>',
+      from: 'Leyonex <noreply@leyonex.com>',
       to: ['burkay@leyonex.com'],
       replyTo: formData.email,
       subject: `Yeni Teklif: ${formData.companyName} - ${formData.fairName}`,
