@@ -181,9 +181,12 @@ export async function POST(request: NextRequest) {
     const fuar = get('fuar');
     const eposta = get('eposta');
 
+    const fromEmail = process.env.RESEND_FROM_EMAIL || 'noreply@leyonex.com';
+    const toEmail = process.env.RESEND_TO_EMAIL || 'info@leyonex.com';
+
     const { error } = await resend.emails.send({
-      from: 'Leyonex Fuar Brief <onboarding@resend.dev>',
-      to: ['info@leyonex.com'],
+      from: `Leyonex Fuar Brief <${fromEmail}>`,
+      to: [toEmail],
       replyTo: eposta,
       subject: `Fuar Bilgi Formu: ${firma}${fuar ? ` — ${fuar}` : ''}`,
       html: emailHtml,
