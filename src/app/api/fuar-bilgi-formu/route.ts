@@ -183,7 +183,7 @@ export async function POST(request: NextRequest) {
 
     const { error } = await resend.emails.send({
       from: 'Leyonex Fuar Brief <onboarding@resend.dev>',
-      to: ['info@leyonex.com'],
+      to: ['burkay@leyonex.com'],
       replyTo: eposta,
       subject: `Fuar Bilgi Formu: ${firma}${fuar ? ` — ${fuar}` : ''}`,
       html: emailHtml,
