@@ -191,7 +191,7 @@ export async function POST(request: NextRequest) {
     });
 
     if (error) {
-      console.error('Resend error:', error);
+      console.error('RESEND_FULL_ERROR:', JSON.stringify(error));
       return NextResponse.json({ success: false, message: 'E-posta gönderilemedi.' }, { status: 500 });
     }
 
