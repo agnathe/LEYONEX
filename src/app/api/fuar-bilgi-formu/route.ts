@@ -182,7 +182,7 @@ export async function POST(request: NextRequest) {
     const eposta = get('eposta');
 
     const { error } = await resend.emails.send({
-      from: 'Leyonex <noreply@leyonex.com>',
+      from: 'Leyonex <noreply@crema.leyonex.com>',
       to: ['burkay@leyonex.com'],
       replyTo: eposta,
       subject: `Fuar Bilgi Formu: ${firma}${fuar ? ` — ${fuar}` : ''}`,
