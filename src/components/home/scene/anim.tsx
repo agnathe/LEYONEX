@@ -9,6 +9,7 @@ import {
 } from "react";
 import * as THREE from "three";
 import type { TrackName } from "./director";
+import { mat } from "./materials";
 
 /**
  * rise   – zeminden yükselir (y ölçeği), panel ve duvarlar için
@@ -64,9 +65,16 @@ export function Anim({
     if (!group) return;
     const materials: THREE.Material[] = [];
     if (mode === "fade") {
+      // Yalnızca nesneye ait malzemeler solar; paylaşılan malzemeler (mat.*) etkilenmez.
+      const shared = new Set<THREE.Material>(Object.values(mat));
       group.traverse((obj) => {
         const mesh = obj as THREE.Mesh;
-        if (mesh.isMesh && !Array.isArray(mesh.material))
+        if (
+          mesh.isMesh &&
+          !Array.isArray(mesh.material) &&
+          !shared.has(mesh.material) &&
+          !materials.includes(mesh.material)
+        )
           materials.push(mesh.material);
       });
     }

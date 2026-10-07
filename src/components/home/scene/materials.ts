@@ -1,42 +1,82 @@
 import * as THREE from "three";
+import {
+  blobShadowTexture,
+  carpetTexture,
+  hallFloorTexture,
+  lightboxTexture,
+  screenTexture,
+  wallGraphicTexture,
+  woodTexture,
+} from "./textures";
 
-// Ortak malzeme dili: mat beyaz paneller, koyu satine metal, açık metal, sınırlı kırmızı.
-// Paylaşılan malzemeler dispose edilmez; sahne yeniden kurulsa da aynı örnekler kullanılır.
+// Mimari maket malzeme dili: mat kart beyazı paneller, huş ahşap, saten metal,
+// koyu satine yüzeyler ve sınırlı kırmızı. Paylaşılan malzemeler dispose edilmez.
 const std = (params: THREE.MeshStandardMaterialParameters) =>
   new THREE.MeshStandardMaterial(params);
 
 export const mat = {
-  white: std({ color: "#F4F4F2", roughness: 0.82 }),
-  floor: std({ color: "#FBFBF9", roughness: 0.72 }),
-  base: std({ color: "#ECECEA", roughness: 0.92 }),
-  plinth: std({ color: "#1A1A1A", roughness: 0.6, metalness: 0.2 }),
-  dark: std({ color: "#2B2B2B", roughness: 0.42, metalness: 0.45 }),
-  darker: std({ color: "#0D0D0D", roughness: 0.5, metalness: 0.3 }),
+  white: std({ color: "#F7F6F3", roughness: 0.86 }),
+  whiteSoft: std({ color: "#EFEDE8", roughness: 0.9 }),
+  floor: std({ color: "#FFFFFF", map: carpetTexture(), roughness: 0.95 }),
+  base: std({ color: "#FFFFFF", map: hallFloorTexture(), roughness: 0.9 }),
+  plinth: std({ color: "#161616", roughness: 0.55, metalness: 0.25 }),
+  dark: std({ color: "#2B2B2B", roughness: 0.5, metalness: 0.35 }),
+  darker: std({ color: "#161718", roughness: 0.45, metalness: 0.3 }),
   grey: std({ color: "#767676", roughness: 0.7 }),
-  metal: std({ color: "#B3B3B3", roughness: 0.3, metalness: 0.8 }),
-  red: std({ color: "#E31B23", roughness: 0.45 }),
-  wood: std({ color: "#CDB79B", roughness: 0.78 }),
-  neighbor: std({ color: "#E6E6E6", roughness: 0.92 }),
-  aisle: std({ color: "#E0E0DE", roughness: 0.96 }),
-  road: std({ color: "#CFCFCD", roughness: 0.96 }),
+  metal: std({ color: "#C9CDD1", roughness: 0.28, metalness: 0.85 }),
+  red: std({ color: "#E31B23", roughness: 0.42 }),
+  wood: std({ color: "#FFFFFF", map: woodTexture(), roughness: 0.72 }),
+  woodBand: std({ color: "#FFFFFF", map: woodTexture(14, 1), roughness: 0.7 }),
+  neighbor: std({ color: "#ECEBE7", roughness: 0.92 }),
+  neighborDark: std({ color: "#3A3B3D", roughness: 0.7 }),
+  aisle: std({ color: "#DCD9D3", roughness: 0.96 }),
+  road: std({ color: "#C9C9C6", roughness: 0.96 }),
   glass: std({
-    color: "#E2E6E8",
-    roughness: 0.08,
+    color: "#E4EAED",
+    roughness: 0.05,
+    metalness: 0.1,
     transparent: true,
-    opacity: 0.3,
+    opacity: 0.28,
     depthWrite: false,
   }),
   light: std({
     color: "#FFFFFF",
-    emissive: "#FFF3E0",
+    emissive: "#FFF1DE",
     emissiveIntensity: 1,
     roughness: 0.4,
   }),
   screen: std({
-    color: "#15171A",
-    emissive: "#B9C3CC",
+    color: "#FFFFFF",
+    map: screenTexture(),
+    emissive: "#FFFFFF",
+    emissiveMap: screenTexture(),
     emissiveIntensity: 0.4,
-    roughness: 0.3,
+    roughness: 0.25,
+  }),
+  lightbox: std({
+    color: "#FFFFFF",
+    map: lightboxTexture(),
+    emissive: "#FFFFFF",
+    emissiveMap: lightboxTexture(),
+    emissiveIntensity: 0.35,
+    roughness: 0.5,
+  }),
+  wallGraphic: std({
+    color: "#FFFFFF",
+    map: wallGraphicTexture(),
+    roughness: 0.6,
+    metalness: 0.1,
+  }),
+  leaf: std({ color: "#8E9E80", roughness: 0.9, flatShading: true }),
+  leafDark: std({ color: "#6F8063", roughness: 0.9, flatShading: true }),
+  pot: std({ color: "#2B2B2B", roughness: 0.75 }),
+  fabric: std({ color: "#3A3B3D", roughness: 0.95 }),
+  shadow: new THREE.MeshBasicMaterial({
+    color: "#000000",
+    alphaMap: blobShadowTexture(),
+    transparent: true,
+    opacity: 0.3,
+    depthWrite: false,
   }),
   highlight: new THREE.MeshBasicMaterial({
     color: "#E31B23",
@@ -51,6 +91,14 @@ export const mat = {
     opacity: 0,
     depthWrite: false,
   }),
+};
+
+/** Mimari maket figürleri: kart beyazı, birkaç koyu ve bir kırmızı vurgu. */
+export const figureColors = {
+  paper: "#EEECE7",
+  stone: "#C9C7C2",
+  graphite: "#4A4B4D",
+  red: "#E31B23",
 };
 
 export const palette = {

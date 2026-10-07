@@ -104,13 +104,13 @@ export default function ExhibitionScene({
   return (
     <Canvas
       frameloop="demand"
-      dpr={quality === "full" ? [1, 1.5] : 1}
+      dpr={quality === "full" ? [1, 1.75] : [1, 1.5]}
       shadows={quality === "full" ? "soft" : false}
       camera={{ fov: 30, near: 0.5, far: 120, position: [10.5, 8.6, 13.2] }}
       gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
       onCreated={({ gl }) => {
         gl.toneMapping = THREE.NeutralToneMapping;
-        gl.toneMappingExposure = 1.02;
+        gl.toneMappingExposure = 1.0;
         gl.domElement.addEventListener("webglcontextlost", (event) => {
           event.preventDefault();
           onFail?.();
@@ -121,31 +121,34 @@ export default function ExhibitionScene({
     >
       <Director onReady={onReady} onDecline={onDecline} />
       <Maquette quality={quality} />
-      {quality === "full" && (
-        <Environment resolution={128} frames={1}>
-          <Lightformer
-            form="rect"
-            intensity={1.6}
-            position={[0, 6, 6]}
-            scale={[12, 4, 1]}
-          />
-          <Lightformer
-            form="rect"
-            intensity={0.8}
-            position={[-8, 3, -2]}
-            rotation={[0, Math.PI / 2, 0]}
-            scale={[8, 3, 1]}
-          />
-          <Lightformer
-            form="rect"
-            intensity={0.5}
-            color="#F3E8DC"
-            position={[8, 2, -4]}
-            rotation={[0, -Math.PI / 2, 0]}
-            scale={[6, 2, 1]}
-          />
-        </Environment>
-      )}
+      {/* Yumuşak stüdyo ortam ışığı: bir kez hesaplanır, mobilde de kullanılır. */}
+      <Environment
+        resolution={quality === "full" ? 256 : 64}
+        frames={1}
+        environmentIntensity={0.75}
+      >
+        <Lightformer
+          form="rect"
+          intensity={1.6}
+          position={[0, 6, 6]}
+          scale={[12, 4, 1]}
+        />
+        <Lightformer
+          form="rect"
+          intensity={0.8}
+          position={[-8, 3, -2]}
+          rotation={[0, Math.PI / 2, 0]}
+          scale={[8, 3, 1]}
+        />
+        <Lightformer
+          form="rect"
+          intensity={0.5}
+          color="#F3E8DC"
+          position={[8, 2, -4]}
+          rotation={[0, -Math.PI / 2, 0]}
+          scale={[6, 2, 1]}
+        />
+      </Environment>
       <ContactShadows
         position={[0, -0.73, 0]}
         scale={24}
