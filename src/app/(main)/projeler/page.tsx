@@ -4,15 +4,18 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import ProjectsVideoSection from "@/components/sections/ProjectsVideoSection";
 import MethodSection from "@/components/home/MethodSection";
-import ReferenceGallery from "@/components/home/ReferenceGallery";
-import { ReferencesIntro } from "@/components/home/ProjectStories";
-import { referencesIntro } from "@/components/home/content";
+import ProjectShowcase from "@/components/home/ProjectShowcase";
+import {
+  ProjectsIntro,
+  ProjectsPrivacyNote,
+} from "@/components/home/ProjectStories";
+import { showcaseProjects } from "@/components/home/content";
 import { buttonClass } from "@/components/home/SectionHeading";
 
 export const metadata = {
-  title: "Referanslar",
+  title: "Projeler",
   description:
-    "LEYONEX referans çalışmaları: savunma ve havacılık, elektronik ve haberleşme, yapı kimyasalları ve endüstriyel üretim sektörlerinden firmaların fuar süreçleri.",
+    "LEYONEX proje seçkisi: farklı ölçeklerde ve farklı ihtiyaçlarla hazırlanan fuar stantları, alternatif tasarım yönleri ve pazarlama odaklı kararlar.",
   alternates: { canonical: "https://leyonex.com/projeler" },
 };
 
@@ -22,7 +25,7 @@ export default function ProjelerPage() {
       <Header />
       <main className="pt-16 md:pt-20">
         <section
-          aria-labelledby="referanslar-sayfa-baslik"
+          aria-labelledby="projeler-sayfa-baslik"
           className="relative overflow-hidden bg-lx-ink py-20 text-white lg:py-28"
         >
           <span
@@ -32,15 +35,16 @@ export default function ProjelerPage() {
             X
           </span>
           <div className="container relative mx-auto px-4 md:px-6">
-            <ReferencesIntro headingId="referanslar-sayfa-baslik" as="h1" />
-            <ReferenceGallery className="mt-16" />
-            <p className="mt-4 max-w-[44rem] text-[14px] leading-relaxed text-lx-muted-dark">
-              {referencesIntro.privacy}
-            </p>
-            <Link
-              href="/teklif-al"
-              className={`${buttonClass.primary} mt-10`}
-            >
+            <ProjectsIntro headingId="projeler-sayfa-baslik" as="h1" />
+            <div className="mt-16">
+              {/* 10 proje, 3 kolon: 0. ve 6. kartlar geniş → 4 dolu satır */}
+              <ProjectShowcase
+                projects={showcaseProjects}
+                wideIndexes={[0, 6]}
+              />
+            </div>
+            <ProjectsPrivacyNote />
+            <Link href="/teklif-al" className={`${buttonClass.primary} mt-10`}>
               Fuarınızı birlikte planlayalım
               <ArrowRight size={16} aria-hidden="true" />
             </Link>

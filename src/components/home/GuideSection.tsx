@@ -41,7 +41,7 @@ export default function GuideSection() {
             <Link
               key={post.slug}
               href={`/blog/${post.slug}`}
-              className="duration-[250ms] group flex flex-col border border-lx-line bg-white p-8 transition-[border-color,transform] ease-brand hover:-translate-y-0.5 hover:border-lx-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lx-red"
+              className="[transition-duration:250ms] group flex flex-col border border-lx-line bg-white p-8 transition-[border-color,transform] ease-brand hover:-translate-y-0.5 hover:border-lx-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lx-red"
             >
               <span className="text-[12px] font-semibold uppercase tracking-[0.14em] text-lx-grey1">
                 {BLOG_CATEGORIES[post.category]}

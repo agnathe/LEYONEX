@@ -539,7 +539,7 @@ export default function HomeNarrative() {
                     key={src}
                     src={src}
                     alt=""
-                    className={`duration-[450ms] absolute inset-0 h-full w-full object-contain transition-opacity ${stage === i ? "opacity-100" : "opacity-0"}`}
+                    className={`[transition-duration:450ms] absolute inset-0 h-full w-full object-contain transition-opacity ${stage === i ? "opacity-100" : "opacity-0"}`}
                   />
                 ))
               : !sceneReady && (

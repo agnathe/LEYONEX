@@ -204,106 +204,160 @@ export const serviceGroups: {
   },
 ];
 
-export interface ReferenceImage {
+export interface ProjectImage {
   src: string;
   width: number;
   height: number;
-  kind: "Saha uygulaması" | "Tasarım";
-  label: string;
-  alt: string;
 }
 
-// Referans galerisi: müşteri gizliliği gereği firma adı, logo ve fuar bilgisi gösterilmez.
-// Görseller "diğer projeler" klasöründen logolar görünmeyecek şekilde kırpılarak üretildi.
-export const references: ReferenceImage[] = [
+export interface ShowcaseProject {
+  id: string;
+  title: string;
+  /** Bakış açısı: firma, fuar veya sektör bilgisi vermeden tasarım ve pazarlama kararı. */
+  insight: string;
+  tags: string[];
+  images: ProjectImage[];
+}
+
+// Proje vitrini. Müşteri gizliliği gereği firma adı, fuar, sektör ve tarih bilgisi yok;
+// görsellerdeki logolar bulanıklaştırıldı (kaynak: "diğer projeler" klasörü ve firma sunumları).
+export const showcaseProjects: ShowcaseProject[] = [
   {
-    src: "/images/referanslar/referans-01.webp",
-    width: 1400,
-    height: 787,
-    kind: "Saha uygulaması",
-    label: "Ağırlama alanı",
-    alt: "Fuar stantında üstten görülen ağırlama alanı ve oturma grupları",
+    id: "01",
+    title: "İki katlı prestij stantı",
+    insight:
+      "Ağır ve prestijli bir duruş hedeflendi. Ürünler ışıklı kaidelerde sergi gibi sunuldu, üst kat görüşmelere ayrıldı. Aynı brief için farklı yönler birlikte değerlendirildi.",
+    tags: ["Çift katlı", "Ürün sergisi", "Alternatif yönler"],
+    images: [
+      { src: "/images/projeler/proje-01-1.webp", width: 1600, height: 899 },
+      { src: "/images/projeler/proje-01-2.webp", width: 1600, height: 900 },
+      { src: "/images/projeler/proje-01-3.webp", width: 1600, height: 899 },
+      { src: "/images/projeler/proje-01-4.webp", width: 1600, height: 899 },
+    ],
   },
   {
-    src: "/images/referanslar/referans-02.webp",
-    width: 1400,
-    height: 787,
-    kind: "Saha uygulaması",
-    label: "Ürün sergisi",
-    alt: "Işıklı kaideler üzerinde ürün sergisi, üstten görünüm",
+    id: "02",
+    title: "Koyu zemin, kırmızı ışık hattı",
+    insight:
+      "Mevcut stant yeniden ele alındı. Renk kullanımı ve ürün teşhiri, geri bildirimlerle revize edilerek son tasarıma ulaşıldı.",
+    tags: ["Revizyon", "Ürün teşhiri", "Işık kurgusu"],
+    images: [
+      { src: "/images/projeler/proje-02-1.webp", width: 1600, height: 900 },
+      { src: "/images/projeler/proje-02-2.webp", width: 1600, height: 900 },
+      { src: "/images/projeler/proje-02-3.webp", width: 1600, height: 1022 },
+    ],
   },
   {
-    src: "/images/referanslar/referans-03.webp",
-    width: 1400,
-    height: 937,
-    kind: "Saha uygulaması",
-    label: "Üst kat görüşme alanı",
-    alt: "Fuar salonuna bakan üst kat görüşme ve bekleme alanı",
+    id: "03",
+    title: "Kavisli kanopi, yeşil tavan",
+    insight:
+      "Geniş ada stantta iki girişi tek bir akışta birleştiren kavisli form. Karşılama, görüşme ve dinlenme alanları aynı eksende buluşuyor.",
+    tags: ["Ada stant", "Ziyaretçi akışı", "LED duvar"],
+    images: [
+      { src: "/images/projeler/proje-03-1.webp", width: 1600, height: 900 },
+      { src: "/images/projeler/proje-03-2.webp", width: 1600, height: 900 },
+      { src: "/images/projeler/proje-03-3.webp", width: 1600, height: 900 },
+    ],
   },
   {
-    src: "/images/referanslar/referans-04.webp",
-    width: 1159,
-    height: 1439,
-    kind: "Saha uygulaması",
-    label: "Toplantı odası",
-    alt: "Stant içindeki kapalı toplantı odası",
+    id: "04",
+    title: "Marka rengiyle çerçevelenen köşe",
+    insight:
+      "Marka rengi taşıyıcı çerçevelere dönüştü; stant iki cepheden okunuyor. Tasarımcı seçiminde tasarım kalitesi ve maliyet birlikte karşılaştırıldı.",
+    tags: ["Köşe stant", "Tasarımcı seçimi", "Maliyet karşılaştırması"],
+    images: [
+      { src: "/images/projeler/proje-04-1.webp", width: 1600, height: 900 },
+      { src: "/images/projeler/proje-04-2.webp", width: 1600, height: 900 },
+      { src: "/images/projeler/proje-04-3.webp", width: 1600, height: 900 },
+    ],
   },
   {
-    src: "/images/referanslar/referans-05.webp",
-    width: 1400,
-    height: 1055,
-    kind: "Tasarım",
-    label: "Yerleşim planı",
-    alt: "Ada stant yerleşim planı, üstten görünüm",
+    id: "05",
+    title: "Doğal dokular, sakin bir zemin",
+    insight:
+      "Ahşap ve yeşil duvar sıcak bir atmosfer kuruyor. Ürün anlatımını dijital ekranlar üstlenirken alan görüşmeye açık kalıyor.",
+    tags: ["Doğal malzeme", "Dijital anlatım"],
+    images: [
+      { src: "/images/projeler/proje-05-1.webp", width: 1600, height: 1035 },
+    ],
   },
   {
-    src: "/images/referanslar/referans-06.webp",
-    width: 1400,
-    height: 1101,
-    kind: "Tasarım",
-    label: "Yerleşim planı",
-    alt: "Köşe stant yerleşim planı, üstten görünüm",
+    id: "06",
+    title: "İki koridoru karşılayan V form",
+    insight:
+      "Köşe parselde iki yönden gelen ziyaretçiyi aynı noktada karşılayan V biçimli banko. Tavan bandı ve zemin ışığı uzaktan görünürlüğü artırıyor.",
+    tags: ["Köşe parsel", "Uzaktan görünürlük", "Yerleşim planı"],
+    images: [
+      { src: "/images/projeler/proje-06-1.webp", width: 1600, height: 900 },
+      { src: "/images/projeler/proje-06-2.webp", width: 1600, height: 900 },
+      { src: "/images/projeler/proje-06-3.webp", width: 1600, height: 900 },
+    ],
   },
   {
-    src: "/images/referanslar/referans-07.webp",
-    width: 1243,
-    height: 722,
-    kind: "Tasarım",
-    label: "Teknik yerleşim",
-    alt: "Elektrik noktası işaretlenmiş stant yerleşim planı",
+    id: "07",
+    title: "Uzun cephe, kesintisiz ışık",
+    insight:
+      "Koridor boyunca uzanan parselde tek bir ışık hattıyla bütünlük sağlandı. Ekran ve ışıklı görseller ziyaretçiyi stant boyunca taşıyor.",
+    tags: ["Uzun cephe", "LED ekran", "Işık kurgusu"],
+    images: [
+      { src: "/images/projeler/proje-07-1.webp", width: 1600, height: 900 },
+      { src: "/images/projeler/proje-07-2.webp", width: 1600, height: 900 },
+      { src: "/images/projeler/proje-07-3.webp", width: 1600, height: 900 },
+    ],
   },
   {
-    src: "/images/referanslar/referans-08.webp",
-    width: 1400,
-    height: 564,
-    kind: "Tasarım",
-    label: "Görüşme masası",
-    alt: "Stant içindeki görüşme masası detayı",
+    id: "08",
+    title: "Kompakt alanda net bir dil",
+    insight:
+      "Küçük metrekarede marka rengini cesurca kullanan iki ayrı yön. İkisinde de görüşme alanı öne alındı.",
+    tags: ["Kompakt stant", "Alternatif yönler"],
+    images: [
+      { src: "/images/projeler/proje-08-1.webp", width: 993, height: 640 },
+      { src: "/images/projeler/proje-08-2.webp", width: 1000, height: 647 },
+    ],
   },
   {
-    src: "/images/referanslar/referans-09.webp",
-    width: 1400,
-    height: 531,
-    kind: "Tasarım",
-    label: "Bekleme alanı",
-    alt: "Stant içindeki bekleme alanı detayı",
+    id: "09",
+    title: "Ürün formundan mimari",
+    insight:
+      "Ürünün ambalajı standın tanınabilir mimari odağına dönüştü. Rakip stantların sunum ve ağırlama yaklaşımları incelenerek her gözlem bir tasarım kararına bağlandı.",
+    tags: ["Rakip analizi", "Konsept form", "Canlı uygulama"],
+    images: [
+      { src: "/images/projeler/proje-09-1.webp", width: 1600, height: 900 },
+      { src: "/images/projeler/proje-09-2.webp", width: 1600, height: 900 },
+    ],
+  },
+  {
+    id: "10",
+    title: "İki marka, tek stant",
+    insight:
+      "İki markayı kendi renk dilleriyle yan yana taşıyan ortak stant. Kapalı hazırlık alanı sayesinde ikram ön cepheyi kapatmıyor; yönetim görüşmeleri için ortak bir oda ayrıldı.",
+    tags: ["Ortak stant", "Yerleşim planı", "Ekran ve lightbox planı"],
+    images: [
+      { src: "/images/projeler/proje-10-1.webp", width: 1600, height: 900 },
+      { src: "/images/projeler/proje-10-2.webp", width: 1600, height: 900 },
+      { src: "/images/projeler/proje-10-3.webp", width: 1600, height: 900 },
+    ],
   },
 ];
 
-/** Ana sayfada gösterilen seçki (saha ve tasarım karışık). */
-export const featuredReferenceIndexes = [0, 4, 2, 1, 7, 3];
+/** Ana sayfada gösterilen seçki. */
+export const featuredProjectIds = [
+  "01",
+  "09",
+  "03",
+  "02",
+  "10",
+  "04",
+  "07",
+  "06",
+];
 
-export const referencesIntro = {
-  title: "Farklı sektörler. Aynı titizlik.",
-  text: "Savunma ve havacılıktan elektronik ve haberleşmeye, yapı kimyasallarından endüstriyel üretime; farklı sektörlerden firmaların fuar süreçlerinde yer alıyoruz.",
-  sectors: [
-    "Savunma ve havacılık",
-    "Elektronik ve haberleşme",
-    "Yapı kimyasalları",
-    "Endüstriyel üretim",
-  ],
+export const projectsIntro = {
+  title: "Her proje, kendi bakış açısıyla.",
+  text: "Her katılımda markanın hedefinden yola çıkıyor, rakipleri inceliyor ve alternatif yönler geliştiriyoruz. Farklı ölçeklerde ve farklı ihtiyaçlarla hazırladığımız çalışmalardan bir seçki.",
   privacy:
-    "Müşterilerimizin gizliliğine saygı gereği firma ve fuar bilgilerine yer vermiyoruz.",
+    "Müşterilerimizin gizliliğine saygı gereği firma bilgilerine yer vermiyor, logoları göstermiyoruz. Daha fazla örneği görüşmede paylaşıyoruz.",
 };
 
 // Çalışma biçimi: LEYONEX firma sunumlarındaki yöntemden, firma adı verilmeden.
