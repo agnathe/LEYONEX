@@ -45,6 +45,21 @@
   mask-composite: intersect;
 }
 
+/* Mobil 3D anlatı: üstte sabit maket alanı. Bölüm bağlantıları bu alanın altına kayar. */
+:root {
+  --mobile-scene-h: clamp(260px, 44svh, 420px);
+}
+@media (max-width: 1023px) {
+  [data-mobile-scene-on] [data-stage-section] {
+    scroll-margin-top: calc(4rem + var(--mobile-scene-h));
+  }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  [data-mobile-scene-on] [data-stage-section] {
+    scroll-margin-top: calc(5rem + var(--mobile-scene-h));
+  }
+}
+
 /* Ana sayfa iş akışı diyagramı: hareket azaltma tercihinde statik */
 @media (prefers-reduced-motion: reduce) {
   .workload-diagram * {

@@ -74,11 +74,13 @@ function PhaseRail({
   dark,
   simple,
   onToggleSimple,
+  compact = false,
 }: {
   stage: number;
   dark: boolean;
   simple: boolean;
   onToggleSimple?: () => void;
+  compact?: boolean;
 }) {
   const activePhase =
     stage >= 5
@@ -91,22 +93,25 @@ function PhaseRail({
   return (
     <nav
       aria-label="Süreç aşamaları"
-      className={`flex flex-wrap items-center gap-x-4 gap-y-3 text-[14px] font-medium xl:gap-x-6 ${dark ? "text-lx-muted-dark" : "text-lx-grey1"}`}
+      className={`flex flex-wrap items-center font-medium ${compact ? "gap-x-2.5 gap-y-1 text-[12px]" : "gap-x-4 gap-y-3 text-[14px] xl:gap-x-6"} ${dark ? "text-lx-muted-dark" : "text-lx-grey1"}`}
     >
       {phaseLinks.map((link, i) => {
         const active = activePhase === link.phase;
         return (
-          <div key={link.phase} className="flex items-center gap-4 xl:gap-6">
+          <div
+            key={link.phase}
+            className={`flex items-center ${compact ? "gap-2.5" : "gap-4 xl:gap-6"}`}
+          >
             {i > 0 && (
               <span
                 aria-hidden="true"
-                className={`h-px w-5 xl:w-8 ${dark ? "bg-lx-line-dark" : "bg-lx-line"}`}
+                className={`h-px ${compact ? "w-3" : "w-5 xl:w-8"} ${dark ? "bg-lx-line-dark" : "bg-lx-line"}`}
               />
             )}
             <a
               href={link.href}
               aria-current={active ? "step" : undefined}
-              className={`group inline-flex items-center gap-2.5 py-1 transition-colors duration-150 ease-brand ${focusRing} ${
+              className={`group inline-flex items-center ${compact ? "gap-1.5" : "gap-2.5"} py-1 transition-colors duration-150 ease-brand ${focusRing} ${
                 active
                   ? dark
                     ? "text-white"
@@ -118,7 +123,7 @@ function PhaseRail({
             >
               <span
                 aria-hidden="true"
-                className={`h-2 w-2 transition-colors duration-150 ${active ? "bg-lx-red" : dark ? "bg-lx-grey2" : "bg-lx-grey3"}`}
+                className={`${compact ? "h-1.5 w-1.5" : "h-2 w-2"} transition-colors duration-150 ${active ? "bg-lx-red" : dark ? "bg-lx-grey2" : "bg-lx-grey3"}`}
               />
               {link.phase}
             </a>
@@ -320,6 +325,7 @@ export default function HomeNarrative() {
   const [stage, setStage] = useState(0);
   const wrapperRef = useRef<HTMLDivElement>(null);
   const blockRefs = useRef<(HTMLElement | null)[]>([]);
+  const mobileSceneRef = useRef<HTMLDivElement>(null);
 
   const live = quality === "full" || quality === "light";
   const desktopLive = Boolean(isDesktop && live);
@@ -328,7 +334,9 @@ export default function HomeNarrative() {
 
   // Kaydırma → sahne ilerlemesi. Her blok üst kenarı bir sahne durağıdır.
   useEffect(() => {
-    if (!isDesktop) {
+    if (isDesktop === null) return;
+    const mobile = !isDesktop;
+    if (mobile && !mobileLive) {
       setSceneTarget(0);
       return;
     }
@@ -340,7 +348,21 @@ export default function HomeNarrative() {
       if (!wrapper || blocks.length < 2) return;
       const origin = wrapper.getBoundingClientRect().top;
       const offsets = blocks.map((b) => b.getBoundingClientRect().top - origin);
-      const scrolled = -origin;
+      let scrolled = -origin;
+      if (mobile) {
+        // Mobil: maket üstte sabit, okuma alanı onun altında başlar. Bir bölüm
+        // okuma alanının ortasına geldiğinde kendi sahnesi tamamlanmış olur.
+        const sceneEl = mobileSceneRef.current;
+        if (!sceneEl) return;
+        const line =
+          (parseFloat(getComputedStyle(sceneEl).top) || 0) +
+          sceneEl.getBoundingClientRect().height;
+        const reading = Math.max(1, window.innerHeight - line);
+        scrolled = line - origin;
+        const firstStage = offsets[1];
+        for (let i = 1; i < offsets.length; i++) offsets[i] -= reading * 0.5;
+        offsets[0] = firstStage - reading;
+      }
       let progress = 0;
       const last = offsets.length - 1;
       if (scrolled >= offsets[last]) progress = 1;
@@ -371,11 +393,16 @@ export default function HomeNarrative() {
       window.removeEventListener("scroll", schedule);
       window.removeEventListener("resize", schedule);
     };
-  }, [isDesktop]);
+  }, [isDesktop, mobileLive]);
 
   useEffect(() => {
     if (!live) setSceneReady(false);
   }, [live]);
+
+  // Masaüstü ve mobil sahneler ayrı Canvas; kırılım değişince hazır olma durumu sıfırlanır.
+  useEffect(() => {
+    setSceneReady(false);
+  }, [isDesktop]);
 
   const handleFail = useCallback(() => setQuality("static"), [setQuality]);
   const handleDecline = useCallback(() => {
@@ -444,20 +471,56 @@ export default function HomeNarrative() {
             </div>
           </div>
 
-          {/* Mobil ve tablet: maket metnin altında, yatay alanı doldurur */}
-          <div className="mt-12 lg:hidden">
-            <div className="relative -mx-4 h-[300px] sm:h-[380px] md:-mx-6">
-              {(!mobileLive || !sceneReady) && (
-                // eslint-disable-next-line @next/next/no-img-element
+          {/* Mobil sade görünüm: statik maket metnin altında. 3D açıkken maket
+              aşağıdaki sabit sahne alanında gösterilir. */}
+          {simple && (
+            <div className="mt-12 lg:hidden">
+              <div className="relative -mx-4 h-[300px] sm:h-[380px] md:-mx-6">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={posters[0]}
                   alt={posterAlt[0]}
                   className="absolute inset-0 h-full w-full object-contain"
                 />
+              </div>
+              <div className="mt-6">
+                <PhaseRail
+                  stage={0}
+                  dark
+                  simple={simple}
+                  onToggleSimple={simpleViewStored() ? toggleSimple : undefined}
+                />
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Süreç anlatısı. Mobilde 3D açıkken maket üstte sabit kalır, metinler altından akar. */}
+      <div data-mobile-scene-on={simple ? undefined : ""}>
+        {!simple && (
+          <div
+            ref={mobileSceneRef}
+            className={`sticky top-16 z-30 border-b transition-colors [transition-duration:450ms] md:top-20 lg:hidden ${
+              darkStage
+                ? "border-lx-line-dark bg-lx-ink"
+                : "border-lx-line bg-lx-paper"
+            }`}
+            data-mobile-scene
+          >
+            <div className="relative h-[var(--mobile-scene-h)]">
+              {(!mobileLive || !sceneReady) && (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  src={posters[0]}
+                  alt=""
+                  aria-hidden="true"
+                  className="absolute inset-0 h-full w-full object-contain px-2 pb-9 pt-2"
+                />
               )}
               {mobileLive && (
                 <div
-                  className={`absolute inset-0 transition-opacity duration-700 ${sceneReady ? "opacity-100" : "opacity-0"}`}
+                  className={`absolute inset-x-0 bottom-9 top-0 transition-opacity duration-700 ${sceneReady ? "opacity-100" : "opacity-0"}`}
                   aria-hidden="true"
                 >
                   <SceneBoundary onError={handleFail}>
@@ -469,59 +532,74 @@ export default function HomeNarrative() {
                   </SceneBoundary>
                 </div>
               )}
-            </div>
-            <div className="mt-6">
-              <PhaseRail stage={0} dark simple={simple} />
+              <div className="absolute inset-x-4 bottom-2.5 md:inset-x-6">
+                <PhaseRail
+                  compact
+                  stage={stage}
+                  dark={darkStage}
+                  simple={simple}
+                />
+              </div>
+              <button
+                type="button"
+                onClick={toggleSimple}
+                className={`absolute right-4 top-2 py-1 text-[12px] underline decoration-1 underline-offset-4 md:right-6 ${focusRing} ${
+                  darkStage ? "text-lx-muted-dark" : "text-lx-grey1"
+                }`}
+              >
+                Sade görünüm
+              </button>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Süreç anlatısı */}
-      {stages.map((s, i) => {
-        const index = i + 1;
-        return (
-          <section
-            key={s.id}
-            id={s.id}
-            ref={(el) => {
-              blockRefs.current[index] = el;
-            }}
-            aria-labelledby={`${s.id}-baslik`}
-            className={`${s.dark ? "bg-lx-ink text-white" : "bg-lx-paper text-lx-ink"} lg:flex lg:min-h-screen lg:items-center`}
-            data-stage-bg
-          >
-            <div className="container mx-auto px-4 py-20 md:px-6 lg:py-28">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={posters[index]}
-                alt={posterAlt[index]}
-                loading="lazy"
-                className="mb-10 aspect-[5/4] w-full object-contain sm:aspect-[16/10] lg:hidden"
-              />
-              <div className="relative z-20 lg:w-[40%]">
-                <Kicker dark={s.dark} number={s.number}>
-                  {s.phase} · {s.name}
-                </Kicker>
-                <h2
-                  id={`${s.id}-baslik`}
-                  className={`mt-6 text-balance font-display text-[clamp(32px,3.4vw,50px)] font-bold leading-[1.08] tracking-[-0.02em] ${
-                    s.dark ? "text-[#F2F2F2]" : "text-lx-ink"
-                  }`}
-                >
-                  {s.title}
-                </h2>
-                <p
-                  className={`mt-5 max-w-[34rem] text-pretty text-[18px] leading-[1.6] ${s.dark ? "text-lx-muted-dark" : "text-lx-grey1"}`}
-                >
-                  {s.text}
-                </p>
-                <StageExtras index={index} interactive={desktopLive} />
+        )}
+        {stages.map((s, i) => {
+          const index = i + 1;
+          return (
+            <section
+              key={s.id}
+              id={s.id}
+              ref={(el) => {
+                blockRefs.current[index] = el;
+              }}
+              aria-labelledby={`${s.id}-baslik`}
+              data-stage-section
+              className={`${s.dark ? "bg-lx-ink text-white" : "bg-lx-paper text-lx-ink"} lg:flex lg:min-h-screen lg:items-center`}
+              data-stage-bg
+            >
+              <div className="container mx-auto px-4 py-20 md:px-6 lg:py-28">
+                {simple && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={posters[index]}
+                    alt={posterAlt[index]}
+                    loading="lazy"
+                    className="mb-10 aspect-[5/4] w-full object-contain sm:aspect-[16/10] lg:hidden"
+                  />
+                )}
+                <div className="relative z-20 lg:w-[40%]">
+                  <Kicker dark={s.dark} number={s.number}>
+                    {s.phase} · {s.name}
+                  </Kicker>
+                  <h2
+                    id={`${s.id}-baslik`}
+                    className={`mt-6 text-balance font-display text-[clamp(32px,3.4vw,50px)] font-bold leading-[1.08] tracking-[-0.02em] ${
+                      s.dark ? "text-[#F2F2F2]" : "text-lx-ink"
+                    }`}
+                  >
+                    {s.title}
+                  </h2>
+                  <p
+                    className={`mt-5 max-w-[34rem] text-pretty text-[18px] leading-[1.6] ${s.dark ? "text-lx-muted-dark" : "text-lx-grey1"}`}
+                  >
+                    {s.text}
+                  </p>
+                  <StageExtras index={index} interactive={live} />
+                </div>
               </div>
-            </div>
-          </section>
-        );
-      })}
+            </section>
+          );
+        })}
+      </div>
 
       {/* Masaüstü: tek Canvas, metin bölümleri aktıkça sabit kalan sahne katmanı.
           DOM sonunda durur; sekme sırası önce içerikten geçer. */}
@@ -539,7 +617,7 @@ export default function HomeNarrative() {
                     key={src}
                     src={src}
                     alt=""
-                    className={`[transition-duration:450ms] absolute inset-0 h-full w-full object-contain transition-opacity ${stage === i ? "opacity-100" : "opacity-0"}`}
+                    className={`absolute inset-0 h-full w-full object-contain transition-opacity [transition-duration:450ms] ${stage === i ? "opacity-100" : "opacity-0"}`}
                   />
                 ))
               : !sceneReady && (
