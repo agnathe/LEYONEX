@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Archivo, Instrument_Sans } from "next/font/google";
 import { ClerkProvider } from '@clerk/nextjs';
 import { trTR } from '@clerk/localizations';
 import Script from 'next/script';
@@ -11,9 +11,17 @@ const GA_ID = 'G-QMY8Q632RB';
 const LI_PARTNER_ID = '9775924';
 const CLARITY_ID = 'y13co04nmg';
 
-const poppins = Poppins({
-  weight: ["300", "400", "500", "600", "700"],
-  subsets: ["latin"],
+// Tasarım sistemi: başlıklar Archivo, gövde ve arayüz Instrument Sans.
+const archivo = Archivo({
+  subsets: ["latin", "latin-ext"],
+  variable: "--font-display",
+  display: "swap",
+});
+
+const instrumentSans = Instrument_Sans({
+  subsets: ["latin", "latin-ext"],
+  variable: "--font-body",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -94,7 +102,7 @@ export default function RootLayout({
   return (
     <ClerkProvider localization={trTR}>
       <html lang="tr">
-        <body className={poppins.className}>
+        <body className={`${archivo.variable} ${instrumentSans.variable} font-sans`}>
           <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}

@@ -15,7 +15,7 @@ function section(title: string, rows: string) {
   if (!rows.trim()) return '';
   return `
     <tr>
-      <td colspan="2" style="padding:14px 12px 8px;font-size:11px;font-weight:700;letter-spacing:0.15em;color:#CB3234;background:#fff3f3;border-bottom:2px solid #CB3234">
+      <td colspan="2" style="padding:14px 12px 8px;font-size:11px;font-weight:700;letter-spacing:0.15em;color:#E31B23;background:#fff3f3;border-bottom:2px solid #E31B23">
         ${title}
       </td>
     </tr>

@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 
 const CATEGORY_COLORS: Record<BlogCategory, string> = {
   "devlet-destekleri": "bg-blue-100 text-blue-800",
-  "stand-tasarimi": "bg-red-100 text-[#CB3234]",
+  "stand-tasarimi": "bg-red-100 text-[#E31B23]",
   "fuar-hazirligi": "bg-green-100 text-green-800",
   "uluslararasi-fuarlar": "bg-purple-100 text-purple-800",
   "roi-olcum": "bg-orange-100 text-orange-800",
@@ -53,8 +53,8 @@ export default function BlogPage() {
         <section className="bg-white border-b border-[#E5E5E3] py-14">
           <div className="container mx-auto px-4 md:px-6">
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-8 h-px bg-[#CB3234]" />
-              <span className="text-sm font-bold tracking-[0.15em] uppercase text-[#CB3234]">
+              <div className="w-8 h-px bg-[#E31B23]" />
+              <span className="text-sm font-bold tracking-[0.15em] uppercase text-[#E31B23]">
                 Uzman İçerikler
               </span>
             </div>
@@ -81,7 +81,7 @@ export default function BlogPage() {
                 <Link
                   key={key}
                   href={`/blog?kategori=${key}`}
-                  className="shrink-0 px-4 py-2 text-xs font-bold border-2 border-[#E5E5E3] text-[#555] hover:border-[#CB3234] hover:text-[#CB3234] transition-colors"
+                  className="shrink-0 px-4 py-2 text-xs font-bold border-2 border-[#E5E5E3] text-[#555] hover:border-[#E31B23] hover:text-[#E31B23] transition-colors"
                 >
                   {label}
                 </Link>
@@ -96,7 +96,7 @@ export default function BlogPage() {
           {featuredPost && (
             <Link
               href={`/blog/${featuredPost.slug}`}
-              className="group block bg-white border border-[#E5E5E3] hover:border-[#CB3234] transition-colors mb-10"
+              className="group block bg-white border border-[#E5E5E3] hover:border-[#E31B23] transition-colors mb-10"
             >
               <div className="grid md:grid-cols-2 gap-0">
                 {/* Category illustration */}
@@ -111,7 +111,7 @@ export default function BlogPage() {
                 </div>
                 <div className="p-8 md:p-10 flex flex-col justify-between">
                   <div>
-                    <h2 className="text-2xl font-black text-[#1a1a1a] mb-4 leading-tight group-hover:text-[#CB3234] transition-colors">
+                    <h2 className="text-2xl font-black text-[#1a1a1a] mb-4 leading-tight group-hover:text-[#E31B23] transition-colors">
                       {featuredPost.title}
                     </h2>
                     <p className="text-[#555] text-sm leading-relaxed mb-6">
@@ -129,7 +129,7 @@ export default function BlogPage() {
                         {featuredPost.readTime} dk okuma
                       </span>
                     </div>
-                    <span className="flex items-center gap-1.5 text-xs font-bold text-[#CB3234] group-hover:gap-2.5 transition-all">
+                    <span className="flex items-center gap-1.5 text-xs font-bold text-[#E31B23] group-hover:gap-2.5 transition-all">
                       Oku <ArrowRight size={13} />
                     </span>
                   </div>
@@ -144,15 +144,15 @@ export default function BlogPage() {
               <Link
                 key={post.slug}
                 href={`/blog/${post.slug}`}
-                className="group bg-white border border-[#E5E5E3] hover:border-[#CB3234] transition-colors flex flex-col"
+                className="group bg-white border border-[#E5E5E3] hover:border-[#E31B23] transition-colors flex flex-col"
               >
                 {/* Card color strip */}
-                <div className="h-1 bg-[#CB3234]" />
+                <div className="h-1 bg-[#E31B23]" />
                 <div className="p-7 flex flex-col flex-1">
                   <span className={`inline-block text-xs font-bold px-2.5 py-1 mb-4 w-fit ${CATEGORY_COLORS[post.category]}`}>
                     {BLOG_CATEGORIES[post.category]}
                   </span>
-                  <h2 className="text-base font-black text-[#1a1a1a] mb-3 leading-snug group-hover:text-[#CB3234] transition-colors flex-1">
+                  <h2 className="text-base font-black text-[#1a1a1a] mb-3 leading-snug group-hover:text-[#E31B23] transition-colors flex-1">
                     {post.title}
                   </h2>
                   <p className="text-xs text-[#666] leading-relaxed mb-6 line-clamp-3">
@@ -169,7 +169,7 @@ export default function BlogPage() {
                         {format(new Date(post.publishDate), "d MMM", { locale: tr })}
                       </span>
                     </div>
-                    <ArrowRight size={13} className="text-[#CB3234] group-hover:translate-x-1 transition-transform" />
+                    <ArrowRight size={13} className="text-[#E31B23] group-hover:translate-x-1 transition-transform" />
                   </div>
                 </div>
               </Link>
@@ -190,7 +190,7 @@ export default function BlogPage() {
             </div>
             <Link
               href="/teklif-al"
-              className="shrink-0 inline-flex items-center gap-2 bg-[#CB3234] text-white font-bold px-7 py-3.5 hover:bg-[#A8282A] transition-colors text-sm"
+              className="shrink-0 inline-flex items-center gap-2 bg-[#E31B23] text-white font-bold px-7 py-3.5 hover:bg-[#C4141B] transition-colors text-sm"
             >
               Teklif Alın
               <ArrowRight size={15} />

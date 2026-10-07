@@ -55,8 +55,8 @@ export default function ProcessManagement() {
         {/* Header */}
         <div className="max-w-2xl mb-16">
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-8 h-px bg-[#CB3234]" />
-            <span className="text-sm font-semibold tracking-[0.15em] uppercase text-[#CB3234]">
+            <div className="w-8 h-px bg-[#E31B23]" />
+            <span className="text-sm font-semibold tracking-[0.15em] uppercase text-[#E31B23]">
               Süreç Yönetimi
             </span>
           </div>
@@ -73,8 +73,8 @@ export default function ProcessManagement() {
               onClick={() => setActiveStage(i)}
               className={`text-left border rounded-lg overflow-hidden transition-all duration-200 ${
                 activeStage === i
-                  ? 'border-[#CB3234] bg-white shadow-lg'
-                  : 'border-[#E5E5E3] bg-[#F8F8F6] hover:border-[#CB3234]/40'
+                  ? 'border-[#E31B23] bg-white shadow-lg'
+                  : 'border-[#E5E5E3] bg-[#F8F8F6] hover:border-[#E31B23]/40'
               }`}
             >
               {/* Phase image */}
@@ -93,12 +93,12 @@ export default function ProcessManagement() {
               <div className="p-8">
                 {/* Stage number + arrow */}
                 <div className="flex items-start justify-between mb-4">
-                  <span className={`text-sm font-bold ${activeStage === i ? 'text-[#CB3234]' : 'text-[#999]'}`}>
+                  <span className={`text-sm font-bold ${activeStage === i ? 'text-[#E31B23]' : 'text-[#999]'}`}>
                     {stage.number}
                   </span>
                   <ArrowRight
                     size={16}
-                    className={`transition-colors mt-0.5 ${activeStage === i ? 'text-[#CB3234]' : 'text-[#ccc]'}`}
+                    className={`transition-colors mt-0.5 ${activeStage === i ? 'text-[#E31B23]' : 'text-[#ccc]'}`}
                   />
                 </div>
 
@@ -113,7 +113,7 @@ export default function ProcessManagement() {
                   <ul className="space-y-3">
                     {stage.items.map((item, j) => (
                       <li key={j} className="flex items-start gap-3 text-sm text-[#555]">
-                        <div className="w-4 h-4 rounded-full bg-[#CB3234] flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <div className="w-4 h-4 rounded-full bg-[#E31B23] flex items-center justify-center flex-shrink-0 mt-0.5">
                           <div className="w-1.5 h-1.5 bg-white rounded-full" />
                         </div>
                         {item}

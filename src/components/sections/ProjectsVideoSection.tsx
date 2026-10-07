@@ -6,15 +6,15 @@ export default function ProjectsVideoSection() {
         {/* Başlık */}
         <div className="text-center mb-10">
           <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="w-8 h-px bg-[#CB3234]" />
-            <span className="text-sm font-bold tracking-[0.15em] uppercase text-[#CB3234]">
+            <div className="w-8 h-px bg-[#E31B23]" />
+            <span className="text-sm font-bold tracking-[0.15em] uppercase text-[#E31B23]">
               Projelerimiz
             </span>
-            <div className="w-8 h-px bg-[#CB3234]" />
+            <div className="w-8 h-px bg-[#E31B23]" />
           </div>
-          <h1 className="text-3xl md:text-5xl font-black text-white leading-tight">
+          <h2 className="text-3xl md:text-5xl font-black text-white leading-tight">
             Hayallerimizi,<br />gerçeğe taşıyalım.
-          </h1>
+          </h2>
         </div>
 
         {/* Video */}
@@ -37,7 +37,7 @@ export default function ProjectsVideoSection() {
           </p>
           <a
             href="/iletisim"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-white border border-white/20 hover:border-[#CB3234] hover:text-[#CB3234] px-6 py-2.5 rounded transition-colors"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-white border border-white/20 hover:border-[#E31B23] hover:text-[#E31B23] px-6 py-2.5 rounded transition-colors"
           >
             İletişime Geçin →
           </a>

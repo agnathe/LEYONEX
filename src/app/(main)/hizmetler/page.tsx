@@ -16,8 +16,8 @@ export default function HizmetlerPage() {
 				<div className="bg-white border-b border-[#E5E5E3]">
 					<div className="container mx-auto px-4 md:px-6 py-14">
 						<div className="flex items-center gap-3 mb-4">
-							<div className="w-8 h-px bg-[#CB3234]" />
-							<span className="text-sm font-bold tracking-[0.15em] uppercase text-[#CB3234]">Hizmetler</span>
+							<div className="w-8 h-px bg-[#E31B23]" />
+							<span className="text-sm font-bold tracking-[0.15em] uppercase text-[#E31B23]">Hizmetler</span>
 						</div>
 						<h1 className="text-4xl md:text-5xl font-black text-[#1a1a1a] mb-3">
 							İhtiyacınız Olan Her Şey, Tek Noktadan

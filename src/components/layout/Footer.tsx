@@ -1,22 +1,18 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Linkedin, MapPin, Phone, Mail } from 'lucide-react';
 
 export default function Footer() {
   return (
-    <footer className="bg-[#111111] text-white">
+    <footer className="bg-[#0D0D0D] text-white">
       <div className="container mx-auto px-4 md:px-6 py-16">
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
 
           {/* Brand column */}
           <div className="lg:col-span-1">
-            <Link href="/" className="flex flex-col leading-none mb-5">
-              <span
-                className="text-2xl tracking-tight text-white"
-                style={{ fontFamily: "'TTSupermolot', sans-serif", fontWeight: 500 }}
-              >
-                LEYONE<span className="text-[#CB3234]">X</span>
-              </span>
+            <Link href="/" className="mb-5 inline-flex" aria-label="LEYONEX ana sayfa">
+              <Image src="/brand/leyonex-logo-beyaz.png" alt="LEYONEX" width={151} height={22} className="h-[22px] w-auto" />
             </Link>
             <p className="text-sm text-[#666] leading-relaxed mb-6">
               Fuar sürecinizin tamamını yöneten tek muhatap. Strateji, tedarik, saha operasyonu ve raporlama.
@@ -27,7 +23,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn"
-                className="w-9 h-9 flex items-center justify-center border border-white/10 rounded hover:border-[#CB3234] hover:text-[#CB3234] text-[#666] transition-colors"
+                className="w-9 h-9 flex items-center justify-center border border-white/10 rounded hover:border-[#E31B23] hover:text-[#E31B23] text-[#666] transition-colors"
               >
                 <Linkedin size={16} />
               </a>
@@ -80,7 +76,7 @@ export default function Footer() {
             <h3 className="text-xs font-bold tracking-[0.15em] uppercase text-[#999] mb-5">İletişim</h3>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
-                <MapPin size={15} className="text-[#CB3234] mt-0.5 flex-shrink-0" />
+                <MapPin size={15} className="text-[#E31B23] mt-0.5 flex-shrink-0" />
                 <span className="text-sm text-[#666] leading-relaxed">
                   Küçükbakkalköy Mah. Bakırcı Sk.<br />
                   Yusuf Bey Plaza No: 8A<br />
@@ -92,13 +88,13 @@ export default function Footer() {
                 </span>
               </li>
               <li className="flex items-center gap-3">
-                <Phone size={15} className="text-[#CB3234] flex-shrink-0" />
+                <Phone size={15} className="text-[#E31B23] flex-shrink-0" />
                 <a href="tel:+905439607076" className="text-sm text-[#666] hover:text-white transition-colors">
                   +90 543 960 70 76
                 </a>
               </li>
               <li className="flex items-center gap-3">
-                <Mail size={15} className="text-[#CB3234] flex-shrink-0" />
+                <Mail size={15} className="text-[#E31B23] flex-shrink-0" />
                 <a href="mailto:info@leyonex.com" className="text-sm text-[#666] hover:text-white transition-colors">
                   info@leyonex.com
                 </a>

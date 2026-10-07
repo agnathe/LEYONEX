@@ -22,10 +22,10 @@ export default function Image() {
       >
         {/* Top accent */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <div style={{ width: '40px', height: '4px', background: '#CB3234' }} />
+          <div style={{ width: '40px', height: '4px', background: '#E31B23' }} />
           <span
             style={{
-              color: '#CB3234',
+              color: '#E31B23',
               fontSize: '13px',
               fontWeight: 700,
               letterSpacing: '3px',
@@ -49,7 +49,7 @@ export default function Image() {
             }}
           >
             LEYONE
-            <span style={{ color: '#CB3234' }}>X</span>
+            <span style={{ color: '#E31B23' }}>X</span>
           </div>
           <div
             style={{

@@ -20,7 +20,7 @@ export default function StatsSection() {
         aria-hidden="true"
       >
         <span
-          className="text-[#CB3234] font-black leading-none"
+          className="text-[#E31B23] font-black leading-none"
           style={{
             fontSize: 'clamp(240px, 35vw, 480px)',
             opacity: 0.08,

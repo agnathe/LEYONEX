@@ -63,7 +63,7 @@ const PriceDots = ({ filled, total, dark }: { filled: number; total: number; dar
         key={i}
         className={`inline-block w-2 h-2 rounded-full ${
           i < filled
-            ? 'bg-[#CB3234]'
+            ? 'bg-[#E31B23]'
             : dark
             ? 'bg-white/20'
             : 'bg-[#E0E0E0]'
@@ -77,7 +77,7 @@ const StatusIcon = ({ status }: { status: Status }) => {
   if (status === 'yes') {
     return (
       <div className="flex items-center justify-center">
-        <Check size={16} className="text-[#CB3234]" strokeWidth={2.5} />
+        <Check size={16} className="text-[#E31B23]" strokeWidth={2.5} />
       </div>
     );
   }
@@ -103,8 +103,8 @@ export default function PositioningSection() {
         {/* Header */}
         <div className="max-w-2xl mb-14">
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-8 h-px bg-[#CB3234]" />
-            <span className="text-sm font-semibold tracking-[0.15em] uppercase text-[#CB3234]">
+            <div className="w-8 h-px bg-[#E31B23]" />
+            <span className="text-sm font-semibold tracking-[0.15em] uppercase text-[#E31B23]">
               Neden Leyonex
             </span>
           </div>
@@ -126,7 +126,7 @@ export default function PositioningSection() {
             </div>
             <div className="bg-[#111] px-6 py-4 text-center">
               <span className="text-xs font-bold text-white uppercase tracking-wider">LEYONEX</span>
-              <p className="text-[10px] text-[#CB3234] mt-1 font-medium">Tüm süreci yönetir</p>
+              <p className="text-[10px] text-[#E31B23] mt-1 font-medium">Tüm süreci yönetir</p>
             </div>
             <div className="bg-[#F8F8F6] px-6 py-4 text-center">
               <span className="text-xs font-semibold text-[#999] uppercase tracking-wider">Büyük Ajans</span>
@@ -138,7 +138,7 @@ export default function PositioningSection() {
           {criteria.map((row, i) => (
             <div
               key={i}
-              className="grid grid-cols-4 gap-px bg-[#E5E5E3] hover:bg-[#CB3234]/5 transition-colors"
+              className="grid grid-cols-4 gap-px bg-[#E5E5E3] hover:bg-[#E31B23]/5 transition-colors"
             >
               <div className="bg-white px-6 py-4 flex items-center">
                 <span className="text-sm text-[#333] font-medium">{row.label}</span>
@@ -164,7 +164,7 @@ export default function PositioningSection() {
           {/* Legend */}
           <div className="flex items-center gap-6 mt-6 px-1">
             <div className="flex items-center gap-2 text-xs text-[#777]">
-              <Check size={13} className="text-[#CB3234]" strokeWidth={2.5} />
+              <Check size={13} className="text-[#E31B23]" strokeWidth={2.5} />
               <span>Evet</span>
             </div>
             <div className="flex items-center gap-2 text-xs text-[#777]">

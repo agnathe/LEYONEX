@@ -3,3 +3,17 @@ public/*.mov
 public/*.webm
 node_modules
 .next
+
+# Yerel çalışma dosyaları: sözleşmeler, sunumlar, ham proje görselleri yüklenmez
+/diğer projeler
+/ek içerik
+/logolar
+/web sitesi form
+/*.docx
+/*.pptx
+/*.xlsx
+/*.zip
+/*.pdf
+/*.md
+/*.jpg
+/*.png

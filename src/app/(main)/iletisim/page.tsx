@@ -34,7 +34,7 @@ export default function IletisimPage() {
     }
   };
 
-  const field = "w-full bg-white border border-[#E5E5E3] text-[#1a1a1a] placeholder:text-[#bbb] rounded px-4 py-3 text-sm focus:outline-none focus:border-[#CB3234] transition-colors";
+  const field = "w-full bg-white border border-[#E5E5E3] text-[#1a1a1a] placeholder:text-[#bbb] rounded px-4 py-3 text-sm focus:outline-none focus:border-[#E31B23] transition-colors";
   const label = "block text-xs font-bold text-[#1a1a1a] uppercase tracking-wider mb-2";
 
   return (
@@ -46,11 +46,11 @@ export default function IletisimPage() {
         <div className="bg-white border-b border-[#E5E5E3] py-16 md:py-20">
           <div className="container mx-auto px-4 md:px-6 text-center">
             <div className="flex items-center justify-center gap-3 mb-4">
-              <div className="w-8 h-px bg-[#CB3234]" />
-              <span className="text-sm font-bold tracking-[0.15em] uppercase text-[#CB3234]">
+              <div className="w-8 h-px bg-[#E31B23]" />
+              <span className="text-sm font-bold tracking-[0.15em] uppercase text-[#E31B23]">
                 İletişim
               </span>
-              <div className="w-8 h-px bg-[#CB3234]" />
+              <div className="w-8 h-px bg-[#E31B23]" />
             </div>
             <h1 className="text-4xl md:text-5xl font-black text-[#1a1a1a] mb-4">
               Bize Ulaşın
@@ -68,7 +68,7 @@ export default function IletisimPage() {
             {/* Contact info */}
             <div className="space-y-6">
               <div>
-                <p className="text-sm font-bold tracking-[0.15em] uppercase text-[#CB3234] mb-5">
+                <p className="text-sm font-bold tracking-[0.15em] uppercase text-[#E31B23] mb-5">
                   İletişim Bilgileri
                 </p>
                 <div className="space-y-4">
@@ -78,8 +78,8 @@ export default function IletisimPage() {
                     { Icon: MapPin,label: 'Konum',    value: 'Ankara & İstanbul, Türkiye', href: null,                     event: null },
                   ].map(({ Icon, label: l, value, href, event }) => (
                     <div key={l} className="flex items-start gap-3">
-                      <div className="w-8 h-8 rounded bg-[#CB3234]/8 flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <Icon size={14} className="text-[#CB3234]" strokeWidth={1.8} />
+                      <div className="w-8 h-8 rounded bg-[#E31B23]/8 flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <Icon size={14} className="text-[#E31B23]" strokeWidth={1.8} />
                       </div>
                       <div>
                         <p className="text-[10px] font-bold uppercase tracking-wider text-[#999] mb-0.5">{l}</p>
@@ -87,7 +87,7 @@ export default function IletisimPage() {
                           <a
                             href={href}
                             onClick={() => event && trackEvent(event, { location: 'iletisim_page' })}
-                            className="text-sm text-[#1a1a1a] font-medium hover:text-[#CB3234] transition-colors"
+                            className="text-sm text-[#1a1a1a] font-medium hover:text-[#E31B23] transition-colors"
                           >
                             {value}
                           </a>
@@ -105,7 +105,7 @@ export default function IletisimPage() {
             <div className="lg:col-span-2">
               {sent ? (
                 <div className="border border-[#E5E5E3] rounded-lg p-12 text-center bg-white">
-                  <div className="w-14 h-14 rounded-full bg-[#CB3234] flex items-center justify-center mx-auto mb-5">
+                  <div className="w-14 h-14 rounded-full bg-[#E31B23] flex items-center justify-center mx-auto mb-5">
                     <Check size={24} className="text-white" strokeWidth={2.5} />
                   </div>
                   <h3 className="text-xl font-bold text-[#1a1a1a] mb-2">Mesajınız Alındı</h3>
@@ -171,7 +171,7 @@ export default function IletisimPage() {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full flex items-center justify-center gap-2 bg-[#CB3234] text-white font-bold py-3.5 rounded hover:bg-[#A8282A] disabled:opacity-60 transition-colors text-sm tracking-wide"
+                    className="w-full flex items-center justify-center gap-2 bg-[#E31B23] text-white font-bold py-3.5 rounded hover:bg-[#C4141B] disabled:opacity-60 transition-colors text-sm tracking-wide"
                   >
                     {loading ? (
                       <Loader2 size={16} className="animate-spin" />

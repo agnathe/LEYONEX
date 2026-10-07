@@ -41,7 +41,7 @@ const KAPSAM = [
 function SectionHeader({ num, title, sub }: { num: string; title: string; sub: string }) {
   return (
     <div className="flex gap-4 items-baseline">
-      <span className="font-black text-2xl text-[#CB3234] tabular-nums">{num}</span>
+      <span className="font-black text-2xl text-[#E31B23] tabular-nums">{num}</span>
       <div>
         <h2 className="m-0 font-black text-xl text-[#1a1a1a] tracking-tight">{title}</h2>
         <span className="text-[13px] text-[#999]">{sub}</span>
@@ -54,7 +54,7 @@ function Label({ children }: { children: React.ReactNode }) {
   return <label className="block text-[11px] font-bold tracking-[0.12em] text-[#888] uppercase mb-1.5">{children}</label>;
 }
 
-const field = 'w-full border border-[#E5E5E3] bg-white text-[#1a1a1a] placeholder:text-[#bbb] px-3.5 py-2.5 text-sm focus:outline-none focus:border-[#CB3234] transition-colors';
+const field = 'w-full border border-[#E5E5E3] bg-white text-[#1a1a1a] placeholder:text-[#bbb] px-3.5 py-2.5 text-sm focus:outline-none focus:border-[#E31B23] transition-colors';
 
 function PctRow({ label, name, value, onChange }: {
   label: string; name: string; value: string; onChange: (k: string, v: string) => void;
@@ -67,7 +67,7 @@ function PctRow({ label, name, value, onChange }: {
           type="number" name={name} min={0} max={100} step={5}
           value={value}
           onChange={e => onChange(name, e.target.value)}
-          className="w-16 text-right border border-[#E5E5E3] bg-white px-2 py-2 text-sm text-[#1a1a1a] focus:outline-none focus:border-[#CB3234] tabular-nums"
+          className="w-16 text-right border border-[#E5E5E3] bg-white px-2 py-2 text-sm text-[#1a1a1a] focus:outline-none focus:border-[#E31B23] tabular-nums"
           placeholder="0"
         />
         <span className="text-xs text-[#999]">%</span>
@@ -78,7 +78,7 @@ function PctRow({ label, name, value, onChange }: {
 
 function PctTotal({ total }: { total: number }) {
   const ok = total === 100 || total === 0;
-  const color = total === 0 ? 'text-[#bbb]' : ok ? 'text-[#1a1a1a]' : 'text-[#CB3234]';
+  const color = total === 0 ? 'text-[#bbb]' : ok ? 'text-[#1a1a1a]' : 'text-[#E31B23]';
   return (
     <div className="flex justify-between items-center pt-2">
       <span className="text-[11px] font-bold tracking-widest text-[#888] uppercase">Toplam</span>
@@ -203,14 +203,14 @@ export default function FuarBilgiFormuPage() {
         <Header />
         <main className="min-h-screen pt-20 bg-[#F8F8F6] flex items-center justify-center">
           <div className="text-center max-w-md mx-auto px-6 py-20">
-            <div className="w-16 h-16 bg-[#CB3234] rounded-full flex items-center justify-center mx-auto mb-6">
+            <div className="w-16 h-16 bg-[#E31B23] rounded-full flex items-center justify-center mx-auto mb-6">
               <Check size={28} className="text-white" strokeWidth={2.5} />
             </div>
             <h1 className="text-2xl font-black text-[#1a1a1a] mb-3">Formunuz Alındı</h1>
             <p className="text-[#666] text-sm leading-relaxed mb-8">
               Fuar bilgi formunuzu inceleyip en kısa sürede sizinle iletişime geçeceğiz.
             </p>
-            <Link href="/" className="inline-flex items-center gap-2 bg-[#CB3234] text-white font-bold px-6 py-3 text-sm hover:bg-[#A8282A] transition-colors">
+            <Link href="/" className="inline-flex items-center gap-2 bg-[#E31B23] text-white font-bold px-6 py-3 text-sm hover:bg-[#C4141B] transition-colors">
               Ana Sayfaya Dön <ArrowRight size={14} />
             </Link>
           </div>
@@ -236,7 +236,7 @@ export default function FuarBilgiFormuPage() {
                 </span>
               </div>
               <div>
-                <span className="block w-10 h-0.5 bg-[#CB3234] mb-5" />
+                <span className="block w-10 h-0.5 bg-[#E31B23] mb-5" />
                 <h1 className="font-black text-4xl md:text-5xl text-white tracking-tight leading-tight mb-4">
                   FUAR BİLGİ FORMU
                 </h1>
@@ -265,7 +265,7 @@ export default function FuarBilgiFormuPage() {
                 ['web', 'WEB SİTESİ / WEBSITE', 'www.', false],
               ].map(([k, l, ph, req]) => (
                 <div key={k as string}>
-                  <Label>{l as string}{req ? <span className="text-[#CB3234] ml-0.5">*</span> : null}</Label>
+                  <Label>{l as string}{req ? <span className="text-[#E31B23] ml-0.5">*</span> : null}</Label>
                   <input
                     type={k === 'eposta' ? 'email' : 'text'}
                     name={k as string}
@@ -282,7 +282,7 @@ export default function FuarBilgiFormuPage() {
           {/* Optional toggle */}
           <div className="bg-white border border-[#E5E5E3] p-6 flex flex-wrap items-center justify-between gap-5">
             <div className="flex flex-col gap-2 max-w-lg">
-              <span className="block w-10 h-0.5 bg-[#CB3234] mb-1" />
+              <span className="block w-10 h-0.5 bg-[#E31B23] mb-1" />
               <span className="font-black text-lg text-[#1a1a1a]">DETAYLI BRİEF — OPSİYONEL</span>
               <span className="text-sm text-[#666] leading-relaxed">
                 Aşağıdaki detayları doldurmanız, görüşmemizden önce fuar hedeflerinizi çalışıp size hazır önerilerle gelmemizi sağlıyor.
@@ -329,7 +329,7 @@ export default function FuarBilgiFormuPage() {
                         <input type="radio" name="standTipi" value={opt}
                           checked={form.standTipi === opt}
                           onChange={() => set('standTipi', opt)}
-                          className="accent-[#CB3234]" />
+                          className="accent-[#E31B23]" />
                         {opt}
                       </label>
                     ))}
@@ -451,7 +451,7 @@ export default function FuarBilgiFormuPage() {
                 <p className="text-[13px] text-[#999] -mt-3">Her alan için önem derecesini seçin. Boş bırakılanlar &ldquo;gerekmiyor&rdquo; sayılır.</p>
 
                 <div className="flex justify-end gap-2 pb-2">
-                  <span className="w-[120px] text-center text-[11px] font-bold tracking-wider text-[#CB3234]">OLMAZSA OLMAZ</span>
+                  <span className="w-[120px] text-center text-[11px] font-bold tracking-wider text-[#E31B23]">OLMAZSA OLMAZ</span>
                   <span className="w-[120px] text-center text-[11px] font-bold tracking-wider text-[#999]">OLSA İYİ OLUR</span>
                 </div>
                 <div className="border-t border-[#E5E5E3]">
@@ -486,12 +486,12 @@ export default function FuarBilgiFormuPage() {
                         <input type="checkbox" value={opt} name="kapsam"
                           checked={kapsam.includes(opt)}
                           onChange={() => toggleKapsam(opt)}
-                          className="accent-[#CB3234]" />
+                          className="accent-[#E31B23]" />
                         {opt}
                       </label>
                     ))}
                   </div>
-                  <div className="mt-3 border-l-2 border-[#CB3234] bg-[#fffbf9] px-4 py-3 text-[13px] text-[#1a1a1a] leading-relaxed">
+                  <div className="mt-3 border-l-2 border-[#E31B23] bg-[#fffbf9] px-4 py-3 text-[13px] text-[#1a1a1a] leading-relaxed">
                     Her projede standart olarak dahildir: <strong>ziyaretçi kayıt yazılımı (ücretsiz)</strong> ve <strong>fuar sonrası raporlama</strong>.
                   </div>
                 </div>
@@ -523,7 +523,7 @@ export default function FuarBilgiFormuPage() {
                         <input type="radio" name="gorusme" value={opt}
                           checked={form.gorusme === opt}
                           onChange={() => set('gorusme', opt)}
-                          className="accent-[#CB3234]" />
+                          className="accent-[#E31B23]" />
                         {opt}
                       </label>
                     ))}
@@ -556,7 +556,7 @@ export default function FuarBilgiFormuPage() {
             </div>
             <div>
               <button type="button" onClick={() => fileRef.current?.click()}
-                className="flex items-center gap-2.5 border border-dashed border-[#C8C8C6] px-5 py-3.5 text-sm text-[#666] hover:border-[#CB3234] hover:text-[#CB3234] transition-colors"
+                className="flex items-center gap-2.5 border border-dashed border-[#C8C8C6] px-5 py-3.5 text-sm text-[#666] hover:border-[#E31B23] hover:text-[#E31B23] transition-colors"
               >
                 <Upload size={15} />
                 Dosya seç
@@ -573,7 +573,7 @@ export default function FuarBilgiFormuPage() {
                     <span className="text-sm text-[#1a1a1a] truncate">{f.name}</span>
                     <span className="text-xs text-[#999] shrink-0">{(f.size / 1024).toFixed(0)} KB</span>
                     <button type="button" onClick={() => removeFile(i)}
-                      className="text-[#999] hover:text-[#CB3234] transition-colors shrink-0"
+                      className="text-[#999] hover:text-[#E31B23] transition-colors shrink-0"
                     >
                       <X size={14} />
                     </button>
@@ -589,13 +589,13 @@ export default function FuarBilgiFormuPage() {
               <span className="font-black text-lg text-white">FORMU TAMAMLADINIZ MI?</span>
               <span className="text-sm text-[#888] leading-relaxed">Cevaplarınızı inceleyip size en kısa sürede ulaşacağız.</span>
               {hata && (
-                <div className="border-l-2 border-[#CB3234] bg-[#2a1a1a] px-3 py-2 text-[13px] text-[#ffb3b6] leading-relaxed">
+                <div className="border-l-2 border-[#E31B23] bg-[#2a1a1a] px-3 py-2 text-[13px] text-[#ffb3b6] leading-relaxed">
                   {hata}
                 </div>
               )}
             </div>
             <button type="submit" disabled={loading}
-              className="flex items-center gap-2.5 bg-[#CB3234] text-white font-bold px-7 py-3.5 text-sm hover:bg-[#A8282A] disabled:opacity-60 transition-colors shrink-0"
+              className="flex items-center gap-2.5 bg-[#E31B23] text-white font-bold px-7 py-3.5 text-sm hover:bg-[#C4141B] disabled:opacity-60 transition-colors shrink-0"
             >
               {loading ? <Loader2 size={16} className="animate-spin" /> : <>Evet, gönder <ArrowRight size={14} /></>}
             </button>

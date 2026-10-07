@@ -8,8 +8,8 @@ export default function FeaturedProjects() {
 
         {/* Header */}
         <div className="flex items-center gap-3 mb-10">
-          <div className="w-8 h-px bg-[#CB3234]" />
-          <span className="text-sm font-semibold tracking-[0.15em] uppercase text-[#CB3234]">
+          <div className="w-8 h-px bg-[#E31B23]" />
+          <span className="text-sm font-semibold tracking-[0.15em] uppercase text-[#E31B23]">
             Referanslar
           </span>
         </div>
@@ -37,7 +37,7 @@ export default function FeaturedProjects() {
             <p className="text-[#555] text-sm leading-relaxed">
               Referans projeler için iletişime geçin.
             </p>
-            <span className="inline-flex items-center gap-2 text-sm font-semibold text-[#1a1a1a] group-hover:text-[#CB3234] transition-colors whitespace-nowrap">
+            <span className="inline-flex items-center gap-2 text-sm font-semibold text-[#1a1a1a] group-hover:text-[#E31B23] transition-colors whitespace-nowrap">
               Projelerimizi Görün
               <ArrowRight size={15} className="group-hover:translate-x-0.5 transition-transform" />
             </span>

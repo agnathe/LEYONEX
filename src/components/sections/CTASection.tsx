@@ -45,13 +45,13 @@ export default function CTASection() {
         <div
           className="absolute inset-0"
           style={{
-            background: 'linear-gradient(135deg, transparent 42%, rgba(203,50,52,0.04) 42%, rgba(203,50,52,0.04) 58%, transparent 58%)',
+            background: 'linear-gradient(135deg, transparent 42%, rgba(227,27,35,0.04) 42%, rgba(227,27,35,0.04) 58%, transparent 58%)',
           }}
         />
         <div
           className="absolute inset-0"
           style={{
-            background: 'linear-gradient(225deg, transparent 42%, rgba(203,50,52,0.03) 42%, rgba(203,50,52,0.03) 58%, transparent 58%)',
+            background: 'linear-gradient(225deg, transparent 42%, rgba(227,27,35,0.03) 42%, rgba(227,27,35,0.03) 58%, transparent 58%)',
           }}
         />
       </div>
@@ -61,11 +61,11 @@ export default function CTASection() {
         {/* Section header */}
         <div className="text-center max-w-xl mx-auto mb-14">
           <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="w-8 h-px bg-[#CB3234]" />
-            <span className="text-sm font-bold tracking-[0.15em] uppercase text-[#CB3234]">
+            <div className="w-8 h-px bg-[#E31B23]" />
+            <span className="text-sm font-bold tracking-[0.15em] uppercase text-[#E31B23]">
               Teklif Alın
             </span>
-            <div className="w-8 h-px bg-[#CB3234]" />
+            <div className="w-8 h-px bg-[#E31B23]" />
           </div>
           <h2 className="text-4xl md:text-5xl font-black text-[#1a1a1a] mb-4">
             Bir Sonraki Fuarınızı Konuşalım
@@ -79,7 +79,7 @@ export default function CTASection() {
         <div className="max-w-2xl mx-auto">
           {sent ? (
             <div className="border border-[#E5E5E3] rounded-lg p-12 text-center bg-[#F8F8F6]">
-              <div className="w-14 h-14 rounded-full bg-[#CB3234] flex items-center justify-center mx-auto mb-5">
+              <div className="w-14 h-14 rounded-full bg-[#E31B23] flex items-center justify-center mx-auto mb-5">
                 <Check size={24} className="text-white" strokeWidth={2.5} />
               </div>
               <h3 className="text-xl font-bold text-[#1a1a1a] mb-2">Talebiniz Alındı</h3>
@@ -100,7 +100,7 @@ export default function CTASection() {
                     required
                     value={form.company}
                     onChange={e => setForm(f => ({ ...f, company: e.target.value }))}
-                    className="w-full bg-white border border-[#E5E5E3] text-[#1a1a1a] placeholder:text-[#bbb] rounded px-4 py-3 text-sm focus:outline-none focus:border-[#CB3234] transition-colors"
+                    className="w-full bg-white border border-[#E5E5E3] text-[#1a1a1a] placeholder:text-[#bbb] rounded px-4 py-3 text-sm focus:outline-none focus:border-[#E31B23] transition-colors"
                     placeholder="Şirket adınız"
                   />
                 </div>
@@ -113,7 +113,7 @@ export default function CTASection() {
                     required
                     value={form.phone}
                     onChange={e => setForm(f => ({ ...f, phone: e.target.value }))}
-                    className="w-full bg-white border border-[#E5E5E3] text-[#1a1a1a] placeholder:text-[#bbb] rounded px-4 py-3 text-sm focus:outline-none focus:border-[#CB3234] transition-colors"
+                    className="w-full bg-white border border-[#E5E5E3] text-[#1a1a1a] placeholder:text-[#bbb] rounded px-4 py-3 text-sm focus:outline-none focus:border-[#E31B23] transition-colors"
                     placeholder="+90 5xx xxx xx xx"
                   />
                 </div>
@@ -128,7 +128,7 @@ export default function CTASection() {
                   required
                   value={form.email}
                   onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
-                  className="w-full bg-white border border-[#E5E5E3] text-[#1a1a1a] placeholder:text-[#bbb] rounded px-4 py-3 text-sm focus:outline-none focus:border-[#CB3234] transition-colors"
+                  className="w-full bg-white border border-[#E5E5E3] text-[#1a1a1a] placeholder:text-[#bbb] rounded px-4 py-3 text-sm focus:outline-none focus:border-[#E31B23] transition-colors"
                   placeholder="ornek@sirket.com"
                 />
               </div>
@@ -141,7 +141,7 @@ export default function CTASection() {
                   type="text"
                   value={form.fair}
                   onChange={e => setForm(f => ({ ...f, fair: e.target.value }))}
-                  className="w-full bg-white border border-[#E5E5E3] text-[#1a1a1a] placeholder:text-[#bbb] rounded px-4 py-3 text-sm focus:outline-none focus:border-[#CB3234] transition-colors"
+                  className="w-full bg-white border border-[#E5E5E3] text-[#1a1a1a] placeholder:text-[#bbb] rounded px-4 py-3 text-sm focus:outline-none focus:border-[#E31B23] transition-colors"
                   placeholder="Fuar adı (opsiyonel)"
                 />
               </div>
@@ -149,7 +149,7 @@ export default function CTASection() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full flex items-center justify-center gap-2 bg-[#CB3234] text-white font-bold py-4 rounded hover:bg-[#A8282A] disabled:opacity-60 transition-colors text-sm tracking-wide"
+                className="w-full flex items-center justify-center gap-2 bg-[#E31B23] text-white font-bold py-4 rounded hover:bg-[#C4141B] disabled:opacity-60 transition-colors text-sm tracking-wide"
               >
                 {loading ? (
                   <Loader2 size={16} className="animate-spin" />
@@ -179,7 +179,7 @@ export default function CTASection() {
               'Taahhüt gerektirmez',
             ].map(text => (
               <div key={text} className="flex items-center gap-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-[#CB3234] flex-shrink-0" />
+                <div className="w-1.5 h-1.5 rounded-full bg-[#E31B23] flex-shrink-0" />
                 <span className="text-xs text-[#666]">{text}</span>
               </div>
             ))}

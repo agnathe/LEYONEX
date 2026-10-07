@@ -5,7 +5,7 @@ import { ArrowRight, Clock } from "lucide-react";
 
 const CATEGORY_COLORS: Record<string, string> = {
   "devlet-destekleri": "bg-blue-100 text-blue-800",
-  "stand-tasarimi": "bg-red-100 text-[#CB3234]",
+  "stand-tasarimi": "bg-red-100 text-[#E31B23]",
   "fuar-hazirligi": "bg-green-100 text-green-800",
   "uluslararasi-fuarlar": "bg-purple-100 text-purple-800",
   "roi-olcum": "bg-orange-100 text-orange-800",
@@ -22,8 +22,8 @@ export default function RecentBlogPosts() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-8 h-px bg-[#CB3234]" />
-              <span className="text-sm font-bold tracking-[0.15em] uppercase text-[#CB3234]">
+              <div className="w-8 h-px bg-[#E31B23]" />
+              <span className="text-sm font-bold tracking-[0.15em] uppercase text-[#E31B23]">
                 Fuar Rehberi
               </span>
             </div>
@@ -47,15 +47,15 @@ export default function RecentBlogPosts() {
             <Link
               key={post.slug}
               href={`/blog/${post.slug}`}
-              className="group bg-white border border-[#E5E5E3] hover:border-[#CB3234] transition-colors flex flex-col"
+              className="group bg-white border border-[#E5E5E3] hover:border-[#E31B23] transition-colors flex flex-col"
             >
               {/* Top accent */}
-              <div className={`h-1 ${idx === 0 ? "bg-[#CB3234]" : "bg-[#E5E5E3] group-hover:bg-[#CB3234] transition-colors"}`} />
+              <div className={`h-1 ${idx === 0 ? "bg-[#E31B23]" : "bg-[#E5E5E3] group-hover:bg-[#E31B23] transition-colors"}`} />
               <div className="p-7 flex flex-col flex-1">
                 <span className={`inline-block text-xs font-bold px-2.5 py-1 mb-5 w-fit ${CATEGORY_COLORS[post.category]}`}>
                   {BLOG_CATEGORIES[post.category]}
                 </span>
-                <h3 className="text-base font-black text-[#1a1a1a] leading-snug mb-3 group-hover:text-[#CB3234] transition-colors flex-1">
+                <h3 className="text-base font-black text-[#1a1a1a] leading-snug mb-3 group-hover:text-[#E31B23] transition-colors flex-1">
                   {post.title}
                 </h3>
                 <p className="text-xs text-[#666] leading-relaxed mb-6 line-clamp-2">
@@ -68,7 +68,7 @@ export default function RecentBlogPosts() {
                   </span>
                   <ArrowRight
                     size={13}
-                    className="text-[#CB3234] group-hover:translate-x-1 transition-transform"
+                    className="text-[#E31B23] group-hover:translate-x-1 transition-transform"
                   />
                 </div>
               </div>

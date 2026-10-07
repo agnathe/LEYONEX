@@ -1,31 +1,31 @@
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/shared/WhatsAppButton";
-import HeroSection from "@/components/sections/HeroSection";
-import ProcessManagement from "@/components/sections/ProcessManagement";
-import StatsSection from "@/components/sections/StatsSection";
-import ServicesGrid from "@/components/sections/ServicesGrid";
-import PositioningSection from "@/components/sections/PositioningSection";
-import FeaturedProjects from "@/components/sections/FeaturedProjects";
-import RecentBlogPosts from "@/components/sections/RecentBlogPosts";
-import CTASection from "@/components/sections/CTASection";
+import HomeNarrative from "@/components/home/HomeNarrative";
+import WorkloadSection from "@/components/home/WorkloadSection";
+import ServicesSection from "@/components/home/ServicesSection";
+import MethodSection from "@/components/home/MethodSection";
+import ProjectStories from "@/components/home/ProjectStories";
+import CremaSection from "@/components/home/CremaSection";
+import GuideSection from "@/components/home/GuideSection";
+import ContactSection from "@/components/home/ContactSection";
 
 export default function Home() {
-	return (
-		<>
-			<Header />
-			<main>
-				<HeroSection />
-				<ProcessManagement />
-				<StatsSection />
-				<ServicesGrid />
-				<PositioningSection />
-				<FeaturedProjects />
-				<RecentBlogPosts />
-				<CTASection />
-			</main>
-			<Footer />
-			<WhatsAppButton />
-		</>
-	);
+  return (
+    <>
+      <Header />
+      <main>
+        <HomeNarrative />
+        <WorkloadSection />
+        <ServicesSection />
+        <MethodSection />
+        <ProjectStories />
+        <CremaSection />
+        <GuideSection />
+        <ContactSection />
+      </main>
+      <Footer />
+      <WhatsAppButton />
+    </>
+  );
 }

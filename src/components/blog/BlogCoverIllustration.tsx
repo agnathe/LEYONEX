@@ -15,24 +15,24 @@ function ChecklistSVG() {
         <line key={i} x1="0" y1={i*80} x2="480" y2={i*80} stroke="white" strokeOpacity="0.04" strokeWidth="1"/>
       ))}
       {/* Timeline vertical line */}
-      <line x1="100" y1="40" x2="100" y2="295" stroke="#CB3234" strokeWidth="2" strokeOpacity="0.6"/>
+      <line x1="100" y1="40" x2="100" y2="295" stroke="#E31B23" strokeWidth="2" strokeOpacity="0.6"/>
       {/* Step 1 - done */}
-      <circle cx="100" cy="70" r="14" fill="#CB3234"/>
+      <circle cx="100" cy="70" r="14" fill="#E31B23"/>
       <path d="M93 70 l5 5 l9 -9" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
       <rect x="130" y="58" width="220" height="10" rx="3" fill="white" fillOpacity="0.15"/>
       <rect x="130" y="74" width="140" height="7" rx="2" fill="white" fillOpacity="0.08"/>
       {/* Step 2 - done */}
-      <circle cx="100" cy="140" r="14" fill="#CB3234"/>
+      <circle cx="100" cy="140" r="14" fill="#E31B23"/>
       <path d="M93 140 l5 5 l9 -9" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
       <rect x="130" y="128" width="190" height="10" rx="3" fill="white" fillOpacity="0.15"/>
       <rect x="130" y="144" width="110" height="7" rx="2" fill="white" fillOpacity="0.08"/>
       {/* Step 3 - done */}
-      <circle cx="100" cy="210" r="14" fill="#CB3234"/>
+      <circle cx="100" cy="210" r="14" fill="#E31B23"/>
       <path d="M93 210 l5 5 l9 -9" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
       <rect x="130" y="198" width="240" height="10" rx="3" fill="white" fillOpacity="0.15"/>
       <rect x="130" y="214" width="160" height="7" rx="2" fill="white" fillOpacity="0.08"/>
       {/* Step 4 - pending */}
-      <circle cx="100" cy="278" r="14" fill="none" stroke="#CB3234" strokeWidth="2" strokeOpacity="0.5"/>
+      <circle cx="100" cy="278" r="14" fill="none" stroke="#E31B23" strokeWidth="2" strokeOpacity="0.5"/>
       <rect x="130" y="267" width="170" height="10" rx="3" fill="white" fillOpacity="0.06"/>
       <rect x="130" y="283" width="100" height="7" rx="2" fill="white" fillOpacity="0.04"/>
       {/* Right decorative bars */}
@@ -58,7 +58,7 @@ function DocumentSVG() {
       {/* Main document */}
       <rect x="100" y="30" width="200" height="260" rx="4" fill="white" fillOpacity="0.06" stroke="white" strokeOpacity="0.15" strokeWidth="1"/>
       {/* Doc header red bar */}
-      <rect x="100" y="30" width="200" height="40" rx="4" fill="#CB3234" fillOpacity="0.3"/>
+      <rect x="100" y="30" width="200" height="40" rx="4" fill="#E31B23" fillOpacity="0.3"/>
       <rect x="116" y="44" width="100" height="8" rx="2" fill="white" fillOpacity="0.5"/>
       {/* Doc lines */}
       {[88, 108, 124, 140, 156, 172, 188].map((y, i) => (
@@ -67,16 +67,16 @@ function DocumentSVG() {
       {/* Divider */}
       <line x1="120" y1="210" x2="280" y2="210" stroke="white" strokeOpacity="0.1" strokeWidth="1"/>
       {/* TL symbol */}
-      <text x="170" y="255" fill="#CB3234" fillOpacity="0.8" fontSize="28" fontWeight="700" fontFamily="serif">₺</text>
+      <text x="170" y="255" fill="#E31B23" fillOpacity="0.8" fontSize="28" fontWeight="700" fontFamily="serif">₺</text>
       {/* Big checkmark circle */}
-      <circle cx="350" cy="120" r="60" fill="none" stroke="#CB3234" strokeOpacity="0.2" strokeWidth="1.5"/>
-      <circle cx="350" cy="120" r="46" fill="#CB3234" fillOpacity="0.1"/>
-      <path d="M328 120 l14 14 l28 -28" stroke="#CB3234" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" strokeOpacity="0.8"/>
+      <circle cx="350" cy="120" r="60" fill="none" stroke="#E31B23" strokeOpacity="0.2" strokeWidth="1.5"/>
+      <circle cx="350" cy="120" r="46" fill="#E31B23" fillOpacity="0.1"/>
+      <path d="M328 120 l14 14 l28 -28" stroke="#E31B23" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" strokeOpacity="0.8"/>
       {/* Small data chips */}
       <rect x="310" y="200" width="80" height="24" rx="3" fill="white" fillOpacity="0.05" stroke="white" strokeOpacity="0.1" strokeWidth="1"/>
       <rect x="318" y="208" width="48" height="7" rx="2" fill="white" fillOpacity="0.12"/>
-      <rect x="330" y="240" width="54" height="20" rx="3" fill="#CB3234" fillOpacity="0.15" stroke="#CB3234" strokeOpacity="0.3" strokeWidth="1"/>
-      <rect x="340" y="247" width="34" height="7" rx="2" fill="#CB3234" fillOpacity="0.5"/>
+      <rect x="330" y="240" width="54" height="20" rx="3" fill="#E31B23" fillOpacity="0.15" stroke="#E31B23" strokeOpacity="0.3" strokeWidth="1"/>
+      <rect x="340" y="247" width="34" height="7" rx="2" fill="#E31B23" fillOpacity="0.5"/>
     </svg>
   );
 }
@@ -96,13 +96,13 @@ function StandSVG() {
       {/* 3D stand - back wall right */}
       <polygon points="240,80 240,220 340,220 340,80" fill="white" fillOpacity="0.04" stroke="white" strokeOpacity="0.15" strokeWidth="1.5"/>
       {/* 3D stand - top */}
-      <polygon points="130,80 240,60 360,80 240,80" fill="#CB3234" fillOpacity="0.25" stroke="#CB3234" strokeOpacity="0.5" strokeWidth="1.5"/>
+      <polygon points="130,80 240,60 360,80 240,80" fill="#E31B23" fillOpacity="0.25" stroke="#E31B23" strokeOpacity="0.5" strokeWidth="1.5"/>
       {/* Columns */}
       <rect x="128" y="80" width="10" height="140" fill="white" fillOpacity="0.15"/>
       <rect x="338" y="80" width="10" height="140" fill="white" fillOpacity="0.1"/>
       <rect x="235" y="60" width="10" height="160" fill="white" fillOpacity="0.08"/>
       {/* Left panel graphic */}
-      <rect x="145" y="110" width="75" height="50" rx="2" fill="#CB3234" fillOpacity="0.2" stroke="#CB3234" strokeOpacity="0.4" strokeWidth="1"/>
+      <rect x="145" y="110" width="75" height="50" rx="2" fill="#E31B23" fillOpacity="0.2" stroke="#E31B23" strokeOpacity="0.4" strokeWidth="1"/>
       <rect x="153" y="118" width="55" height="6" rx="1" fill="white" fillOpacity="0.2"/>
       <rect x="153" y="129" width="38" height="4" rx="1" fill="white" fillOpacity="0.12"/>
       <rect x="153" y="138" width="45" height="4" rx="1" fill="white" fillOpacity="0.12"/>
@@ -111,7 +111,7 @@ function StandSVG() {
       <rect x="268" y="110" width="48" height="6" rx="1" fill="white" fillOpacity="0.12"/>
       <rect x="268" y="122" width="32" height="4" rx="1" fill="white" fillOpacity="0.07"/>
       <rect x="268" y="132" width="40" height="4" rx="1" fill="white" fillOpacity="0.07"/>
-      <rect x="268" y="160" width="48" height="12" rx="2" fill="#CB3234" fillOpacity="0.3"/>
+      <rect x="268" y="160" width="48" height="12" rx="2" fill="#E31B23" fillOpacity="0.3"/>
       {/* Floor shadow */}
       <ellipse cx="235" cy="225" rx="120" ry="8" fill="black" fillOpacity="0.2"/>
       {/* Measurement lines */}
@@ -148,19 +148,19 @@ function GlobeSVG() {
         {x: 340, y: 190},  // SE Asia
       ].map((pt, i) => (
         <g key={i}>
-          <circle cx={pt.x} cy={pt.y} r="5" fill="#CB3234" fillOpacity="0.9"/>
-          <circle cx={pt.x} cy={pt.y} r="10" fill="#CB3234" fillOpacity="0.2"/>
+          <circle cx={pt.x} cy={pt.y} r="5" fill="#E31B23" fillOpacity="0.9"/>
+          <circle cx={pt.x} cy={pt.y} r="10" fill="#E31B23" fillOpacity="0.2"/>
         </g>
       ))}
       {/* Connection lines between cities */}
-      <line x1="155" y1="110" x2="310" y2="130" stroke="#CB3234" strokeOpacity="0.4" strokeWidth="1.5" strokeDasharray="4 3"/>
-      <line x1="310" y1="130" x2="340" y2="190" stroke="#CB3234" strokeOpacity="0.3" strokeWidth="1" strokeDasharray="4 3"/>
-      <line x1="155" y1="110" x2="130" y2="170" stroke="#CB3234" strokeOpacity="0.3" strokeWidth="1" strokeDasharray="4 3"/>
-      <line x1="155" y1="110" x2="200" y2="200" stroke="#CB3234" strokeOpacity="0.25" strokeWidth="1" strokeDasharray="4 3"/>
+      <line x1="155" y1="110" x2="310" y2="130" stroke="#E31B23" strokeOpacity="0.4" strokeWidth="1.5" strokeDasharray="4 3"/>
+      <line x1="310" y1="130" x2="340" y2="190" stroke="#E31B23" strokeOpacity="0.3" strokeWidth="1" strokeDasharray="4 3"/>
+      <line x1="155" y1="110" x2="130" y2="170" stroke="#E31B23" strokeOpacity="0.3" strokeWidth="1" strokeDasharray="4 3"/>
+      <line x1="155" y1="110" x2="200" y2="200" stroke="#E31B23" strokeOpacity="0.25" strokeWidth="1" strokeDasharray="4 3"/>
       {/* Labels */}
-      <rect x="142" y="88" width="26" height="14" rx="2" fill="#CB3234" fillOpacity="0.3"/>
+      <rect x="142" y="88" width="26" height="14" rx="2" fill="#E31B23" fillOpacity="0.3"/>
       <rect x="146" y="92" width="18" height="6" rx="1" fill="white" fillOpacity="0.4"/>
-      <rect x="296" y="108" width="26" height="14" rx="2" fill="#CB3234" fillOpacity="0.3"/>
+      <rect x="296" y="108" width="26" height="14" rx="2" fill="#E31B23" fillOpacity="0.3"/>
       <rect x="300" y="112" width="18" height="6" rx="1" fill="white" fillOpacity="0.4"/>
       {/* Airplane icon simplified */}
       <path d="M360 60 L380 70 L370 75 L375 90 L365 85 L360 95 L355 75 L345 80 L360 60Z" fill="white" fillOpacity="0.1" stroke="white" strokeOpacity="0.2" strokeWidth="0.5"/>
@@ -194,9 +194,9 @@ function ChartSVG() {
             width="36"
             height={bar.h}
             rx="2"
-            fill={i === 4 ? "#CB3234" : "white"}
+            fill={i === 4 ? "#E31B23" : "white"}
             fillOpacity={i === 4 ? 0.7 : 0.08}
-            stroke={i === 4 ? "#CB3234" : "white"}
+            stroke={i === 4 ? "#E31B23" : "white"}
             strokeOpacity={i === 4 ? 0.8 : 0.12}
             strokeWidth="1"
           />
@@ -210,7 +210,7 @@ function ChartSVG() {
       <polyline
         points="148,195 203,165 258,175 313,125 368,75"
         fill="none"
-        stroke="#CB3234"
+        stroke="#E31B23"
         strokeWidth="2.5"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -218,10 +218,10 @@ function ChartSVG() {
       />
       {/* Trend dots */}
       {[[148,195],[203,165],[258,175],[313,125],[368,75]].map(([x,y], i) => (
-        <circle key={i} cx={x} cy={y} r={i === 4 ? 6 : 4} fill={i === 4 ? "#CB3234" : "white"} fillOpacity={i === 4 ? 1 : 0.5}/>
+        <circle key={i} cx={x} cy={y} r={i === 4 ? 6 : 4} fill={i === 4 ? "#E31B23" : "white"} fillOpacity={i === 4 ? 1 : 0.5}/>
       ))}
       {/* Highlight box on last value */}
-      <rect x="340" y="50" width="60" height="22" rx="3" fill="#CB3234" fillOpacity="0.2" stroke="#CB3234" strokeOpacity="0.5" strokeWidth="1"/>
+      <rect x="340" y="50" width="60" height="22" rx="3" fill="#E31B23" fillOpacity="0.2" stroke="#E31B23" strokeOpacity="0.5" strokeWidth="1"/>
       <rect x="350" y="57" width="40" height="7" rx="2" fill="white" fillOpacity="0.35"/>
       {/* Y-axis labels */}
       {[0,1,2,3,4].map(i => (
@@ -229,8 +229,8 @@ function ChartSVG() {
       ))}
       <defs>
         <linearGradient id="barGrad" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#CB3234" stopOpacity="0.8"/>
-          <stop offset="100%" stopColor="#CB3234" stopOpacity="0.3"/>
+          <stop offset="0%" stopColor="#E31B23" stopOpacity="0.8"/>
+          <stop offset="100%" stopColor="#E31B23" stopOpacity="0.3"/>
         </linearGradient>
       </defs>
     </svg>

@@ -11,18 +11,35 @@ const config: Config = {
 		extend: {
 			colors: {
 				primary: {
-					DEFAULT: '#CB3234',
-					light: '#E04547',
-					dark: '#A8282A',
+					DEFAULT: '#E31B23',
+					light: '#E8454B',
+					dark: '#C4141B',
 					foreground: '#FFFFFF',
 				},
 				brand: {
-					red: '#CB3234',
+					red: '#E31B23',
 					dark: '#111111',
 					gray: '#666666',
 					'light-bg': '#F8F8F6',
 					'card-bg': '#F2F2F0',
 					border: '#E5E5E3',
+				},
+				// LEYONEX tasarım sistemi (2026 kimliği): tek kırmızı, mürekkep siyahı, kırık beyaz.
+				lx: {
+					red: '#E31B23',
+					'red-hover': '#C4141B',
+					'red-tint': '#FDEAEA',
+					ink: '#0D0D0D',
+					ink1: '#1A1A1A',
+					ink2: '#2B2B2B',
+					grey1: '#4D4D4D',
+					grey2: '#767676',
+					grey3: '#B3B3B3',
+					'muted-dark': '#A3A3A3',
+					line: '#E6E6E6',
+					'line-dark': '#2E2E2E',
+					paper: '#F5F5F3',
+					paper2: '#ECECEA',
 				},
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
@@ -60,7 +77,11 @@ const config: Config = {
 				sm: 'calc(var(--radius) - 4px)',
 			},
 			fontFamily: {
-				sans: ['Poppins', 'sans-serif'],
+				sans: ['var(--font-body)', 'system-ui', 'sans-serif'],
+				display: ['var(--font-display)', 'system-ui', 'sans-serif'],
+			},
+			transitionTimingFunction: {
+				brand: 'cubic-bezier(0.2, 0.6, 0.2, 1)',
 			},
 			keyframes: {
 				'accordion-down': {

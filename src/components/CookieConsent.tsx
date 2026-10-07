@@ -60,14 +60,14 @@ export default function CookieConsent() {
   if (!visible) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t-2 border-[#CB3234] shadow-[0_-4px_24px_rgba(0,0,0,0.08)]">
+    <div className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t-2 border-[#E31B23] shadow-[0_-4px_24px_rgba(0,0,0,0.08)]">
       <div className="container mx-auto px-4 md:px-6 py-4 flex flex-col sm:flex-row items-start sm:items-center gap-4">
         <div className="flex-1 min-w-0">
           <p className="text-xs font-bold text-[#1a1a1a] mb-1">Çerez Politikası</p>
           <p className="text-xs text-[#666] leading-relaxed">
             Ziyaret istatistiklerini analiz etmek amacıyla Google Analytics çerezi kullanıyoruz.
             KVKK kapsamında analitik çerezleri ancak onayınızla etkinleştirilebilir.{' '}
-            <Link href="/iletisim" className="underline hover:text-[#CB3234] transition-colors">
+            <Link href="/iletisim" className="underline hover:text-[#E31B23] transition-colors">
               Daha fazla bilgi
             </Link>
           </p>
@@ -81,7 +81,7 @@ export default function CookieConsent() {
           </button>
           <button
             onClick={() => respond('granted')}
-            className="px-5 py-2 text-xs font-bold bg-[#CB3234] text-white hover:bg-[#A8282A] transition-colors"
+            className="px-5 py-2 text-xs font-bold bg-[#E31B23] text-white hover:bg-[#C4141B] transition-colors"
           >
             Kabul Et
           </button>

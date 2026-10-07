@@ -85,7 +85,7 @@ const phases: PhaseDef[] = [
     label: 'Fuar Zamanı',
     intro: 'Saha operasyonu ve ziyaretçi deneyimi',
     bg: 'bg-white',
-    labelColor: 'text-[#CB3234]',
+    labelColor: 'text-[#E31B23]',
     gridCols: 'grid-cols-1 md:grid-cols-2 xl:grid-cols-4',
     services: [
       {
@@ -170,10 +170,10 @@ function ServiceCard({ service }: { service: ServiceDef }) {
   return (
     <Link
       href={`/hizmetler/${service.slug}`}
-      className="group bg-white border border-[#E5E5E3] hover:border-[#CB3234]/40 hover:shadow-[0_4px_16px_rgba(203,50,52,0.08)] transition-all duration-200 p-6 flex flex-col"
+      className="group bg-white border border-[#E5E5E3] hover:border-[#E31B23]/40 hover:shadow-[0_4px_16px_rgba(227,27,35,0.08)] transition-all duration-200 p-6 flex flex-col"
     >
       <div className="w-9 h-9 flex items-center justify-center mb-5">
-        <Icon size={20} strokeWidth={1.5} className="text-[#1a1a1a] group-hover:text-[#CB3234] transition-colors" />
+        <Icon size={20} strokeWidth={1.5} className="text-[#1a1a1a] group-hover:text-[#E31B23] transition-colors" />
       </div>
       <h3 className="text-sm font-bold mb-2 leading-snug text-[#1a1a1a]">
         {service.title}
@@ -181,7 +181,7 @@ function ServiceCard({ service }: { service: ServiceDef }) {
       <p className="text-xs text-[#888] leading-relaxed flex-1">
         {service.shortDescription}
       </p>
-      <span className="mt-4 text-[10px] font-bold uppercase tracking-wider text-[#CB3234] opacity-0 group-hover:opacity-100 transition-opacity">
+      <span className="mt-4 text-[10px] font-bold uppercase tracking-wider text-[#E31B23] opacity-0 group-hover:opacity-100 transition-opacity">
         Detayları Gör →
       </span>
     </Link>
@@ -195,7 +195,7 @@ function PhaseSection({ phase }: { phase: PhaseDef }) {
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-1 mb-8">
           <div>
             <div className="flex items-center gap-2.5 mb-2">
-              <div className="w-5 h-px bg-[#CB3234]" />
+              <div className="w-5 h-px bg-[#E31B23]" />
               <span className={`text-sm font-bold tracking-[0.15em] uppercase ${phase.labelColor}`}>
                 {phase.label}
               </span>

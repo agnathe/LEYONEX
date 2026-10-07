@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { useAuth, UserButton } from '@clerk/nextjs';
 import { Menu, X } from 'lucide-react';
@@ -54,13 +55,8 @@ export default function Header() {
         <div className="flex items-center justify-between h-16 md:h-20">
 
           {/* Logo */}
-          <Link href="/" className="flex flex-col leading-none">
-            <span
-              className="text-2xl tracking-tight text-[#1a1a1a]"
-              style={{ fontFamily: "'TTSupermolot', sans-serif", fontWeight: 500 }}
-            >
-              LEYONE<span className="text-[#CB3234]">X</span>
-            </span>
+          <Link href="/" className="flex items-center" aria-label="LEYONEX ana sayfa">
+            <Image src="/brand/leyonex-logo.png" alt="LEYONEX" width={151} height={22} priority className="h-[20px] w-auto md:h-[22px]" />
           </Link>
 
           {/* Desktop Nav */}
@@ -69,7 +65,7 @@ export default function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm font-medium text-[#555] hover:text-[#CB3234] transition-colors"
+                className="text-sm font-medium text-[#555] hover:text-[#E31B23] transition-colors"
               >
                 {link.label}
               </Link>
@@ -81,19 +77,19 @@ export default function Header() {
             {/* TR/EN Toggle */}
             <button
               onClick={toggleLanguage}
-              className="flex items-center gap-1 border border-[#E5E5E3] rounded-full px-3 py-1.5 text-xs font-semibold text-[#1a1a1a] hover:border-[#CB3234] transition-colors"
+              className="flex items-center gap-1 border border-[#E5E5E3] px-3 py-1.5 text-xs font-semibold text-[#1a1a1a] hover:border-[#E31B23] transition-colors"
               aria-label="Dil değiştir"
             >
-              <span className={currentLang === 'tr' ? 'text-[#CB3234]' : 'text-[#999]'}>TR</span>
+              <span className={currentLang === 'tr' ? 'text-[#E31B23]' : 'text-[#999]'}>TR</span>
               <span className="text-[#ccc]">|</span>
-              <span className={currentLang === 'en' ? 'text-[#CB3234]' : 'text-[#999]'}>EN</span>
+              <span className={currentLang === 'en' ? 'text-[#E31B23]' : 'text-[#999]'}>EN</span>
             </button>
 
             {isSignedIn ? (
               <div className="flex items-center gap-3">
                 <Link
                   href="/uye/dashboard"
-                  className="text-sm font-medium text-[#555] hover:text-[#CB3234] transition-colors"
+                  className="text-sm font-medium text-[#555] hover:text-[#E31B23] transition-colors"
                 >
                   Dashboard
                 </Link>
@@ -102,7 +98,7 @@ export default function Header() {
             ) : (
               <Link
                 href="/teklif-al"
-                className="bg-[#CB3234] text-white text-sm font-semibold px-5 py-2.5 rounded-md hover:bg-[#A8282A] transition-colors"
+                className="bg-[#E31B23] text-white text-sm font-semibold px-5 py-2.5 hover:bg-[#C4141B] transition-colors"
               >
                 Teklif Alın
               </Link>
@@ -127,7 +123,7 @@ export default function Header() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
-                className="block px-2 py-2.5 text-sm font-medium text-[#555] hover:text-[#CB3234] transition-colors"
+                className="block px-2 py-2.5 text-sm font-medium text-[#555] hover:text-[#E31B23] transition-colors"
               >
                 {link.label}
               </Link>
@@ -136,11 +132,11 @@ export default function Header() {
             <div className="pt-3 mt-3 border-t border-[#E5E5E3] flex items-center justify-between px-2">
               <button
                 onClick={toggleLanguage}
-                className="flex items-center gap-1 border border-[#E5E5E3] rounded-full px-3 py-1.5 text-xs font-semibold"
+                className="flex items-center gap-1 border border-[#E5E5E3] px-3 py-1.5 text-xs font-semibold"
               >
-                <span className={currentLang === 'tr' ? 'text-[#CB3234]' : 'text-[#999]'}>TR</span>
+                <span className={currentLang === 'tr' ? 'text-[#E31B23]' : 'text-[#999]'}>TR</span>
                 <span className="text-[#ccc]">|</span>
-                <span className={currentLang === 'en' ? 'text-[#CB3234]' : 'text-[#999]'}>EN</span>
+                <span className={currentLang === 'en' ? 'text-[#E31B23]' : 'text-[#999]'}>EN</span>
               </button>
 
               {isSignedIn ? (
@@ -149,7 +145,7 @@ export default function Header() {
                 <Link
                   href="/teklif-al"
                   onClick={() => setIsOpen(false)}
-                  className="bg-[#CB3234] text-white text-sm font-semibold px-4 py-2 rounded-md"
+                  className="bg-[#E31B23] text-white text-sm font-semibold px-4 py-2"
                 >
                   Teklif Alın
                 </Link>

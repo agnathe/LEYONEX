@@ -81,15 +81,15 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
           <div className="container mx-auto px-4 md:px-6">
             <Link
               href="/hizmetler"
-              className="inline-flex items-center gap-2 text-xs font-semibold text-[#999] hover:text-[#CB3234] transition-colors mb-8 uppercase tracking-wider"
+              className="inline-flex items-center gap-2 text-xs font-semibold text-[#999] hover:text-[#E31B23] transition-colors mb-8 uppercase tracking-wider"
             >
               <ArrowLeft size={14} />
               Tüm Hizmetler
             </Link>
 
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-8 h-px bg-[#CB3234]" />
-              <span className="text-sm font-bold tracking-[0.15em] uppercase text-[#CB3234]">
+              <div className="w-8 h-px bg-[#E31B23]" />
+              <span className="text-sm font-bold tracking-[0.15em] uppercase text-[#E31B23]">
                 {phaseLabel[service.phase] ?? 'Hizmet'}
               </span>
             </div>
@@ -115,7 +115,7 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
 
                 {/* Hero quote */}
                 {service.heroText && (
-                  <blockquote className="border-l-4 border-[#CB3234] pl-6 py-1">
+                  <blockquote className="border-l-4 border-[#E31B23] pl-6 py-1">
                     <p className="text-lg text-[#1a1a1a] leading-relaxed font-medium">
                       {service.heroText}
                     </p>
@@ -149,7 +149,7 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
                     <div className="grid gap-3">
                       {service.subServices.map((sub: any, i: number) => (
                         <div key={i} className="bg-white border border-[#E5E5E3] p-5 flex gap-4 items-start">
-                          <div className="w-6 h-6 rounded-full bg-[#CB3234] flex items-center justify-center flex-shrink-0 mt-0.5">
+                          <div className="w-6 h-6 rounded-full bg-[#E31B23] flex items-center justify-center flex-shrink-0 mt-0.5">
                             <Check size={13} className="text-white" strokeWidth={2.5} />
                           </div>
                           <div>
@@ -167,7 +167,7 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
                 {/* GEO block */}
                 {service.geoBlock && (
                   <div className="bg-[#F8F8F6] border border-[#E5E5E3] p-6">
-                    <p className="text-xs font-bold uppercase tracking-wider text-[#CB3234] mb-3">Hızlı Cevap</p>
+                    <p className="text-xs font-bold uppercase tracking-wider text-[#E31B23] mb-3">Hızlı Cevap</p>
                     <h3 className="text-base font-black text-[#1a1a1a] mb-3">{service.geoBlock.question}</h3>
                     <p className="text-sm text-[#555] leading-relaxed">{service.geoBlock.answer}</p>
                   </div>
@@ -185,7 +185,7 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
                   </p>
                   <Link
                     href="/teklif-al"
-                    className="flex items-center justify-center gap-2 w-full bg-[#CB3234] text-white font-bold py-3.5 hover:bg-[#A8282A] transition-colors text-sm"
+                    className="flex items-center justify-center gap-2 w-full bg-[#E31B23] text-white font-bold py-3.5 hover:bg-[#C4141B] transition-colors text-sm"
                   >
                     Teklif Talep Formu
                     <ArrowRight size={15} />
@@ -193,12 +193,12 @@ export default async function ServiceDetailPage({ params }: ServiceDetailPagePro
 
                   <div className="mt-8 pt-8 border-t border-[#E5E5E3] space-y-3">
                     <h4 className="text-xs font-bold uppercase tracking-wider text-[#999]">İletişim</h4>
-                    <a href="mailto:info@leyonex.com" className="flex items-center gap-3 text-sm text-[#555] hover:text-[#CB3234] transition-colors">
-                      <Mail size={14} className="text-[#CB3234]" />
+                    <a href="mailto:info@leyonex.com" className="flex items-center gap-3 text-sm text-[#555] hover:text-[#E31B23] transition-colors">
+                      <Mail size={14} className="text-[#E31B23]" />
                       info@leyonex.com
                     </a>
-                    <a href="tel:+905439607076" className="flex items-center gap-3 text-sm text-[#555] hover:text-[#CB3234] transition-colors">
-                      <Phone size={14} className="text-[#CB3234]" />
+                    <a href="tel:+905439607076" className="flex items-center gap-3 text-sm text-[#555] hover:text-[#E31B23] transition-colors">
+                      <Phone size={14} className="text-[#E31B23]" />
                       +90 543 960 70 76
                     </a>
                   </div>

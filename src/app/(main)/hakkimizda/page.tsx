@@ -25,11 +25,11 @@ export default function HakkimizdaPage() {
           <div className="container mx-auto px-4 md:px-6">
             <div className="max-w-4xl mx-auto text-center">
               <div className="flex items-center justify-center gap-3 mb-5">
-                <div className="w-8 h-px bg-[#CB3234]" />
-                <span className="text-sm font-bold tracking-[0.15em] uppercase text-[#CB3234]">
+                <div className="w-8 h-px bg-[#E31B23]" />
+                <span className="text-sm font-bold tracking-[0.15em] uppercase text-[#E31B23]">
                   Hakkımızda
                 </span>
-                <div className="w-8 h-px bg-[#CB3234]" />
+                <div className="w-8 h-px bg-[#E31B23]" />
               </div>
               <h1 className="text-4xl md:text-6xl font-black text-[#1a1a1a] leading-tight mb-4">
                 Fuarları stratejik yatırım<br />olarak ele alıyoruz
@@ -71,13 +71,13 @@ export default function HakkimizdaPage() {
           <div className="container mx-auto px-4 md:px-6">
             <div className="max-w-3xl mx-auto">
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-6 h-px bg-[#CB3234]" />
-                <span className="text-sm font-bold tracking-[0.15em] uppercase text-[#CB3234]">
+                <div className="w-6 h-px bg-[#E31B23]" />
+                <span className="text-sm font-bold tracking-[0.15em] uppercase text-[#E31B23]">
                   Gördüğümüz Problem
                 </span>
               </div>
               <h2 className={heading2}>Bu süreçlerde şunu net şekilde gördük</h2>
-              <div className="border-l-2 border-[#CB3234] pl-6 space-y-4">
+              <div className="border-l-2 border-[#E31B23] pl-6 space-y-4">
                 <p className={body}>
                   Firmalar, fuar öncesi ve sırasında operasyonel yükün ağırlığı nedeniyle asıl odaklanmaları
                   gereken konuya —<strong className="text-[#1a1a1a] font-semibold"> fuarın verimliliğine ve stratejik katkısına</strong>— yeterince
@@ -89,7 +89,7 @@ export default function HakkimizdaPage() {
                 </p>
               </div>
               <div className="mt-8 py-5 border-t border-[#E5E5E3]">
-                <p className="text-xl font-black text-[#CB3234]">
+                <p className="text-xl font-black text-[#E31B23]">
                   Leyonex tam olarak bu noktada devreye giriyor.
                 </p>
               </div>
@@ -103,10 +103,10 @@ export default function HakkimizdaPage() {
             <div className="max-w-3xl mx-auto">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-8 h-8 flex items-center justify-center">
-                  <Target size={22} className="text-[#CB3234]" strokeWidth={1.8} />
+                  <Target size={22} className="text-[#E31B23]" strokeWidth={1.8} />
                 </div>
-                <div className="w-6 h-px bg-[#CB3234]" />
-                <span className="text-sm font-bold tracking-[0.15em] uppercase text-[#CB3234]">
+                <div className="w-6 h-px bg-[#E31B23]" />
+                <span className="text-sm font-bold tracking-[0.15em] uppercase text-[#E31B23]">
                   Yaklaşımımız
                 </span>
               </div>
@@ -136,10 +136,10 @@ export default function HakkimizdaPage() {
             <div className="max-w-3xl mx-auto">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-8 h-8 flex items-center justify-center">
-                  <TrendingUp size={22} className="text-[#CB3234]" strokeWidth={1.8} />
+                  <TrendingUp size={22} className="text-[#E31B23]" strokeWidth={1.8} />
                 </div>
-                <div className="w-6 h-px bg-[#CB3234]" />
-                <span className="text-sm font-bold tracking-[0.15em] uppercase text-[#CB3234]">
+                <div className="w-6 h-px bg-[#E31B23]" />
+                <span className="text-sm font-bold tracking-[0.15em] uppercase text-[#E31B23]">
                   Karar Alma Yaklaşımımız
                 </span>
               </div>
@@ -147,7 +147,7 @@ export default function HakkimizdaPage() {
               <p className={`${body} mb-6`}>
                 Mühendislik, Pazarlama ve Marka yönetim tecrübesine sahip ekiplerimizin bileşimi, karar
                 alma sürecimizin mantığını oluşturur. Bizim için kritik kavram{" "}
-                <strong className="text-[#CB3234] font-black text-lg">&quot;optimum&quot;</strong>dur.
+                <strong className="text-[#E31B23] font-black text-lg">&quot;optimum&quot;</strong>dur.
                 Çünkü birlikte çalıştığımızda her şeyi dengeli ve optimum seviyede ilerletmeye
                 çalıştığımızı göreceksiniz.
               </p>
@@ -172,10 +172,10 @@ export default function HakkimizdaPage() {
             <div className="max-w-3xl mx-auto">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-8 h-8 flex items-center justify-center">
-                  <Shield size={22} className="text-[#CB3234]" strokeWidth={1.8} />
+                  <Shield size={22} className="text-[#E31B23]" strokeWidth={1.8} />
                 </div>
-                <div className="w-6 h-px bg-[#CB3234]" />
-                <span className="text-sm font-bold tracking-[0.15em] uppercase text-[#CB3234]">
+                <div className="w-6 h-px bg-[#E31B23]" />
+                <span className="text-sm font-bold tracking-[0.15em] uppercase text-[#E31B23]">
                   Prensibimiz
                 </span>
               </div>
@@ -191,12 +191,12 @@ export default function HakkimizdaPage() {
                   "Makul ve sürdürülebilir kârlılık",
                 ].map((item) => (
                   <div key={item} className="bg-white p-6 flex items-start gap-3">
-                    <CheckCircle2 size={18} className="text-[#CB3234] flex-shrink-0 mt-0.5" strokeWidth={2} />
+                    <CheckCircle2 size={18} className="text-[#E31B23] flex-shrink-0 mt-0.5" strokeWidth={2} />
                     <span className="text-sm font-semibold text-[#1a1a1a]">{item}</span>
                   </div>
                 ))}
               </div>
-              <div className="border border-[#CB3234]/20 bg-white rounded-lg px-8 py-5 text-center">
+              <div className="border border-[#E31B23]/20 bg-white rounded-lg px-8 py-5 text-center">
                 <p className="text-[#1a1a1a] font-semibold text-base">
                   &quot;Leyonex bu fiyatı verdiyse, bu işin ederi budur.&quot;
                 </p>
@@ -211,10 +211,10 @@ export default function HakkimizdaPage() {
             <div className="max-w-3xl mx-auto">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-8 h-8 flex items-center justify-center">
-                  <Lightbulb size={22} className="text-[#CB3234]" strokeWidth={1.8} />
+                  <Lightbulb size={22} className="text-[#E31B23]" strokeWidth={1.8} />
                 </div>
-                <div className="w-6 h-px bg-[#CB3234]" />
-                <span className="text-sm font-bold tracking-[0.15em] uppercase text-[#CB3234]">
+                <div className="w-6 h-px bg-[#E31B23]" />
+                <span className="text-sm font-bold tracking-[0.15em] uppercase text-[#E31B23]">
                   Ortaklık Anlayışımız
                 </span>
               </div>
@@ -234,7 +234,7 @@ export default function HakkimizdaPage() {
                   "Devlet teşviklerinin değerlendirilmesi",
                 ].map((item) => (
                   <div key={item} className="bg-white p-5 flex items-start gap-3">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#CB3234] flex-shrink-0 mt-2" />
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#E31B23] flex-shrink-0 mt-2" />
                     <span className={`${body} text-sm`}>{item}</span>
                   </div>
                 ))}
@@ -249,10 +249,10 @@ export default function HakkimizdaPage() {
             <div className="max-w-4xl mx-auto">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-8 h-8 flex items-center justify-center">
-                  <Users size={22} className="text-[#CB3234]" strokeWidth={1.8} />
+                  <Users size={22} className="text-[#E31B23]" strokeWidth={1.8} />
                 </div>
-                <div className="w-6 h-px bg-[#CB3234]" />
-                <span className="text-sm font-bold tracking-[0.15em] uppercase text-[#CB3234]">
+                <div className="w-6 h-px bg-[#E31B23]" />
+                <span className="text-sm font-bold tracking-[0.15em] uppercase text-[#E31B23]">
                   Hedef Kitlemiz
                 </span>
               </div>
@@ -290,7 +290,7 @@ export default function HakkimizdaPage() {
                       "Fuar sürecinin hem verimli hem de profesyonel bir şekilde yönetilmesini isteyen",
                     ].map((item) => (
                       <li key={item} className="flex items-start gap-3">
-                        <CheckCircle2 size={15} className="text-[#CB3234] flex-shrink-0 mt-0.5" strokeWidth={2} />
+                        <CheckCircle2 size={15} className="text-[#E31B23] flex-shrink-0 mt-0.5" strokeWidth={2} />
                         <span className="text-sm text-[#555] leading-relaxed">{item}</span>
                       </li>
                     ))}
@@ -320,7 +320,7 @@ export default function HakkimizdaPage() {
               </div>
 
               {/* Kapanış */}
-              <div className="border-l-2 border-[#CB3234] pl-6 space-y-3">
+              <div className="border-l-2 border-[#E31B23] pl-6 space-y-3">
                 <p className={body}>
                   Çünkü biz yaptığımız işi severek yapıyoruz.
                 </p>
@@ -341,10 +341,10 @@ export default function HakkimizdaPage() {
             <div className="max-w-3xl mx-auto">
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-8 h-8 flex items-center justify-center">
-                  <Heart size={22} className="text-[#CB3234]" strokeWidth={1.8} />
+                  <Heart size={22} className="text-[#E31B23]" strokeWidth={1.8} />
                 </div>
-                <div className="w-6 h-px bg-[#CB3234]" />
-                <span className="text-sm font-bold tracking-[0.15em] uppercase text-[#CB3234]">
+                <div className="w-6 h-px bg-[#E31B23]" />
+                <span className="text-sm font-bold tracking-[0.15em] uppercase text-[#E31B23]">
                   Değerlerimiz
                 </span>
               </div>
@@ -369,7 +369,7 @@ export default function HakkimizdaPage() {
                     "Tüm bu süreci, mevcut bütçenize benzer bir bütçe ile yönetmek",
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-3">
-                      <CheckCircle2 size={16} className="text-[#CB3234] flex-shrink-0 mt-0.5" strokeWidth={2} />
+                      <CheckCircle2 size={16} className="text-[#E31B23] flex-shrink-0 mt-0.5" strokeWidth={2} />
                       <span className={`${body} text-sm`}>{item}</span>
                     </li>
                   ))}
@@ -385,7 +385,7 @@ export default function HakkimizdaPage() {
             <div className="max-w-3xl mx-auto text-center">
               <p className="text-white text-xl md:text-2xl leading-relaxed font-medium">
                 Leyonex ile bir kez çalıştığınızda,{" "}
-                <strong className="text-[#CB3234]">başka bir firma ile görüşmek bile istemeyeceğinize</strong>{" "}
+                <strong className="text-[#E31B23]">başka bir firma ile görüşmek bile istemeyeceğinize</strong>{" "}
                 eminiz.
               </p>
             </div>

@@ -37,6 +37,23 @@
   to   { clip-path: inset(0 0%   0 0); }
 }
 
+/* Ana sayfa 3D sahne alanı: sol kenar metin kolonuna doğru yumuşakça erir */
+.scene-region {
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 9%), linear-gradient(to top, transparent 0, #000 7%);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, transparent 0, #000 9%), linear-gradient(to top, transparent 0, #000 7%);
+  mask-composite: intersect;
+}
+
+/* Ana sayfa iş akışı diyagramı: hareket azaltma tercihinde statik */
+@media (prefers-reduced-motion: reduce) {
+  .workload-diagram * {
+    transition: none !important;
+    stroke-dashoffset: 0 !important;
+    opacity: 1 !important;
+  }
+}
+
 @layer base {
 	:root {
 		--background: 40 20% 97%;
@@ -45,7 +62,7 @@
 		--card-foreground: 0 0% 10%;
 		--popover: 0 0% 100%;
 		--popover-foreground: 0 0% 10%;
-		--primary: 359 61% 50%; /* #CB3234 */
+		--primary: 358 79% 50%; /* #E31B23 */
 		--primary-foreground: 0 0% 100%;
 		--secondary: 0 0% 95%;
 		--secondary-foreground: 0 0% 10%;
@@ -57,7 +74,7 @@
 		--destructive-foreground: 0 0% 100%;
 		--border: 0 0% 90%;
 		--input: 0 0% 90%;
-		--ring: 359 61% 50%;
+		--ring: 358 79% 50%;
 		--radius: 0.5rem;
 	}
 }
@@ -68,18 +85,21 @@
 	}
 
 	html, body {
-		background-color: #F8F8F6;
-		color: #1a1a1a;
-		font-family: 'Poppins', sans-serif;
+		background-color: #F5F5F3;
+		color: #0D0D0D;
+		font-family: var(--font-body), system-ui, sans-serif;
+		-webkit-font-smoothing: antialiased;
 	}
 
 	h1, h2, h3, h4, h5, h6 {
-		color: #1a1a1a;
+		color: #0D0D0D;
+		font-family: var(--font-display), system-ui, sans-serif;
 		font-weight: 700;
+		letter-spacing: -0.02em;
 	}
 
 	p {
-		color: #555555;
+		color: #4D4D4D;
 	}
 
 	a {
@@ -96,11 +116,11 @@
 	background: #F2F2F0;
 }
 ::-webkit-scrollbar-thumb {
-	background: #CB3234;
+	background: #E31B23;
 	border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-	background: #A8282A;
+	background: #C4141B;
 }
 
 /* Section label style */
@@ -109,7 +129,7 @@
 	font-weight: 600;
 	letter-spacing: 0.15em;
 	text-transform: uppercase;
-	color: #CB3234;
+	color: #E31B23;
 }
 
 /* Red underline decoration */
@@ -124,7 +144,7 @@
 	bottom: -8px;
 	width: 48px;
 	height: 3px;
-	background-color: #CB3234;
+	background-color: #E31B23;
 }
 
 /* Google Translate — completely hidden */
