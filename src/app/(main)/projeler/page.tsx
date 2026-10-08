@@ -4,7 +4,10 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import ProjectEvolution from "@/components/home/ProjectEvolution";
 import ProjectGallery from "@/components/home/ProjectGallery";
-import { ProjectsIntro } from "@/components/home/ProjectStories";
+import {
+  ProjectsDisclosure,
+  ProjectsIntro,
+} from "@/components/home/ProjectStories";
 import {
   evolutionProjects,
   galleryItems,
@@ -36,6 +39,9 @@ export default function ProjelerPage() {
           </span>
           <div className="container relative mx-auto px-4 md:px-6">
             <ProjectsIntro headingId="projeler-sayfa-baslik" as="h1" />
+            <div className="mt-12">
+              <ProjectsDisclosure />
+            </div>
             <div className="mt-16 space-y-16 lg:space-y-24">
               {evolutionProjects.map((project) => (
                 <ProjectEvolution

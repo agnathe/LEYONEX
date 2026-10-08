@@ -149,8 +149,8 @@ export const workload = {
 };
 
 export const servicesIntro = {
-  title: "Ayrıntılar birbirine bağlı. Yönetimi de öyle.",
-  text: "Stant, ekip, konaklama, transfer ve saha hizmetlerini birbirinden bağımsız işler olarak bırakmayız. Hazırlıktan uygulamaya kadar aynı planın parçaları olarak ele alırız.",
+  title: "Operasyon sürecin bir parçası. Biz sürecin tamamını yönetiyoruz.",
+  text: "Fuar katılımınızı daha profesyonel ve verimli yürütmenizi, iş yükünüzü azaltmanızı ve süreci yalnızca kontrol edip yönlendirmenizi sağlıyoruz; her yıl ayırdığınız bütçelere benzer bütçelerle. Firmanızla partner olarak çalışıyor, tüm ihtiyaçlarınıza çözüm buluyoruz.",
 };
 
 // Yalnızca mevcut /hizmetler/[slug] sayfalarına bağlanır.
@@ -330,6 +330,18 @@ export const projectsIntro = {
   galleryText:
     "Farklı ölçeklerde ve farklı ihtiyaçlarla hazırladığımız stant tasarımlarından bir seçki.",
   note: "Daha fazla örneği görüşmede paylaşıyoruz.",
+  /** Stant görsellerinden önce gösterilir: paylaşılanın yalnızca tasarım tarafı olduğu. */
+  disclosure: {
+    title: "Burada gördüğünüz, çalışmamızın yalnızca stant tasarımı tarafı.",
+    text: "Paylaşılan projeler stant tasarımına bakış açımızı gösterir. Her projenin arkasındaki çalışmanın tüm detayları yalnızca ilgili firmayla paylaşılır:",
+    items: [
+      "Firmanın ürünlerini incelediğimiz çalışmalar",
+      "Rakip araştırmaları",
+      "Markanın güçlü yönleri üzerine çalışmalar",
+      "Standa ilgi oluşturacak özel attraction kurguları",
+      "Pazarlama bakış açımız ve önerilerimiz",
+    ],
+  },
 };
 
 // Çalışma biçimi: LEYONEX firma sunumlarındaki yöntemden, firma adı verilmeden.

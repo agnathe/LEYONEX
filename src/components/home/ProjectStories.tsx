@@ -25,6 +25,42 @@ export function ProjectsIntro({
   );
 }
 
+/** Stant görsellerinden önce: paylaşılanın tasarım tarafı olduğu, detayların firmaya özel kaldığı. */
+export function ProjectsDisclosure() {
+  const d = projectsIntro.disclosure;
+  return (
+    <aside
+      aria-label="Paylaşılan projeler hakkında"
+      className="grid gap-8 border border-lx-line-dark bg-lx-ink1 p-6 sm:p-8 lg:grid-cols-12 lg:gap-10"
+    >
+      <div className="lg:col-span-5">
+        <span aria-hidden="true" className="block h-[3px] w-10 bg-lx-red" />
+        <p className="mt-5 text-balance font-display text-[20px] font-bold leading-snug text-[#F2F2F2] sm:text-[22px]">
+          {d.title}
+        </p>
+        <p className="mt-3 text-[15px] leading-relaxed text-lx-muted-dark">
+          {d.text}
+        </p>
+      </div>
+      <ul className="grid gap-px self-center border border-lx-line-dark bg-lx-line-dark sm:grid-cols-2 lg:col-span-7">
+        {d.items.map((item, i) => (
+          <li
+            key={item}
+            className={`flex items-start gap-3 bg-lx-ink1 px-5 py-4 text-[15px] leading-snug text-[#F2F2F2] ${
+              i === d.items.length - 1 ? "sm:col-span-2" : ""
+            }`}
+          >
+            <span className="mt-0.5 shrink-0 text-[12px] font-semibold tabular-nums text-lx-red">
+              {String(i + 1).padStart(2, "0")}
+            </span>
+            {item}
+          </li>
+        ))}
+      </ul>
+    </aside>
+  );
+}
+
 /** Ana sayfa: her proje için önceki yıl ve sonuç yan yana. */
 export default function ProjectStories() {
   return (
@@ -52,7 +88,11 @@ export default function ProjectStories() {
           </Link>
         </div>
 
-        <ul className="mt-16 grid gap-6 lg:grid-cols-2">
+        <div className="mt-12">
+          <ProjectsDisclosure />
+        </div>
+
+        <ul className="mt-10 grid gap-6 lg:grid-cols-2">
           {evolutionProjects.map((project) => {
             const before = project.steps[0];
             const after = project.steps[project.steps.length - 1];

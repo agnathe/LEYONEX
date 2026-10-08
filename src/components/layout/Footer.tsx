@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { getAllServices } from '@/lib/data';
 import Image from 'next/image';
 import { Linkedin, MapPin, Phone, Mail } from 'lucide-react';
 
@@ -55,19 +56,28 @@ export default function Footer() {
             <h3 className="text-xs font-bold tracking-[0.15em] uppercase text-[#999] mb-5">Hizmetler</h3>
             <ul className="space-y-3">
               {[
-                'Fuar Danışmanlığı',
-                'Stand Tasarımı & Kurulumu',
-                'Hostes & Personel',
-                'Otel & Konaklama',
-                'Fotoğraf & Video',
-                'Devlet Desteği',
-              ].map(service => (
-                <li key={service}>
-                  <Link href="/hizmetler" className="text-sm text-[#666] hover:text-white transition-colors">
-                    {service}
-                  </Link>
-                </li>
-              ))}
+                'fuar-strateji-kurumsal-hazirlik',
+                'fuar-danismanligi',
+                'stand-tasarimi',
+                'fuar-davet-yonetimi',
+                'fuar-ziyaretci-kayit-sistemi',
+                'raporlama-analiz',
+                'devlet-destegi-danismanligi',
+              ]
+                .map(slug => getAllServices().find(s => s.slug === slug))
+                .filter(s => s !== undefined)
+                .map(service => (
+                  <li key={service.slug}>
+                    <Link href={`/hizmetler/${service.slug}`} className="text-sm text-[#666] hover:text-white transition-colors">
+                      {service.title.tr}
+                    </Link>
+                  </li>
+                ))}
+              <li>
+                <Link href="/hizmetler" className="text-sm text-[#999] hover:text-white transition-colors">
+                  Tüm hizmetler →
+                </Link>
+              </li>
             </ul>
           </div>
 

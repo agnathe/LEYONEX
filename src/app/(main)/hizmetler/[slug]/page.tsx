@@ -1,235 +1,404 @@
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import type { Metadata } from "next";
+import Link from "next/link";
+import { ArrowLeft, ArrowRight, ArrowUpRight, Mail, Phone } from "lucide-react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import { getServiceBySlug, getAllServices } from "@/lib/data";
-import Link from "next/link";
-import { ArrowLeft, ArrowRight, Check, Mail, Phone } from "lucide-react";
+import BenefitsBand from "@/components/services/BenefitsBand";
+import { Kicker, buttonClass } from "@/components/home/SectionHeading";
+import { contact } from "@/components/home/content";
+import { getAllServices, getServiceBySlug } from "@/lib/data";
+import {
+  legacyServiceSlugs,
+  phaseInfo,
+  type ServicePhase,
+} from "@/data/services";
+
+const BASE = "https://leyonex.com";
+const phases: ServicePhase[] = ["fuar-oncesi", "fuar-zamani", "fuar-sonrasi"];
 
 interface ServiceDetailPageProps {
   params: Promise<{ slug: string }>;
 }
 
-export async function generateMetadata({ params }: ServiceDetailPageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: ServiceDetailPageProps): Promise<Metadata> {
   const { slug } = await params;
   const service = getServiceBySlug(slug);
   if (!service) return {};
-
-  const title = service.title.tr;
-  const description = `${service.shortDescription.tr} — LEYONEX ile fuar sürecinizde profesyonel destek alın.`;
-
+  const url = `${BASE}/hizmetler/${slug}`;
   return {
-    title,
-    description,
-    keywords: [title, 'fuar hizmeti', 'fuar organizasyonu', 'LEYONEX', service.phase.replace(/-/g, ' ')],
-    alternates: { canonical: `https://leyonex.com/hizmetler/${slug}` },
+    title: service.seoTitle,
+    description: service.metaDescription,
+    alternates: { canonical: url },
     openGraph: {
-      title: `${title} | LEYONEX`,
-      description,
-      url: `https://leyonex.com/hizmetler/${slug}`,
+      title: `${service.seoTitle} | LEYONEX`,
+      description: service.metaDescription,
+      url,
     },
   };
 }
 
-const phaseLabel: Record<string, string> = {
-  'fuar-oncesi': 'FUAR ÖNCESİ',
-  'fuar-zamani': 'FUAR ZAMANI',
-  'fuar-sonrasi': 'FUAR SONRASI',
-};
+export function generateStaticParams() {
+  return getAllServices().map((s) => ({ slug: s.slug }));
+}
 
-export default async function ServiceDetailPage({ params }: ServiceDetailPageProps) {
+const sectionTitle =
+  "font-display text-[24px] font-bold leading-snug text-lx-ink";
+
+export default async function ServiceDetailPage({
+  params,
+}: ServiceDetailPageProps) {
   const { slug } = await params;
+  const legacy = legacyServiceSlugs[slug];
+  if (legacy) permanentRedirect(`/hizmetler/${legacy}`);
   const service = getServiceBySlug(slug);
   if (!service) notFound();
 
-  const BASE = 'https://leyonex.com';
+  const all = getAllServices();
+  const related = service.related
+    .map((s) => all.find((x) => x.slug === s))
+    .filter((s) => s !== undefined);
+  const url = `${BASE}/hizmetler/${slug}`;
 
-  const serviceSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'Service',
-    name: service!.title.tr,
-    description: service!.shortDescription.tr,
-    url: `${BASE}/hizmetler/${slug}`,
-    provider: {
-      '@type': 'Organization',
-      name: 'LEYONEX Fuarcılık',
-      url: BASE,
+  const schema = [
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "@id": `${url}#service`,
+      name: service.h1,
+      alternateName: service.title.tr,
+      description: service.metaDescription,
+      url,
+      serviceType: service.title.tr,
+      category: phaseInfo[service.phase].label,
+      provider: { "@id": `${BASE}/#organization` },
+      areaServed: [
+        { "@type": "Country", name: "Türkiye" },
+        { "@type": "Place", name: "Yurt dışı fuarlar" },
+      ],
     },
-    areaServed: ['TR', 'DE', 'RU', 'IT', 'AE'],
-    serviceType: 'Fuar Yönetimi ve Organizasyonu',
-  };
-
-  const breadcrumbSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Ana Sayfa', item: BASE },
-      { '@type': 'ListItem', position: 2, name: 'Hizmetler', item: `${BASE}/hizmetler` },
-      { '@type': 'ListItem', position: 3, name: service!.title.tr, item: `${BASE}/hizmetler/${slug}` },
-    ],
-  };
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: BASE },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Hizmetler",
+          item: `${BASE}/hizmetler`,
+        },
+        { "@type": "ListItem", position: 3, name: service.title.tr, item: url },
+      ],
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: service.geoBlock.question,
+          acceptedAnswer: { "@type": "Answer", text: service.geoBlock.answer },
+        },
+      ],
+    },
+  ];
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
       <Header />
-      <main className="min-h-screen pt-20 bg-[#F8F8F6]">
-
-        {/* Breadcrumb + hero */}
-        <section className="bg-white border-b border-[#E5E5E3] py-14">
+      <main className="bg-lx-paper pt-16 md:pt-20">
+        {/* Açılış */}
+        <section className="border-b border-lx-line bg-white py-14 lg:py-20">
           <div className="container mx-auto px-4 md:px-6">
-            <Link
-              href="/hizmetler"
-              className="inline-flex items-center gap-2 text-xs font-semibold text-[#999] hover:text-[#E31B23] transition-colors mb-8 uppercase tracking-wider"
+            <nav
+              aria-label="Sayfa konumu"
+              className="text-[13px] text-lx-grey1"
             >
-              <ArrowLeft size={14} />
-              Tüm Hizmetler
-            </Link>
-
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-8 h-px bg-[#E31B23]" />
-              <span className="text-sm font-bold tracking-[0.15em] uppercase text-[#E31B23]">
-                {phaseLabel[service.phase] ?? 'Hizmet'}
+              <Link href="/" className="hover:text-lx-ink">
+                Ana Sayfa
+              </Link>
+              <span aria-hidden="true" className="mx-2">
+                /
               </span>
+              <Link href="/hizmetler" className="hover:text-lx-ink">
+                Hizmetler
+              </Link>
+              <span aria-hidden="true" className="mx-2">
+                /
+              </span>
+              <span className="text-lx-ink">{service.title.tr}</span>
+            </nav>
+            <div className="mt-8">
+              <Kicker>{phaseInfo[service.phase].label}</Kicker>
             </div>
-
-            <h1 className="text-4xl md:text-5xl font-black text-[#1a1a1a] mb-4 max-w-2xl">
-              {service.title.tr}
+            <h1 className="mt-6 max-w-[48rem] text-balance font-display text-[clamp(32px,3.8vw,52px)] font-bold leading-[1.08] tracking-[-0.02em] text-lx-ink">
+              {service.h1}
             </h1>
-            {service.shortDescription && (
-              <p className="text-lg text-[#555] max-w-xl leading-relaxed">
-                {service.shortDescription.tr}
+            <p className="mt-6 max-w-[44rem] text-pretty text-[18px] leading-[1.65] text-lx-grey1">
+              {service.heroText}
+            </p>
+            {(service.free || service.pricingNote) && (
+              <p className="mt-6 inline-flex border border-lx-red px-3 py-1.5 text-[13px] font-semibold text-lx-red">
+                {service.free
+                  ? "Birlikte çalıştığımız firmalara ücretsiz"
+                  : service.pricingNote}
               </p>
             )}
           </div>
         </section>
 
-        {/* Content */}
-        <section className="py-16">
-          <div className="container mx-auto px-4 md:px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+        <section className="py-16 lg:py-20">
+          <div className="container mx-auto grid gap-12 px-4 md:px-6 lg:grid-cols-12 lg:gap-10">
+            <div className="space-y-14 lg:col-span-8">
+              {/* Doğrudan cevap (GEO) */}
+              <div className="border-l-[3px] border-lx-red bg-white p-6 sm:p-8">
+                <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-lx-red">
+                  Kısaca
+                </p>
+                <h2 className="mt-3 font-display text-[22px] font-bold leading-snug text-lx-ink">
+                  {service.geoBlock.question}
+                </h2>
+                <p className="mt-3 text-[16px] leading-relaxed text-lx-grey1">
+                  {service.geoBlock.answer}
+                </p>
+              </div>
 
-              {/* Main content */}
-              <div className="lg:col-span-2 space-y-12">
+              {/* Üç fayda: bu hizmete özel */}
+              <div>
+                <h2 className={sectionTitle}>Bu hizmette size üç faydamız</h2>
+                <div className="mt-6">
+                  <BenefitsBand lines={service.benefits} />
+                </div>
+              </div>
 
-                {/* Hero quote */}
-                {service.heroText && (
-                  <blockquote className="border-l-4 border-[#E31B23] pl-6 py-1">
-                    <p className="text-lg text-[#1a1a1a] leading-relaxed font-medium">
-                      {service.heroText}
-                    </p>
-                  </blockquote>
-                )}
+              <div>
+                <h2 className={sectionTitle}>Neden önemli?</h2>
+                <p className="mt-4 text-[17px] leading-relaxed text-lx-grey1">
+                  {service.fullDescription.tr}
+                </p>
+              </div>
 
-                {/* Full description */}
-                {service.fullDescription?.tr && (
-                  <div>
-                    <h2 className="text-xl font-black text-[#1a1a1a] mb-4">Hizmet Hakkında</h2>
-                    <p className="text-[#555] text-base leading-relaxed">
-                      {service.fullDescription.tr}
-                    </p>
-                  </div>
-                )}
-
-                {/* Process */}
-                {service.processText && (
-                  <div>
-                    <h2 className="text-xl font-black text-[#1a1a1a] mb-4">Nasıl Çalışıyoruz?</h2>
-                    <p className="text-[#555] text-base leading-relaxed">
-                      {service.processText}
-                    </p>
-                  </div>
-                )}
-
-                {/* Scope */}
-                {service.subServices && service.subServices.length > 0 && (
-                  <div>
-                    <h2 className="text-xl font-black text-[#1a1a1a] mb-6">Hizmet Kapsamı</h2>
-                    <div className="grid gap-3">
-                      {service.subServices.map((sub: any, i: number) => (
-                        <div key={i} className="bg-white border border-[#E5E5E3] p-5 flex gap-4 items-start">
-                          <div className="w-6 h-6 rounded-full bg-[#E31B23] flex items-center justify-center flex-shrink-0 mt-0.5">
-                            <Check size={13} className="text-white" strokeWidth={2.5} />
-                          </div>
-                          <div>
-                            <h3 className="font-bold text-[#1a1a1a] mb-1">{sub.name.tr}</h3>
-                            {sub.description?.tr && (
-                              <p className="text-sm text-[#666]">{sub.description.tr}</p>
-                            )}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {/* GEO block */}
-                {service.geoBlock && (
-                  <div className="bg-[#F8F8F6] border border-[#E5E5E3] p-6">
-                    <p className="text-xs font-bold uppercase tracking-wider text-[#E31B23] mb-3">Hızlı Cevap</p>
-                    <h3 className="text-base font-black text-[#1a1a1a] mb-3">{service.geoBlock.question}</h3>
-                    <p className="text-sm text-[#555] leading-relaxed">{service.geoBlock.answer}</p>
-                  </div>
+              <div>
+                <h2 className={sectionTitle}>Nasıl çalışıyoruz?</h2>
+                <p className="mt-4 text-[17px] leading-relaxed text-lx-grey1">
+                  {service.processText}
+                </p>
+                {service.steps && service.steps.length > 0 && (
+                  <ol className="mt-8 grid gap-px border border-lx-line bg-lx-line sm:grid-cols-2">
+                    {service.steps.map((step, i, arr) => (
+                      <li
+                        key={step.title}
+                        className={`bg-white p-6 ${arr.length % 2 === 1 && i === arr.length - 1 ? "sm:col-span-2" : ""}`}
+                      >
+                        <span className="text-[13px] font-semibold tabular-nums text-lx-red">
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
+                        <h3 className="mt-2 font-display text-[17px] font-bold text-lx-ink">
+                          {step.title}
+                        </h3>
+                        <p className="mt-2 text-[15px] leading-relaxed text-lx-grey1">
+                          {step.text}
+                        </p>
+                      </li>
+                    ))}
+                  </ol>
                 )}
               </div>
 
-              {/* Sidebar */}
-              <div className="lg:col-span-1">
-                <div className="bg-white border border-[#E5E5E3] p-7 sticky top-24">
-                  <h3 className="text-base font-black text-[#1a1a1a] mb-2">
-                    {service.ctaText ?? 'Bu hizmet için teklif alın'}
-                  </h3>
-                  <p className="text-sm text-[#666] mb-6">
-                    24 saat içinde size özel dönüş yapıyoruz.
+              {service.subServices.length > 0 && (
+                <div>
+                  <h2 className={sectionTitle}>Hizmet kapsamı</h2>
+                  <ul className="mt-6 border-t border-lx-line">
+                    {service.subServices.map((sub) => (
+                      <li
+                        key={sub.name.tr}
+                        className="flex gap-4 border-b border-lx-line py-4"
+                      >
+                        <span
+                          aria-hidden="true"
+                          className="mt-[11px] h-[2px] w-3 shrink-0 bg-lx-red"
+                        />
+                        <span>
+                          <span className="block font-medium text-lx-ink">
+                            {sub.name.tr}
+                          </span>
+                          <span className="mt-0.5 block text-[15px] text-lx-grey1">
+                            {sub.description.tr}
+                          </span>
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* Sürecin bir parçası: aşama şeridi ve A'dan Z'ye vurgusu */}
+              <div className="border border-lx-line bg-white p-6 sm:p-8">
+                <h2 className={sectionTitle}>Fuar sürecinin bir parçası</h2>
+                <p className="mt-3 text-[16px] leading-relaxed text-lx-grey1">
+                  {service.title.tr}, fuar süreç yönetiminin adımlarından
+                  biridir. Bu hizmeti tek başına alabilir ya da fuar sürecinizin
+                  tamamını A’dan Z’ye LEYONEX’e bırakabilirsiniz; her adım aynı
+                  hedefe ve aynı bütçe planına bağlanır.
+                </p>
+                <ol
+                  className="mt-6 grid gap-2 sm:grid-cols-3"
+                  aria-label="Fuar süreç aşamaları"
+                >
+                  {phases.map((p) => {
+                    const active = p === service.phase;
+                    return (
+                      <li
+                        key={p}
+                        aria-current={active ? "step" : undefined}
+                        className={`border px-4 py-3 text-[14px] font-semibold ${
+                          active
+                            ? "border-lx-ink bg-lx-ink text-white"
+                            : "border-lx-line text-lx-grey1"
+                        }`}
+                      >
+                        {phaseInfo[p].label}
+                      </li>
+                    );
+                  })}
+                </ol>
+                <Link href="/hizmetler" className={`${buttonClass.ghost} mt-6`}>
+                  Tüm süreci inceleyin
+                  <ArrowRight size={16} aria-hidden="true" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Yan sütun */}
+            <aside className="lg:col-span-4">
+              <div className="sticky top-28 space-y-6">
+                <div className="border border-lx-line bg-white p-7">
+                  <h2 className="font-display text-[19px] font-bold leading-snug text-lx-ink">
+                    {service.ctaText}
+                  </h2>
+                  <p className="mt-2 text-[15px] text-lx-grey1">
+                    İletişim bilgilerinizi bırakın; ihtiyaçlarınızı ilk
+                    görüşmede birlikte netleştirelim.
                   </p>
                   <Link
                     href="/teklif-al"
-                    className="flex items-center justify-center gap-2 w-full bg-[#E31B23] text-white font-bold py-3.5 hover:bg-[#C4141B] transition-colors text-sm"
+                    className={`${buttonClass.primary} mt-6 w-full`}
                   >
-                    Teklif Talep Formu
-                    <ArrowRight size={15} />
+                    Teklif alın
+                    <ArrowRight size={16} aria-hidden="true" />
                   </Link>
-
-                  <div className="mt-8 pt-8 border-t border-[#E5E5E3] space-y-3">
-                    <h4 className="text-xs font-bold uppercase tracking-wider text-[#999]">İletişim</h4>
-                    <a href="mailto:info@leyonex.com" className="flex items-center gap-3 text-sm text-[#555] hover:text-[#E31B23] transition-colors">
-                      <Mail size={14} className="text-[#E31B23]" />
-                      info@leyonex.com
+                  <div className="mt-6 space-y-3 border-t border-lx-line pt-6 text-[15px]">
+                    <a
+                      href={`mailto:${contact.email}`}
+                      className="flex items-center gap-3 text-lx-ink hover:text-lx-red"
+                    >
+                      <Mail
+                        size={16}
+                        className="text-lx-red"
+                        aria-hidden="true"
+                      />
+                      {contact.email}
                     </a>
-                    <a href="tel:+905439607076" className="flex items-center gap-3 text-sm text-[#555] hover:text-[#E31B23] transition-colors">
-                      <Phone size={14} className="text-[#E31B23]" />
-                      +90 543 960 70 76
+                    <a
+                      href={contact.phoneHref}
+                      className="flex items-center gap-3 text-lx-ink hover:text-lx-red"
+                    >
+                      <Phone
+                        size={16}
+                        className="text-lx-red"
+                        aria-hidden="true"
+                      />
+                      {contact.phone}
                     </a>
                   </div>
                 </div>
+                <nav
+                  aria-label={`${phaseInfo[service.phase].label} hizmetleri`}
+                  className="border border-lx-line bg-white p-7"
+                >
+                  <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-lx-grey1">
+                    {phaseInfo[service.phase].label}
+                  </p>
+                  <ul className="mt-3">
+                    {all
+                      .filter((s) => s.phase === service.phase)
+                      .map((s) => (
+                        <li key={s.slug}>
+                          <Link
+                            href={`/hizmetler/${s.slug}`}
+                            aria-current={
+                              s.slug === service.slug ? "page" : undefined
+                            }
+                            className={`block py-1.5 text-[15px] ${
+                              s.slug === service.slug
+                                ? "font-semibold text-lx-red"
+                                : "text-lx-ink hover:text-lx-red"
+                            }`}
+                          >
+                            {s.title.tr}
+                          </Link>
+                        </li>
+                      ))}
+                  </ul>
+                </nav>
               </div>
-            </div>
+            </aside>
           </div>
         </section>
 
-        {/* Bottom CTA */}
-        <section className="py-14 bg-white border-t border-[#E5E5E3]">
-          <div className="container mx-auto px-4 md:px-6 flex flex-col sm:flex-row items-center justify-between gap-6">
-            <div>
-              <h2 className="text-xl font-black text-[#1a1a1a] mb-1">Diğer Hizmetlerimizi Keşfedin</h2>
-              <p className="text-sm text-[#666]">Fuar sürecinizin her adımı için çözümlerimiz var.</p>
+        {/* İlgili hizmetler: iç bağlantı ağı */}
+        {related.length > 0 && (
+          <section
+            aria-labelledby="ilgili-baslik"
+            className="border-t border-lx-line bg-white py-16 lg:py-20"
+          >
+            <div className="container mx-auto px-4 md:px-6">
+              <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+                <h2 id="ilgili-baslik" className={sectionTitle}>
+                  Birlikte planlanan hizmetler
+                </h2>
+                <Link href="/hizmetler" className={buttonClass.ghost}>
+                  <ArrowLeft size={16} aria-hidden="true" />
+                  Tüm hizmetler
+                </Link>
+              </div>
+              <ul className="mt-8 grid gap-4 md:grid-cols-3">
+                {related.map((s) => (
+                  <li key={s.slug}>
+                    <Link
+                      href={`/hizmetler/${s.slug}`}
+                      className="group flex h-full flex-col border border-lx-line bg-white p-6 transition-colors hover:border-lx-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lx-red"
+                    >
+                      <span className="text-[12px] font-semibold uppercase tracking-[0.14em] text-lx-red">
+                        {phaseInfo[s.phase].label}
+                      </span>
+                      <span className="mt-2 flex items-start justify-between gap-3 font-display text-[18px] font-bold leading-snug text-lx-ink group-hover:text-lx-red">
+                        {s.title.tr}
+                        <ArrowUpRight
+                          size={18}
+                          className="mt-1 shrink-0 text-lx-grey3 group-hover:text-lx-red"
+                          aria-hidden="true"
+                        />
+                      </span>
+                      <span className="mt-2 text-[15px] leading-relaxed text-lx-grey1">
+                        {s.shortDescription.tr}
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
-            <Link
-              href="/hizmetler"
-              className="inline-flex items-center gap-2 border-2 border-[#1a1a1a] text-[#1a1a1a] font-bold px-7 py-3 rounded hover:bg-[#1a1a1a] hover:text-white transition-colors text-sm whitespace-nowrap"
-            >
-              Tüm Hizmetler
-              <ArrowRight size={15} />
-            </Link>
-          </div>
-        </section>
+          </section>
+        )}
       </main>
       <Footer />
     </>
   );
-}
-
-export function generateStaticParams() {
-  return getAllServices().map(s => ({ slug: s.slug }));
 }

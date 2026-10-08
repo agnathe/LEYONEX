@@ -1,35 +1,365 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import ServicesGrid from "@/components/sections/ServicesGrid";
+import BenefitsBand from "@/components/services/BenefitsBand";
+import ProcessScope from "@/components/services/ProcessScope";
+import {
+  Kicker,
+  Lead,
+  SectionTitle,
+  buttonClass,
+} from "@/components/home/SectionHeading";
+import { method } from "@/components/home/content";
+import { getAllServices } from "@/lib/data";
+import { phaseInfo, servicesFaq, type ServicePhase } from "@/data/services";
 
-export const metadata = {
-  title: "Fuar Hizmetleri",
-  description: "Fuar danışmanlığından stand tasarımına, konaklama ve ulaşımdan fuar sonrası lead takibine — LEYONEX ile fuar sürecinizin her aşaması tek elden.",
+const BASE = "https://leyonex.com";
+
+const definition =
+  "LEYONEX; firmaların fuar katılım sürecini stratejiden stant tasarımına, davetten saha operasyonuna ve fuar sonrası gelişim raporuna kadar tek merkezden yöneten bir fuar süreç yönetimi firmasıdır. Firmalar fuarlarına daha profesyonel ve verimli hazırlanır, iş yükleri azalır; süreci kontrol eder ve yönlendirir, her yıl ayırdıkları bütçelere benzer bütçelerle yönetir.";
+
+export const metadata: Metadata = {
+  title: "Fuar Hizmetleri: A’dan Z’ye Fuar Süreç Yönetimi",
+  description:
+    "Strateji, stant tasarımı, davet, saha operasyonu, ziyaretçi kaydı ve gelişim raporu: fuar sürecinizi benzer bütçe ve daha az iş yüküyle yönetin.",
+  alternates: { canonical: `${BASE}/hizmetler` },
+  openGraph: {
+    title: "Fuar Hizmetleri: A’dan Z’ye Fuar Süreç Yönetimi | LEYONEX",
+    description:
+      "Operasyon, fuar sürecinin yalnızca bir parçası. LEYONEX fuar katılımınızı stratejiden fuar sonrası gelişim raporuna kadar tek merkezden yönetir.",
+    url: `${BASE}/hizmetler`,
+  },
 };
 
+const phases: ServicePhase[] = ["fuar-oncesi", "fuar-zamani", "fuar-sonrasi"];
+
 export default function HizmetlerPage() {
-	return (
-		<>
-			<Header />
-			<main className="min-h-screen pt-20 bg-[#F8F8F6]">
-				{/* Page hero */}
-				<div className="bg-white border-b border-[#E5E5E3]">
-					<div className="container mx-auto px-4 md:px-6 py-14">
-						<div className="flex items-center gap-3 mb-4">
-							<div className="w-8 h-px bg-[#E31B23]" />
-							<span className="text-sm font-bold tracking-[0.15em] uppercase text-[#E31B23]">Hizmetler</span>
-						</div>
-						<h1 className="text-4xl md:text-5xl font-black text-[#1a1a1a] mb-3">
-							İhtiyacınız Olan Her Şey, Tek Noktadan
-						</h1>
-						<p className="text-[#555] text-lg max-w-xl">
-							Paket değil, seçilebilir hizmetler. Fuar öncesinden sonrasına her aşamada yanınızdayız.
-						</p>
-					</div>
-				</div>
-				<ServicesGrid />
-			</main>
-			<Footer />
-		</>
-	);
+  const services = getAllServices();
+
+  const schema = [
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: BASE },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Hizmetler",
+          item: `${BASE}/hizmetler`,
+        },
+      ],
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: "LEYONEX fuar hizmetleri",
+      itemListElement: services.map((s, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        url: `${BASE}/hizmetler/${s.slug}`,
+        name: s.title.tr,
+      })),
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: servicesFaq.map((f) => ({
+        "@type": "Question",
+        name: f.question,
+        acceptedAnswer: { "@type": "Answer", text: f.answer },
+      })),
+    },
+  ];
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
+      <Header />
+      <main className="pt-16 md:pt-20">
+        {/* Açılış: tanım paragrafı (doğrudan cevap) */}
+        <section
+          aria-labelledby="hizmetler-sayfa-baslik"
+          className="relative overflow-hidden bg-lx-ink py-20 text-white lg:py-28"
+        >
+          <span
+            aria-hidden="true"
+            className="pointer-events-none absolute -right-[8vw] -top-[14vw] select-none font-display text-[48vw] font-bold leading-none text-white opacity-[0.04]"
+          >
+            X
+          </span>
+          <div className="container relative mx-auto px-4 md:px-6">
+            <nav
+              aria-label="Sayfa konumu"
+              className="text-[13px] text-lx-muted-dark"
+            >
+              <Link href="/" className="hover:text-white">
+                Ana Sayfa
+              </Link>
+              <span aria-hidden="true" className="mx-2">
+                /
+              </span>
+              <span className="text-[#F2F2F2]">Hizmetler</span>
+            </nav>
+            <div className="mt-8">
+              <Kicker dark>Fuar hizmetleri</Kicker>
+            </div>
+            <h1
+              id="hizmetler-sayfa-baslik"
+              className="mt-6 max-w-[48rem] text-balance font-display text-[clamp(34px,4.2vw,58px)] font-bold leading-[1.06] tracking-[-0.02em] text-[#F2F2F2]"
+            >
+              Fuar hizmetleri: A’dan Z’ye{" "}
+              <span className="text-lx-red">fuar süreç yönetimi.</span>
+            </h1>
+            <p className="mt-7 max-w-[44rem] text-pretty text-[18px] leading-[1.65] text-lx-muted-dark">
+              {definition}
+            </p>
+            <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
+              <Link href="/teklif-al" className={buttonClass.primary}>
+                Fuarınızı birlikte planlayalım
+                <ArrowRight size={16} aria-hidden="true" />
+              </Link>
+              <a href="#hizmet-listesi" className={buttonClass.outlineLight}>
+                Tüm hizmetler
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* Üç fayda */}
+        <section
+          aria-labelledby="fayda-baslik"
+          className="bg-lx-paper py-20 lg:py-24"
+        >
+          <div className="container mx-auto px-4 md:px-6">
+            <div className="max-w-[46rem]">
+              <Kicker>Firmalara sunduğumuz üç fayda</Kicker>
+              <SectionTitle id="fayda-baslik">
+                Siz süreci yönetin, işi biz üstlenelim.
+              </SectionTitle>
+              <Lead>
+                Firmanızla partner olarak çalışıyoruz. Bu süreçteki tüm
+                ihtiyaçlarınıza çözüm buluyor, sorularınıza birlikte cevap
+                üretiyoruz. Her hizmetimiz aynı üç faydaya bağlanır:
+              </Lead>
+            </div>
+            <div className="mt-12">
+              <BenefitsBand />
+            </div>
+          </div>
+        </section>
+
+        {/* Operasyon sürecin bir parçası */}
+        <section
+          aria-labelledby="kapsam-baslik"
+          className="border-t border-lx-line bg-white py-20 lg:py-28"
+        >
+          <div className="container mx-auto px-4 md:px-6">
+            <ProcessScope headingId="kapsam-baslik" />
+          </div>
+        </section>
+
+        {/* Partner yaklaşımı ve çalışma modelleri */}
+        <section
+          aria-labelledby="partner-baslik"
+          className="border-t border-lx-line bg-lx-paper py-20 lg:py-24"
+        >
+          <div className="container mx-auto grid gap-12 px-4 md:px-6 lg:grid-cols-12 lg:gap-10">
+            <div className="lg:col-span-5">
+              <Kicker>Partner yaklaşımı</Kicker>
+              <SectionTitle id="partner-baslik">
+                Bir tedarikçi değil, fuar partneriniz.
+              </SectionTitle>
+              <Lead>
+                Gereksiz maliyetlerinizi azaltıyor, tüm kalem maliyetlerini ve
+                harcama odağınızı optimize ediyoruz. Tasarım ve uygulama
+                tekliflerini kalem kalem karşılaştırıyor, her kararı fuardan
+                beklediğiniz sonuçla eşleştiriyoruz.
+              </Lead>
+            </div>
+            <div className="lg:col-span-6 lg:col-start-7">
+              <h3 className="font-display text-[20px] font-bold text-lx-ink">
+                İhtiyacınıza göre hizmet
+              </h3>
+              <p className="mt-2 text-[15px] text-lx-grey1">
+                {method.modelsNote}
+              </p>
+              <ul className="mt-6 grid gap-px border border-lx-line bg-lx-line sm:grid-cols-3">
+                {method.models.map((model, i) => {
+                  const last = i === method.models.length - 1;
+                  return (
+                    <li
+                      key={model.title}
+                      className={`p-6 ${last ? "bg-lx-ink" : "bg-white"}`}
+                    >
+                      <span
+                        className={`block font-display text-[18px] font-bold ${last ? "text-[#F2F2F2]" : "text-lx-ink"}`}
+                      >
+                        {model.title}
+                      </span>
+                      <span
+                        className={`mt-1.5 block text-[14px] ${last ? "text-lx-muted-dark" : "text-lx-grey1"}`}
+                      >
+                        {model.text}
+                      </span>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* Hizmetler: aşamalara göre */}
+        <section
+          id="hizmet-listesi"
+          aria-labelledby="liste-baslik"
+          className="scroll-mt-24 border-t border-lx-line bg-white py-20 lg:py-28"
+        >
+          <div className="container mx-auto px-4 md:px-6">
+            <div className="max-w-[46rem]">
+              <Kicker>Hizmetler</Kicker>
+              <SectionTitle id="liste-baslik">
+                Fuar öncesinden fuar sonrasına, tek merkezden.
+              </SectionTitle>
+            </div>
+            <div className="mt-14 space-y-14">
+              {phases.map((phase) => {
+                const items = services.filter((s) => s.phase === phase);
+                return (
+                  <div
+                    key={phase}
+                    className="grid gap-8 lg:grid-cols-12 lg:gap-10"
+                  >
+                    <div className="lg:col-span-3">
+                      <h3 className="font-sans text-[13px] font-semibold uppercase tracking-[0.16em] text-lx-red">
+                        {phaseInfo[phase].label}
+                      </h3>
+                      <p className="mt-3 text-[15px] leading-relaxed text-lx-grey1">
+                        {phaseInfo[phase].intro}
+                      </p>
+                    </div>
+                    <ul className="grid gap-4 sm:grid-cols-2 lg:col-span-9 xl:grid-cols-3">
+                      {items.map((s) => (
+                        <li key={s.slug}>
+                          <Link
+                            href={`/hizmetler/${s.slug}`}
+                            className="group flex h-full flex-col border border-lx-line bg-white p-6 transition-[border-color,transform] ease-brand [transition-duration:250ms] hover:-translate-y-0.5 hover:border-lx-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lx-red"
+                          >
+                            <span className="flex items-start justify-between gap-3">
+                              <span className="font-display text-[18px] font-bold leading-snug text-lx-ink group-hover:text-lx-red">
+                                {s.title.tr}
+                              </span>
+                              <ArrowUpRight
+                                size={18}
+                                strokeWidth={1.75}
+                                className="mt-1 shrink-0 text-lx-grey3 transition-colors group-hover:text-lx-red"
+                                aria-hidden="true"
+                              />
+                            </span>
+                            <span className="mt-3 flex-1 text-[15px] leading-relaxed text-lx-grey1">
+                              {s.shortDescription.tr}
+                            </span>
+                            {s.free && (
+                              <span className="mt-5 self-start border border-lx-red px-2.5 py-1 text-[12px] font-semibold text-lx-red">
+                                Birlikte çalıştığımız firmalara ücretsiz
+                              </span>
+                            )}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* Kapsam: Türkiye ve global */}
+        <section
+          aria-labelledby="global-baslik"
+          className="bg-lx-ink py-20 text-white lg:py-24"
+        >
+          <div className="container mx-auto grid gap-10 px-4 md:px-6 lg:grid-cols-12 lg:items-center lg:gap-10">
+            <div className="lg:col-span-5">
+              <Kicker dark>Kapsam</Kicker>
+              <SectionTitle id="global-baslik" dark>
+                Aynı süreci Türkiye’de ve globalde yürütüyoruz.
+              </SectionTitle>
+            </div>
+            <ul className="grid gap-px border border-lx-line-dark bg-lx-line-dark sm:grid-cols-2 lg:col-span-7">
+              <li className="bg-lx-ink1 p-7">
+                <span className="font-display text-[22px] font-bold text-[#F2F2F2]">
+                  Türkiye
+                </span>
+                <p className="mt-2 text-[15px] leading-relaxed text-lx-muted-dark">
+                  Yurt içi fuarlarda hazırlık, davet, saha ve raporlama
+                  süreçlerinin tamamı.
+                </p>
+              </li>
+              <li className="bg-lx-ink1 p-7">
+                <span className="font-display text-[22px] font-bold text-[#F2F2F2]">
+                  Global
+                </span>
+                <p className="mt-2 text-[15px] leading-relaxed text-lx-muted-dark">
+                  Yurt dışı fuarlarda aynı sistem, aynı tek muhatap, tek rapor.
+                </p>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        {/* SSS */}
+        <section
+          aria-labelledby="sss-baslik"
+          className="bg-lx-paper py-20 lg:py-28"
+        >
+          <div className="container mx-auto grid gap-12 px-4 md:px-6 lg:grid-cols-12 lg:gap-10">
+            <div className="lg:col-span-4">
+              <Kicker>Sıkça sorulanlar</Kicker>
+              <SectionTitle id="sss-baslik">
+                Fuar süreç yönetimi hakkında.
+              </SectionTitle>
+            </div>
+            <dl className="border-t border-lx-line lg:col-span-8">
+              {servicesFaq.map((f) => (
+                <div key={f.question} className="border-b border-lx-line py-6">
+                  <dt className="font-display text-[18px] font-bold leading-snug text-lx-ink">
+                    {f.question}
+                  </dt>
+                  <dd className="mt-3 text-[16px] leading-relaxed text-lx-grey1">
+                    {f.answer}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </section>
+
+        {/* Kapanış */}
+        <section className="border-t border-lx-line bg-white py-16">
+          <div className="container mx-auto flex flex-col gap-6 px-4 sm:flex-row sm:items-center sm:justify-between md:px-6">
+            <p className="max-w-[40rem] font-display text-[22px] font-bold leading-snug text-lx-ink">
+              Benzer bütçeyle, daha az iş yüküyle ve daha profesyonel bir fuar
+              katılımı için ilk adımı birlikte atalım.
+            </p>
+            <Link
+              href="/teklif-al"
+              className={`${buttonClass.primary} self-start sm:self-auto`}
+            >
+              Teklif alın
+              <ArrowRight size={16} aria-hidden="true" />
+            </Link>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </>
+  );
 }

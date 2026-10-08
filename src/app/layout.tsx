@@ -70,12 +70,21 @@ export const metadata: Metadata = {
 const orgSchema = {
   '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
+  '@id': 'https://leyonex.com/#organization',
   name: 'LEYONEX Fuarcılık',
   url: 'https://leyonex.com',
   logo: 'https://leyonex.com/logo.png',
   description:
-    'Fuar stratejisi, stand tasarımı, saha operasyonu ve raporlama hizmetleriyle ' +
-    'B2B fuarlarınızı uçtan uca yöneten İstanbul merkezli fuar yönetim şirketi.',
+    'Firmaların fuar katılım süreçlerini stratejiden stant tasarımına, davetten saha operasyonuna ' +
+    've fuar sonrası gelişim raporuna kadar A’dan Z’ye yöneten fuar süreç yönetimi firması.',
+  knowsAbout: [
+    'fuar süreç yönetimi',
+    'fuar danışmanlığı',
+    'fuar stand tasarımı',
+    'fuar davet yönetimi',
+    'fuar ziyaretçi kaydı',
+    'fuar devlet destekleri',
+  ],
   foundingDate: '2014',
   founder: { '@type': 'Person', name: 'Burkay Kartal' },
   address: {
