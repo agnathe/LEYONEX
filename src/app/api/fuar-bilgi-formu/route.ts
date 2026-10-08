@@ -91,7 +91,7 @@ export async function POST(request: NextRequest) {
   <!-- Header -->
   <div style="background:#1a1a1a;padding:28px 32px">
     <div style="font-size:22px;font-weight:700;color:#fff;letter-spacing:0.04em">LEYONEX</div>
-    <div style="font-size:11px;color:#aaa;letter-spacing:0.18em;margin-top:4px">FUAR BİLGİ FORMU — EXHIBITION BRIEF</div>
+    <div style="font-size:11px;color:#aaa;letter-spacing:0.18em;margin-top:4px">TEKLİF TALEBİ — İLETİŞİM BİLGİLERİ</div>
   </div>
 
   <!-- Tablo -->
@@ -162,7 +162,7 @@ export async function POST(request: NextRequest) {
 
   <!-- Footer -->
   <div style="padding:20px 32px;background:#f5f5f3;border-top:1px solid #e0e0e0">
-    <div style="font-size:11px;color:#999;letter-spacing:0.06em">www.leyonex.com — Fuar Bilgi Formu</div>
+    <div style="font-size:11px;color:#999;letter-spacing:0.06em">www.leyonex.com — Teklif Al formu</div>
   </div>
 
 </div>
@@ -185,7 +185,7 @@ export async function POST(request: NextRequest) {
       from: 'Leyonex <noreply@crema.leyonex.com>',
       to: ['burkay@leyonex.com'],
       replyTo: eposta,
-      subject: `Fuar Bilgi Formu: ${firma}${fuar ? ` — ${fuar}` : ''}`,
+      subject: `Teklif talebi: ${firma}${fuar ? ` — ${fuar}` : ''}`,
       html: emailHtml,
       attachments,
     });
