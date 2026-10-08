@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { featuredProjectIds, projectsIntro, showcaseProjects } from "./content";
-import ProjectShowcase from "./ProjectShowcase";
+import { evolutionProjects, projectsIntro } from "./content";
 import { Kicker, Lead, buttonClass } from "./SectionHeading";
 
 export function ProjectsIntro({
@@ -26,19 +25,8 @@ export function ProjectsIntro({
   );
 }
 
-export function ProjectsPrivacyNote() {
-  return (
-    <p className="mt-8 max-w-[46rem] text-[14px] leading-relaxed text-lx-muted-dark">
-      {projectsIntro.privacy}
-    </p>
-  );
-}
-
+/** Ana sayfa: her proje için önceki yıl ve sonuç yan yana. */
 export default function ProjectStories() {
-  const featured = featuredProjectIds
-    .map((id) => showcaseProjects.find((p) => p.id === id))
-    .filter((p) => p !== undefined);
-
   return (
     <section
       aria-labelledby="projeler-baslik"
@@ -64,11 +52,76 @@ export default function ProjectStories() {
           </Link>
         </div>
 
-        <div className="mt-16">
-          <ProjectShowcase projects={featured} wideIndexes={[0]} />
-        </div>
-
-        <ProjectsPrivacyNote />
+        <ul className="mt-16 grid gap-6 lg:grid-cols-2">
+          {evolutionProjects.map((project) => {
+            const before = project.steps[0];
+            const after = project.steps[project.steps.length - 1];
+            const alternatives = project.steps.length - 2;
+            return (
+              <li key={project.id}>
+                <Link
+                  href={`/projeler#donusum-${project.id}`}
+                  className="group block border border-lx-line-dark bg-lx-ink1 transition-[border-color,transform] ease-brand [transition-duration:250ms] hover:-translate-y-0.5 hover:border-white/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lx-red"
+                >
+                  <span className="relative grid h-[220px] grid-cols-5 gap-px bg-lx-line-dark sm:h-[280px]">
+                    <span className="relative col-span-2 overflow-hidden bg-lx-ink2">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={before.image.src}
+                        alt={`${project.title}: önceki yıl tasarımı`}
+                        width={before.image.width}
+                        height={before.image.height}
+                        loading="lazy"
+                        className="h-full w-full object-cover grayscale-[0.6] transition-[filter] [transition-duration:450ms] group-hover:grayscale-0"
+                      />
+                      <span className="absolute bottom-0 left-0 bg-lx-ink/90 px-2.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#F2F2F2]">
+                        Önceki yıl
+                      </span>
+                    </span>
+                    <span className="relative col-span-3 overflow-hidden bg-lx-ink2">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={after.image.src}
+                        alt={`${project.title}: sonuç tasarımı`}
+                        width={after.image.width}
+                        height={after.image.height}
+                        loading="lazy"
+                        className="h-full w-full object-cover transition-transform ease-brand [transition-duration:450ms] group-hover:scale-[1.02]"
+                      />
+                      <span className="absolute bottom-0 left-0 bg-lx-red px-2.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-white">
+                        Sonuç
+                      </span>
+                    </span>
+                    <span
+                      aria-hidden="true"
+                      className="absolute left-[40%] top-1/2 flex h-9 w-9 -translate-x-1/2 -translate-y-1/2 items-center justify-center bg-white text-lx-ink"
+                    >
+                      <ArrowRight size={16} />
+                    </span>
+                  </span>
+                  <span className="flex items-start justify-between gap-4 p-6">
+                    <span>
+                      <span className="block text-[13px] font-semibold tabular-nums text-lx-red">
+                        {project.id}
+                      </span>
+                      <span className="mt-2 block font-display text-[20px] font-bold leading-snug text-[#F2F2F2]">
+                        {project.title}
+                      </span>
+                    </span>
+                    <span className="mt-1 shrink-0 border border-lx-line-dark px-2.5 py-1 text-[12px] font-semibold text-lx-muted-dark">
+                      {alternatives > 0
+                        ? `${alternatives} alternatif`
+                        : "Önceki yıl → Sonuç"}
+                    </span>
+                  </span>
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+        <p className="mt-8 max-w-[46rem] text-[14px] leading-relaxed text-lx-muted-dark">
+          {projectsIntro.note}
+        </p>
       </div>
     </section>
   );
