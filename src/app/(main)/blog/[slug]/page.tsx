@@ -276,13 +276,13 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                       Fuarınızı Birlikte Planlayalım
                     </h3>
                     <p className="text-white/70 text-xs leading-relaxed mb-5">
-                      24 saat içinde size özel dönüş yapıyoruz.
+                      İletişim bilgilerinizi bırakın, fuar planınızı birlikte değerlendirelim.
                     </p>
                     <Link
                       href="/teklif-al"
                       className="flex items-center justify-center gap-2 w-full bg-[#E31B23] text-white font-bold py-3 hover:bg-[#C4141B] transition-colors text-sm"
                     >
-                      Teklif Talep Formu
+                      Görüşme talebi
                       <ArrowRight size={14} />
                     </Link>
                   </div>

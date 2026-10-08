@@ -1,5 +1,5 @@
 import { method } from "./content";
-import { Kicker, Lead, SectionTitle } from "./SectionHeading";
+import { Kicker, SectionTitle } from "./SectionHeading";
 
 export default function MethodSection() {
   return (
@@ -11,10 +11,9 @@ export default function MethodSection() {
         <div className="max-w-[46rem]">
           <Kicker>Çalışma biçimimiz</Kicker>
           <SectionTitle id="calisma-bicimi-baslik">{method.title}</SectionTitle>
-          <Lead>{method.text}</Lead>
         </div>
 
-        <ol className="mt-16 grid gap-px border border-lx-line bg-lx-line sm:grid-cols-2 lg:grid-cols-5">
+        <ol className="mt-14 grid gap-px border border-lx-line bg-lx-line md:grid-cols-3">
           {method.steps.map((step, i) => (
             <li key={step.title} className="flex flex-col bg-white p-7">
               <span className="text-[13px] font-semibold tabular-nums text-lx-red">
@@ -23,7 +22,7 @@ export default function MethodSection() {
               <h3 className="mt-4 font-display text-[19px] font-bold leading-snug text-lx-ink">
                 {step.title}
               </h3>
-              <p className="mt-3 text-[15px] leading-relaxed text-lx-grey1">
+              <p className="mt-2 text-[15px] leading-relaxed text-lx-grey1">
                 {step.text}
               </p>
             </li>

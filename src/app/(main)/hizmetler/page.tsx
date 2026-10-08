@@ -13,27 +13,25 @@ import {
 } from "@/components/home/SectionHeading";
 import { method } from "@/components/home/content";
 import { getAllServices } from "@/lib/data";
-import { phaseInfo, servicesFaq, type ServicePhase } from "@/data/services";
+import { serviceGroups, servicesFaq } from "@/data/services";
 
 const BASE = "https://leyonex.com";
 
 const definition =
-  "LEYONEX; firmaların fuar katılım sürecini stratejiden stant tasarımına, davetten saha operasyonuna ve fuar sonrası gelişim raporuna kadar tek merkezden yöneten bir fuar süreç yönetimi firmasıdır. Firmalar fuarlarına daha profesyonel ve verimli hazırlanır, iş yükleri azalır; süreci kontrol eder ve yönlendirir, her yıl ayırdıkları bütçelere benzer bütçelerle yönetir.";
+  "LEYONEX, firmaların fuar katılım sürecini stratejiden saha yönetimine ve fuar sonrası değerlendirmeye kadar tek merkezden planlayan ve koordine eden bir fuar süreç yönetimi firmasıdır.";
 
 export const metadata: Metadata = {
   title: "Fuar Hizmetleri: A’dan Z’ye Fuar Süreç Yönetimi",
   description:
-    "Strateji, stant tasarımı, davet, saha operasyonu, ziyaretçi kaydı ve gelişim raporu: fuar sürecinizi benzer bütçe ve daha az iş yüküyle yönetin.",
+    "Strateji, stant tasarımı, davet, saha hizmetleri, ziyaretçi kaydı ve değerlendirme: fuar sürecinizi benzer bütçe ve daha az iş yüküyle yönetin.",
   alternates: { canonical: `${BASE}/hizmetler` },
   openGraph: {
     title: "Fuar Hizmetleri: A’dan Z’ye Fuar Süreç Yönetimi | LEYONEX",
     description:
-      "Operasyon, fuar sürecinin yalnızca bir parçası. LEYONEX fuar katılımınızı stratejiden fuar sonrası gelişim raporuna kadar tek merkezden yönetir.",
+      "Operasyon, fuar sürecinin yalnızca bir parçası. LEYONEX fuar katılımınızı stratejiden fuar sonrası değerlendirmeye kadar tek merkezden yönetir.",
     url: `${BASE}/hizmetler`,
   },
 };
-
-const phases: ServicePhase[] = ["fuar-oncesi", "fuar-zamani", "fuar-sonrasi"];
 
 export default function HizmetlerPage() {
   const services = getAllServices();
@@ -131,21 +129,20 @@ export default function HizmetlerPage() {
           </div>
         </section>
 
-        {/* Üç fayda */}
+        {/* Üç fayda ve partner yaklaşımı */}
         <section
           aria-labelledby="fayda-baslik"
           className="bg-lx-paper py-20 lg:py-24"
         >
           <div className="container mx-auto px-4 md:px-6">
             <div className="max-w-[46rem]">
-              <Kicker>Firmalara sunduğumuz üç fayda</Kicker>
+              <Kicker>Size faydası</Kicker>
               <SectionTitle id="fayda-baslik">
                 Siz süreci yönetin, işi biz üstlenelim.
               </SectionTitle>
               <Lead>
-                Firmanızla partner olarak çalışıyoruz. Bu süreçteki tüm
-                ihtiyaçlarınıza çözüm buluyor, sorularınıza birlikte cevap
-                üretiyoruz. Her hizmetimiz aynı üç faydaya bağlanır:
+                Firmanızla partner olarak çalışıyor, süreçteki ihtiyaçlarınıza
+                birlikte çözüm üretiyoruz.
               </Lead>
             </div>
             <div className="mt-12">
@@ -164,84 +161,36 @@ export default function HizmetlerPage() {
           </div>
         </section>
 
-        {/* Partner yaklaşımı ve çalışma modelleri */}
-        <section
-          aria-labelledby="partner-baslik"
-          className="border-t border-lx-line bg-lx-paper py-20 lg:py-24"
-        >
-          <div className="container mx-auto grid gap-12 px-4 md:px-6 lg:grid-cols-12 lg:gap-10">
-            <div className="lg:col-span-5">
-              <Kicker>Partner yaklaşımı</Kicker>
-              <SectionTitle id="partner-baslik">
-                Bir tedarikçi değil, fuar partneriniz.
-              </SectionTitle>
-              <Lead>
-                Gereksiz maliyetlerinizi azaltıyor, tüm kalem maliyetlerini ve
-                harcama odağınızı optimize ediyoruz. Tasarım ve uygulama
-                tekliflerini kalem kalem karşılaştırıyor, her kararı fuardan
-                beklediğiniz sonuçla eşleştiriyoruz.
-              </Lead>
-            </div>
-            <div className="lg:col-span-6 lg:col-start-7">
-              <h3 className="font-display text-[20px] font-bold text-lx-ink">
-                İhtiyacınıza göre hizmet
-              </h3>
-              <p className="mt-2 text-[15px] text-lx-grey1">
-                {method.modelsNote}
-              </p>
-              <ul className="mt-6 grid gap-px border border-lx-line bg-lx-line sm:grid-cols-3">
-                {method.models.map((model, i) => {
-                  const last = i === method.models.length - 1;
-                  return (
-                    <li
-                      key={model.title}
-                      className={`p-6 ${last ? "bg-lx-ink" : "bg-white"}`}
-                    >
-                      <span
-                        className={`block font-display text-[18px] font-bold ${last ? "text-[#F2F2F2]" : "text-lx-ink"}`}
-                      >
-                        {model.title}
-                      </span>
-                      <span
-                        className={`mt-1.5 block text-[14px] ${last ? "text-lx-muted-dark" : "text-lx-grey1"}`}
-                      >
-                        {model.text}
-                      </span>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        {/* Hizmetler: aşamalara göre */}
+        {/* Hizmetler: dört ana başlık */}
         <section
           id="hizmet-listesi"
           aria-labelledby="liste-baslik"
-          className="scroll-mt-24 border-t border-lx-line bg-white py-20 lg:py-28"
+          className="scroll-mt-24 border-t border-lx-line bg-lx-paper py-20 lg:py-28"
         >
           <div className="container mx-auto px-4 md:px-6">
             <div className="max-w-[46rem]">
               <Kicker>Hizmetler</Kicker>
               <SectionTitle id="liste-baslik">
-                Fuar öncesinden fuar sonrasına, tek merkezden.
+                Dört başlıkta fuar hizmetleri.
               </SectionTitle>
             </div>
             <div className="mt-14 space-y-14">
-              {phases.map((phase) => {
-                const items = services.filter((s) => s.phase === phase);
+              {serviceGroups.map((group, gi) => {
+                const items = services.filter((s) => s.group === group.id);
                 return (
                   <div
-                    key={phase}
-                    className="grid gap-8 lg:grid-cols-12 lg:gap-10"
+                    key={group.id}
+                    className="grid gap-8 border-t border-lx-line pt-10 lg:grid-cols-12 lg:gap-10"
                   >
                     <div className="lg:col-span-3">
-                      <h3 className="font-sans text-[13px] font-semibold uppercase tracking-[0.16em] text-lx-red">
-                        {phaseInfo[phase].label}
+                      <span className="text-[13px] font-semibold tabular-nums text-lx-red">
+                        {String(gi + 1).padStart(2, "0")}
+                      </span>
+                      <h3 className="mt-2 font-display text-[22px] font-bold leading-snug text-lx-ink">
+                        {group.title}
                       </h3>
-                      <p className="mt-3 text-[15px] leading-relaxed text-lx-grey1">
-                        {phaseInfo[phase].intro}
+                      <p className="mt-2 text-[15px] leading-relaxed text-lx-grey1">
+                        {group.summary}
                       </p>
                     </div>
                     <ul className="grid gap-4 sm:grid-cols-2 lg:col-span-9 xl:grid-cols-3">
@@ -278,47 +227,47 @@ export default function HizmetlerPage() {
                 );
               })}
             </div>
-          </div>
-        </section>
 
-        {/* Kapsam: Türkiye ve global */}
-        <section
-          aria-labelledby="global-baslik"
-          className="bg-lx-ink py-20 text-white lg:py-24"
-        >
-          <div className="container mx-auto grid gap-10 px-4 md:px-6 lg:grid-cols-12 lg:items-center lg:gap-10">
-            <div className="lg:col-span-5">
-              <Kicker dark>Kapsam</Kicker>
-              <SectionTitle id="global-baslik" dark>
-                Aynı süreci Türkiye’de ve globalde yürütüyoruz.
-              </SectionTitle>
+            {/* Çalışma modelleri */}
+            <div className="mt-16 grid gap-8 lg:grid-cols-12 lg:items-end lg:gap-10">
+              <div className="lg:col-span-4">
+                <h3 className="font-display text-[22px] font-bold text-lx-ink">
+                  İhtiyacınıza göre hizmet
+                </h3>
+                <p className="mt-2 text-[15px] text-lx-grey1">
+                  {method.modelsNote}
+                </p>
+              </div>
+              <ul className="grid gap-px border border-lx-line bg-lx-line sm:grid-cols-3 lg:col-span-8">
+                {method.models.map((model, i) => {
+                  const last = i === method.models.length - 1;
+                  return (
+                    <li
+                      key={model.title}
+                      className={`p-6 ${last ? "bg-lx-ink" : "bg-white"}`}
+                    >
+                      <span
+                        className={`block font-display text-[18px] font-bold ${last ? "text-[#F2F2F2]" : "text-lx-ink"}`}
+                      >
+                        {model.title}
+                      </span>
+                      <span
+                        className={`mt-1.5 block text-[14px] ${last ? "text-lx-muted-dark" : "text-lx-grey1"}`}
+                      >
+                        {model.text}
+                      </span>
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
-            <ul className="grid gap-px border border-lx-line-dark bg-lx-line-dark sm:grid-cols-2 lg:col-span-7">
-              <li className="bg-lx-ink1 p-7">
-                <span className="font-display text-[22px] font-bold text-[#F2F2F2]">
-                  Türkiye
-                </span>
-                <p className="mt-2 text-[15px] leading-relaxed text-lx-muted-dark">
-                  Yurt içi fuarlarda hazırlık, davet, saha ve raporlama
-                  süreçlerinin tamamı.
-                </p>
-              </li>
-              <li className="bg-lx-ink1 p-7">
-                <span className="font-display text-[22px] font-bold text-[#F2F2F2]">
-                  Global
-                </span>
-                <p className="mt-2 text-[15px] leading-relaxed text-lx-muted-dark">
-                  Yurt dışı fuarlarda aynı sistem, aynı tek muhatap, tek rapor.
-                </p>
-              </li>
-            </ul>
           </div>
         </section>
 
         {/* SSS */}
         <section
           aria-labelledby="sss-baslik"
-          className="bg-lx-paper py-20 lg:py-28"
+          className="border-t border-lx-line bg-white py-20 lg:py-28"
         >
           <div className="container mx-auto grid gap-12 px-4 md:px-6 lg:grid-cols-12 lg:gap-10">
             <div className="lg:col-span-4">
@@ -343,7 +292,7 @@ export default function HizmetlerPage() {
         </section>
 
         {/* Kapanış */}
-        <section className="border-t border-lx-line bg-white py-16">
+        <section className="border-t border-lx-line bg-lx-paper py-16">
           <div className="container mx-auto flex flex-col gap-6 px-4 sm:flex-row sm:items-center sm:justify-between md:px-6">
             <p className="max-w-[40rem] font-display text-[22px] font-bold leading-snug text-lx-ink">
               Benzer bütçeyle, daha az iş yüküyle ve daha profesyonel bir fuar
@@ -353,7 +302,7 @@ export default function HizmetlerPage() {
               href="/teklif-al"
               className={`${buttonClass.primary} self-start sm:self-auto`}
             >
-              Teklif alın
+              Fuarınızı birlikte planlayalım
               <ArrowRight size={16} aria-hidden="true" />
             </Link>
           </div>

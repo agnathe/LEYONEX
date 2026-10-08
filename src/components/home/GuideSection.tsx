@@ -4,13 +4,8 @@ import { getAllBlogPosts } from "@/lib/data";
 import { BLOG_CATEGORIES } from "@/data/blog";
 import { Kicker, SectionTitle, buttonClass } from "./SectionHeading";
 
-// ROI/ölçüm kategorisi LEYONEX hizmet vaadinin dışında; ana sayfada öne çıkarılmaz.
-const EXCLUDED = new Set(["roi-olcum"]);
-
 export default function GuideSection() {
-  const posts = getAllBlogPosts()
-    .filter((post) => !EXCLUDED.has(post.category))
-    .slice(0, 3);
+  const posts = getAllBlogPosts().slice(0, 3);
 
   if (posts.length === 0) return null;
 

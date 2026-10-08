@@ -100,7 +100,7 @@ const orgSchema = {
     availableLanguage: ['Turkish', 'English'],
   },
   areaServed: ['TR', 'DE', 'RU', 'IT', 'AE'],
-  sameAs: ['https://www.linkedin.com/company/leyonex'],
+  sameAs: ['https://www.linkedin.com/company/leyonex-expo/'],
 };
 
 export default function RootLayout({

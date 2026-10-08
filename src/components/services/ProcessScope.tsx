@@ -9,38 +9,38 @@ const segments: {
 }[] = [
   {
     title: "Hedef ve strateji",
-    text: "Amaçlar, öncelikler, mesaj",
+    text: "Amaçlar ve öncelikler",
     href: "/hizmetler/fuar-strateji-kurumsal-hazirlik",
   },
   {
     title: "Fuar ve bütçe",
-    text: "Doğru fuar, katılım modeli",
+    text: "Doğru fuar, katılım planı",
     href: "/hizmetler/fuar-danismanligi",
   },
   {
-    title: "Tasarım ve tedarik",
-    text: "Alternatifler, tedarikçi seçimi",
+    title: "Stant ve marka",
+    text: "Tasarım ve üretim koordinasyonu",
     href: "/hizmetler/stand-tasarimi",
   },
   {
     title: "Davet",
-    text: "Hedef pazarda doğru muhataplar",
+    text: "Hedef pazarda davet",
     href: "/hizmetler/fuar-davet-yonetimi",
   },
   {
     title: "Saha operasyonu",
-    text: "Kurulum, konaklama, transfer, personel, ikram",
+    text: "Konaklama, transfer, personel, ikram",
     href: "/hizmetler/otel-konaklama",
     operation: true,
   },
   {
     title: "Ziyaretçi kaydı",
-    text: "Dijital kayıt, hazır liste",
+    text: "CReMa ile dijital kayıt",
     href: "/hizmetler/fuar-ziyaretci-kayit-sistemi",
   },
   {
-    title: "Gelişim raporu",
-    text: "Gözlemler, sonraki fuar",
+    title: "Değerlendirme",
+    text: "Gelişim önerileri",
     href: "/hizmetler/raporlama-analiz",
   },
 ];
@@ -65,10 +65,8 @@ export default function ProcessScope({ headingId }: { headingId: string }) {
           </h2>
         </div>
         <p className="text-pretty text-[17px] leading-relaxed text-lx-grey1 lg:col-span-5">
-          Çoğu firma fuarı stant, otel, transfer ve ikramdan oluşan bir
-          operasyon olarak yönetir. Oysa fuarın sonucu, operasyon başlamadan
-          verilen kararlarla ve fuardan sonra çıkarılan derslerle belirlenir.
-          LEYONEX fuar sürecinin tamamını yönetir; ister tek bir hizmet alın,
+          Fuarın sonucu, operasyon başlamadan verilen kararlarla ve fuardan
+          sonra çıkarılan derslerle de belirlenir. İster tek bir hizmet alın,
           ister süreci A’dan Z’ye bize bırakın.
         </p>
       </div>

@@ -9,6 +9,7 @@ import { Kicker, buttonClass } from "@/components/home/SectionHeading";
 import { contact } from "@/components/home/content";
 import { getAllServices, getServiceBySlug } from "@/lib/data";
 import {
+  groupTitle,
   legacyServiceSlugs,
   phaseInfo,
   type ServicePhase,
@@ -72,7 +73,7 @@ export default async function ServiceDetailPage({
       description: service.metaDescription,
       url,
       serviceType: service.title.tr,
-      category: phaseInfo[service.phase].label,
+      category: groupTitle(service.group),
       provider: { "@id": `${BASE}/#organization` },
       areaServed: [
         { "@type": "Country", name: "Türkiye" },
@@ -136,7 +137,7 @@ export default async function ServiceDetailPage({
               <span className="text-lx-ink">{service.title.tr}</span>
             </nav>
             <div className="mt-8">
-              <Kicker>{phaseInfo[service.phase].label}</Kicker>
+              <Kicker>{groupTitle(service.group)}</Kicker>
             </div>
             <h1 className="mt-6 max-w-[48rem] text-balance font-display text-[clamp(32px,3.8vw,52px)] font-bold leading-[1.08] tracking-[-0.02em] text-lx-ink">
               {service.h1}
@@ -170,56 +171,21 @@ export default async function ServiceDetailPage({
                 </p>
               </div>
 
-              {/* Üç fayda: bu hizmete özel */}
               <div>
-                <h2 className={sectionTitle}>Bu hizmette size üç faydamız</h2>
-                <div className="mt-6">
-                  <BenefitsBand lines={service.benefits} />
-                </div>
-              </div>
-
-              <div>
-                <h2 className={sectionTitle}>Neden önemli?</h2>
+                <h2 className={sectionTitle}>Hangi ihtiyacı karşılar?</h2>
                 <p className="mt-4 text-[17px] leading-relaxed text-lx-grey1">
                   {service.fullDescription.tr}
                 </p>
               </div>
 
-              <div>
-                <h2 className={sectionTitle}>Nasıl çalışıyoruz?</h2>
-                <p className="mt-4 text-[17px] leading-relaxed text-lx-grey1">
-                  {service.processText}
-                </p>
-                {service.steps && service.steps.length > 0 && (
-                  <ol className="mt-8 grid gap-px border border-lx-line bg-lx-line sm:grid-cols-2">
-                    {service.steps.map((step, i, arr) => (
-                      <li
-                        key={step.title}
-                        className={`bg-white p-6 ${arr.length % 2 === 1 && i === arr.length - 1 ? "sm:col-span-2" : ""}`}
-                      >
-                        <span className="text-[13px] font-semibold tabular-nums text-lx-red">
-                          {String(i + 1).padStart(2, "0")}
-                        </span>
-                        <h3 className="mt-2 font-display text-[17px] font-bold text-lx-ink">
-                          {step.title}
-                        </h3>
-                        <p className="mt-2 text-[15px] leading-relaxed text-lx-grey1">
-                          {step.text}
-                        </p>
-                      </li>
-                    ))}
-                  </ol>
-                )}
-              </div>
-
               {service.subServices.length > 0 && (
                 <div>
                   <h2 className={sectionTitle}>Hizmet kapsamı</h2>
-                  <ul className="mt-6 border-t border-lx-line">
-                    {service.subServices.map((sub) => (
+                  <ul className="mt-6 grid gap-px border border-lx-line bg-lx-line sm:grid-cols-2">
+                    {service.subServices.map((sub, i, arr) => (
                       <li
                         key={sub.name.tr}
-                        className="flex gap-4 border-b border-lx-line py-4"
+                        className={`flex gap-4 bg-white p-5 ${arr.length % 2 === 1 && i === arr.length - 1 ? "sm:col-span-2" : ""}`}
                       >
                         <span
                           aria-hidden="true"
@@ -239,14 +205,21 @@ export default async function ServiceDetailPage({
                 </div>
               )}
 
+              {/* Üç fayda: bu hizmete özel */}
+              <div>
+                <h2 className={sectionTitle}>Bu hizmette size üç faydamız</h2>
+                <div className="mt-6">
+                  <BenefitsBand lines={service.benefits} />
+                </div>
+              </div>
+
               {/* Sürecin bir parçası: aşama şeridi ve A'dan Z'ye vurgusu */}
               <div className="border border-lx-line bg-white p-6 sm:p-8">
                 <h2 className={sectionTitle}>Fuar sürecinin bir parçası</h2>
                 <p className="mt-3 text-[16px] leading-relaxed text-lx-grey1">
                   {service.title.tr}, fuar süreç yönetiminin adımlarından
-                  biridir. Bu hizmeti tek başına alabilir ya da fuar sürecinizin
-                  tamamını A’dan Z’ye LEYONEX’e bırakabilirsiniz; her adım aynı
-                  hedefe ve aynı bütçe planına bağlanır.
+                  biridir. Bu hizmeti tek başına alabilir ya da sürecin tamamını
+                  A’dan Z’ye LEYONEX’e bırakabilirsiniz.
                 </p>
                 <ol
                   className="mt-6 grid gap-2 sm:grid-cols-3"
@@ -284,14 +257,14 @@ export default async function ServiceDetailPage({
                     {service.ctaText}
                   </h2>
                   <p className="mt-2 text-[15px] text-lx-grey1">
-                    İletişim bilgilerinizi bırakın; ihtiyaçlarınızı ilk
-                    görüşmede birlikte netleştirelim.
+                    İletişim bilgilerinizi bırakın, fuar planınızı birlikte
+                    değerlendirelim.
                   </p>
                   <Link
                     href="/teklif-al"
                     className={`${buttonClass.primary} mt-6 w-full`}
                   >
-                    Teklif alın
+                    Görüşme talep edin
                     <ArrowRight size={16} aria-hidden="true" />
                   </Link>
                   <div className="mt-6 space-y-3 border-t border-lx-line pt-6 text-[15px]">
@@ -320,15 +293,15 @@ export default async function ServiceDetailPage({
                   </div>
                 </div>
                 <nav
-                  aria-label={`${phaseInfo[service.phase].label} hizmetleri`}
+                  aria-label={`${groupTitle(service.group)} hizmetleri`}
                   className="border border-lx-line bg-white p-7"
                 >
                   <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-lx-grey1">
-                    {phaseInfo[service.phase].label}
+                    {groupTitle(service.group)}
                   </p>
                   <ul className="mt-3">
                     {all
-                      .filter((s) => s.phase === service.phase)
+                      .filter((s) => s.group === service.group)
                       .map((s) => (
                         <li key={s.slug}>
                           <Link
@@ -377,7 +350,7 @@ export default async function ServiceDetailPage({
                       className="group flex h-full flex-col border border-lx-line bg-white p-6 transition-colors hover:border-lx-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-lx-red"
                     >
                       <span className="text-[12px] font-semibold uppercase tracking-[0.14em] text-lx-red">
-                        {phaseInfo[s.phase].label}
+                        {groupTitle(s.group)}
                       </span>
                       <span className="mt-2 flex items-start justify-between gap-3 font-display text-[18px] font-bold leading-snug text-lx-ink group-hover:text-lx-red">
                         {s.title.tr}

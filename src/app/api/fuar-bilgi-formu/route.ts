@@ -2,8 +2,27 @@ import { NextRequest, NextResponse } from 'next/server';
 
 const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 MB
 
-function row(label: string, value: string | undefined) {
-  if (!value) return '';
+// İki form bu adrese gönderir: kısa ilk temas formu (kaynak: ana-sayfa, teklif-al,
+// iletisim) ve ilk görüşmeden sonra paylaşılan ayrıntılı fuar bilgi formu.
+const SOURCES: Record<string, string> = {
+  'ana-sayfa': 'Ana sayfa',
+  'teklif-al': 'Teklif Al sayfası',
+  iletisim: 'İletişim sayfası',
+  'fuar-bilgi-formu': 'Fuar bilgi formu',
+};
+
+const escapeHtml = (v: string) =>
+  v
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+
+/** Değer kullanıcı girdisidir; satır sonları korunarak kaçışlanır. */
+function row(label: string, raw: string | undefined, html = false) {
+  if (!raw) return '';
+  const value = html ? raw : escapeHtml(raw).replace(/\n/g, '<br>');
   return `
     <tr>
       <td style="padding:8px 12px;font-size:13px;color:#555;font-weight:600;width:220px;background:#fafafa;border-bottom:1px solid #e8e8e8;white-space:nowrap">${label}</td>
@@ -27,6 +46,25 @@ export async function POST(request: NextRequest) {
     const fd = await request.formData();
 
     const get = (key: string) => String(fd.get(key) ?? '').trim();
+    const kaynak = SOURCES[get('kaynak')] ? get('kaynak') : 'fuar-bilgi-formu';
+    const detailed = kaynak === 'fuar-bilgi-formu';
+    const adSoyad = get('adSoyad') || [get('ad'), get('soyad')].filter(Boolean).join(' ');
+    const eposta = get('eposta');
+    const telefon = get('telefon');
+
+    // Zorunlu alanlar: ad soyad, firma ve e-posta ya da telefondan en az biri.
+    if (!adSoyad || !get('firma') || (!eposta && !telefon)) {
+      return NextResponse.json(
+        { success: false, message: 'Ad soyad, firma ve e-posta ya da telefon gereklidir.' },
+        { status: 400 }
+      );
+    }
+    if (eposta && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(eposta)) {
+      return NextResponse.json(
+        { success: false, message: 'E-posta adresi geçerli görünmüyor.' },
+        { status: 400 }
+      );
+    }
     const getAll = (key: string) => fd.getAll(key).filter(v => typeof v === 'string' && (v as string).trim()).map(String);
 
     // Dosya eki
@@ -71,16 +109,17 @@ export async function POST(request: NextRequest) {
     ];
 
     const amacLines = amacFields
-      .map(([k, l]) => { const v = get(k); return v ? `${l}: %${v}` : ''; })
+      .map(([k, l]) => { const v = get(k); return v ? `${l}: %${escapeHtml(v)}` : ''; })
       .filter(Boolean).join('<br>');
     const pazarLines = pazarFields
-      .map(([k, l]) => { const v = get(k); return v ? `${l}: %${v}` : ''; })
+      .map(([k, l]) => { const v = get(k); return v ? `${l}: %${escapeHtml(v)}` : ''; })
       .filter(Boolean).join('<br>');
 
     const mustLines = shtFields.filter(([k]) => get(k) === 'Olmazsa olmaz').map(([, l]) => l).join(', ');
     const niceLines = shtFields.filter(([k]) => get(k) === 'Olsa iyi olur').map(([, l]) => l).join(', ');
 
     const kapsam = getAll('kapsam').join(', ');
+    const title = detailed ? 'FUAR BİLGİ FORMU' : 'GÖRÜŞME TALEBİ';
 
     const emailHtml = `<!DOCTYPE html>
 <html lang="tr">
@@ -91,20 +130,23 @@ export async function POST(request: NextRequest) {
   <!-- Header -->
   <div style="background:#1a1a1a;padding:28px 32px">
     <div style="font-size:22px;font-weight:700;color:#fff;letter-spacing:0.04em">LEYONEX</div>
-    <div style="font-size:11px;color:#aaa;letter-spacing:0.18em;margin-top:4px">TEKLİF TALEBİ — İLETİŞİM BİLGİLERİ</div>
+    <div style="font-size:11px;color:#aaa;letter-spacing:0.18em;margin-top:4px">${title}</div>
   </div>
 
   <!-- Tablo -->
   <table width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse">
 
     ${section('01 · İLETİŞİM BİLGİLERİ', [
-      row('Ad Soyad', [get('ad'), get('soyad')].filter(Boolean).join(' ')),
+      row('Kaynak', SOURCES[kaynak]),
+      row('Ad Soyad', adSoyad),
       row('Firma', get('firma')),
       row('Unvan', get('unvan')),
-      row('E-posta', get('eposta')),
-      row('Telefon', get('telefon')),
+      row('E-posta', eposta),
+      row('Telefon', telefon),
       row('Web sitesi', get('web')),
     ].join(''))}
+
+    ${section('MESAJ', row('Kısa mesaj', get('mesaj')))}
 
     ${section('02 · FUAR VE STAND', [
       row('Fuar adı', get('fuar')),
@@ -116,8 +158,8 @@ export async function POST(request: NextRequest) {
     ].join(''))}
 
     ${section('03 · AMAÇ VE HEDEF KİTLE', [
-      row('Katılım amacı dağılımı', amacLines),
-      row('Hedef pazar dağılımı', pazarLines),
+      row('Katılım amacı dağılımı', amacLines, true),
+      row('Hedef pazar dağılımı', pazarLines, true),
       row('Müşteri profili', get('musteriProfili')),
       row('Sergilenecek ürünler', get('urunler')),
       row('Öne çıkarılacaklar', get('oneCikan')),
@@ -157,12 +199,12 @@ export async function POST(request: NextRequest) {
 
   ${attachments.length > 0 ? `
   <div style="padding:16px 32px;background:#fffbf0;border-top:1px solid #e0e0e0;font-size:13px;color:#555">
-    <strong>Ek dosya(lar):</strong> ${attachments.map(a => a.filename).join(', ')}
+    <strong>Ek dosya(lar):</strong> ${attachments.map(a => escapeHtml(a.filename)).join(', ')}
   </div>` : ''}
 
   <!-- Footer -->
   <div style="padding:20px 32px;background:#f5f5f3;border-top:1px solid #e0e0e0">
-    <div style="font-size:11px;color:#999;letter-spacing:0.06em">www.leyonex.com — Teklif Al formu</div>
+    <div style="font-size:11px;color:#999;letter-spacing:0.06em">www.leyonex.com — ${SOURCES[kaynak]}</div>
   </div>
 
 </div>
@@ -179,13 +221,12 @@ export async function POST(request: NextRequest) {
 
     const firma = get('firma');
     const fuar = get('fuar');
-    const eposta = get('eposta');
 
     const { error } = await resend.emails.send({
       from: 'Leyonex <noreply@crema.leyonex.com>',
       to: ['burkay@leyonex.com'],
-      replyTo: eposta,
-      subject: `Teklif talebi: ${firma}${fuar ? ` — ${fuar}` : ''}`,
+      ...(eposta ? { replyTo: eposta } : {}),
+      subject: `${detailed ? 'Fuar bilgi formu' : 'Görüşme talebi'}: ${firma}${fuar ? ` — ${fuar}` : ''}`,
       html: emailHtml,
       attachments,
     });

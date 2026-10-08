@@ -10,18 +10,8 @@ import {
 } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
-import {
-  coordinatedServices,
-  designFocus,
-  evaluationNotes,
-  fieldStatus,
-  goalSteps,
-  hero,
-  phaseLinks,
-  stages,
-  type HighlightKey,
-} from "./content";
+import { ArrowRight } from "lucide-react";
+import { hero, phaseLinks, stages } from "./content";
 import {
   detectQuality,
   qualityForced,
@@ -31,7 +21,7 @@ import {
   useQuality,
   type Quality,
 } from "./scene/quality";
-import { setHighlight, setSceneTarget } from "./scene/store";
+import { setSceneTarget } from "./scene/store";
 import { Kicker, buttonClass } from "./SectionHeading";
 
 const ExhibitionScene = dynamic(() => import("./scene/ExhibitionScene"), {
@@ -145,177 +135,6 @@ function PhaseRail({
       )}
     </nav>
   );
-}
-
-const chipClass =
-  "border px-4 py-2.5 text-[15px] font-medium transition-colors duration-150 ease-brand";
-
-function FocusButtons({
-  items,
-  interactive,
-}: {
-  items: { key: HighlightKey; label: string }[];
-  interactive: boolean;
-}) {
-  const [active, setActive] = useState<HighlightKey | null>(null);
-  const select = (key: HighlightKey | null) => {
-    setActive(key);
-    setHighlight(key);
-  };
-  if (!interactive) {
-    return (
-      <ul className="mt-9 flex flex-wrap gap-2.5">
-        {items.map((item) => (
-          <li
-            key={item.key}
-            className={`${chipClass} border-lx-line bg-white text-lx-ink`}
-          >
-            {item.label}
-          </li>
-        ))}
-      </ul>
-    );
-  }
-  return (
-    <div className="mt-9">
-      <div className="flex flex-wrap gap-2.5">
-        {items.map((item) => (
-          <button
-            key={item.key}
-            type="button"
-            aria-pressed={active === item.key}
-            onMouseEnter={() => select(item.key)}
-            onMouseLeave={() => select(null)}
-            onFocus={() => select(item.key)}
-            onBlur={() => select(null)}
-            onClick={() => select(active === item.key ? null : item.key)}
-            className={`${chipClass} ${focusRing} ${
-              active === item.key
-                ? "border-lx-ink bg-lx-ink text-white"
-                : "border-lx-line bg-white text-lx-ink hover:border-lx-ink"
-            }`}
-          >
-            {item.label}
-          </button>
-        ))}
-      </div>
-      <p className="mt-3 text-[14px] text-lx-grey1">
-        Bir başlığı seçin; maketteki karşılığı işaretlenir.
-      </p>
-    </div>
-  );
-}
-
-function ServiceLinks({ interactive }: { interactive: boolean }) {
-  return (
-    <ul className="mt-9 border-t border-lx-line">
-      {coordinatedServices.map((service) => (
-        <li key={service.key} className="border-b border-lx-line">
-          <Link
-            href={service.href}
-            onMouseEnter={
-              interactive ? () => setHighlight(service.key) : undefined
-            }
-            onMouseLeave={interactive ? () => setHighlight(null) : undefined}
-            onFocus={interactive ? () => setHighlight(service.key) : undefined}
-            onBlur={interactive ? () => setHighlight(null) : undefined}
-            className={`group flex items-center justify-between gap-4 py-3.5 transition-colors ${focusRing}`}
-          >
-            <span className="text-[16px] font-medium text-lx-ink transition-colors duration-150 group-hover:text-lx-red">
-              {service.label}
-            </span>
-            <span className="flex items-center gap-3 text-[14px] text-lx-grey1">
-              {service.anchor}
-              <ArrowUpRight
-                size={18}
-                strokeWidth={1.75}
-                className="text-lx-grey3 transition-colors duration-150 group-hover:text-lx-red"
-                aria-hidden="true"
-              />
-            </span>
-          </Link>
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-function StageExtras({
-  index,
-  interactive,
-}: {
-  index: number;
-  interactive: boolean;
-}) {
-  if (index === 1) {
-    return (
-      <ol className="mt-9 flex flex-wrap items-center gap-x-3 gap-y-3 text-[15px] font-medium text-lx-ink">
-        {goalSteps.map((step, i) => (
-          <li key={step} className="flex items-center gap-3">
-            <span className="flex h-8 w-8 items-center justify-center border border-lx-red text-[13px] font-semibold text-lx-red">
-              {i + 1}
-            </span>
-            {step}
-            {i < goalSteps.length - 1 && (
-              <span aria-hidden="true" className="ml-1 h-px w-8 bg-lx-grey3" />
-            )}
-          </li>
-        ))}
-      </ol>
-    );
-  }
-  if (index === 2)
-    return <FocusButtons items={designFocus} interactive={interactive} />;
-  if (index === 3) return <ServiceLinks interactive={interactive} />;
-  if (index === 4) {
-    return (
-      <ol
-        className="mt-9 flex flex-wrap items-center gap-3 text-[15px] font-medium"
-        aria-label="Saha koordinasyon adımları"
-      >
-        {fieldStatus.map((status, i) => (
-          <li key={status} className="flex items-center gap-3">
-            <span className={`${chipClass} border-lx-line-dark text-[#F2F2F2]`}>
-              {status}
-            </span>
-            {i < fieldStatus.length - 1 && (
-              <ArrowRight
-                size={16}
-                className="text-lx-grey2"
-                aria-hidden="true"
-              />
-            )}
-          </li>
-        ))}
-      </ol>
-    );
-  }
-  if (index === 5) {
-    return (
-      <>
-        <ol className="mt-9 grid gap-px border border-lx-line bg-lx-line sm:grid-cols-3">
-          {evaluationNotes.map((note, i) => (
-            <li key={note} className="bg-white px-5 py-5">
-              <span className="block text-[13px] font-semibold tabular-nums text-lx-red">
-                0{i + 1}
-              </span>
-              <span className="mt-1.5 block text-[15px] font-medium leading-snug text-lx-ink">
-                {note}
-              </span>
-            </li>
-          ))}
-        </ol>
-        <Link
-          href="/hizmetler/raporlama-analiz"
-          className={`${buttonClass.ghost} mt-7`}
-        >
-          Süreç değerlendirmesi nasıl hazırlanır
-          <ArrowRight size={16} aria-hidden="true" />
-        </Link>
-      </>
-    );
-  }
-  return null;
 }
 
 export default function HomeNarrative() {
@@ -593,7 +412,6 @@ export default function HomeNarrative() {
                   >
                     {s.text}
                   </p>
-                  <StageExtras index={index} interactive={live} />
                 </div>
               </div>
             </section>

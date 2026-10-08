@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { coreBenefits } from "@/data/services";
 import { workload } from "./content";
 import { Kicker, Lead, SectionTitle } from "./SectionHeading";
 
@@ -46,20 +47,20 @@ export default function WorkloadSection() {
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid items-center gap-14 lg:grid-cols-12 lg:gap-10">
           <div className="lg:col-span-5">
-            <Kicker>İş yükü ve kontrol</Kicker>
+            <Kicker>Size faydası</Kicker>
             <SectionTitle id="is-yuku-baslik">{workload.title}</SectionTitle>
             <Lead>{workload.text}</Lead>
             <ul className="mt-10 border-t border-lx-line">
-              {workload.points.map((point) => (
+              {coreBenefits.map(({ title }) => (
                 <li
-                  key={point}
+                  key={title}
                   className="flex items-center gap-4 border-b border-lx-line py-4 text-[16px] font-medium text-lx-ink"
                 >
                   <span
                     aria-hidden="true"
                     className="h-[2px] w-3 shrink-0 bg-lx-red"
                   />
-                  {point}
+                  {title}
                 </li>
               ))}
             </ul>

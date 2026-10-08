@@ -10,7 +10,7 @@ export const BLOG_CATEGORIES: Record<BlogCategory, string> = {
   "stand-tasarimi": "Stand Tasarımı",
   "fuar-hazirligi": "Fuar Hazırlığı",
   "uluslararasi-fuarlar": "Uluslararası Fuarlar",
-  "roi-olcum": "ROI & Ölçüm",
+  "roi-olcum": "Değerlendirme",
 };
 
 export interface BlogSection {
@@ -90,6 +90,12 @@ export const blogPosts: BlogPost[] = [
         ],
       },
       {
+        type: "callout",
+        variant: "info",
+        title: "Güncel tutarları kontrol edin",
+        text: "Destek oranları, üst limitler ve desteklenen fuar listeleri dönemsel olarak güncellenir. Başvurudan önce Ticaret Bakanlığı'nın güncel duyurularını kontrol edin; nihai destek kararı ilgili kurum tarafından verilir.",
+      },
+      {
         type: "h2",
         content: "Yıllık Faydalanma Hakları",
       },
@@ -134,10 +140,10 @@ export const blogPosts: BlogPost[] = [
       {
         type: "callout",
         variant: "cta",
-        title: "Teşvik Sürecinizi Riske Atmayın",
-        text: "Leyonex'in uçtan uca teşvik danışmanlığıyla evrak sürecinizi sıfır hatayla tamamlayın. DYS başvurusundan hakediş kapatmaya kadar her adımda yanınızdayız.",
-        buttonText: "Ücretsiz Danışmanlık Alın",
-        buttonHref: "/iletisim",
+        title: "Destek Sürecinizi Baştan Planlayın",
+        text: "LEYONEX, fuar desteklerinde uygunluk kontrolünü ve başvuru belgelerinin takibini üstleniyor.",
+        buttonText: "Devlet Desteği Danışmanlığı",
+        buttonHref: "/hizmetler/devlet-destegi-danismanligi",
       },
     ],
   },
@@ -171,16 +177,21 @@ export const blogPosts: BlogPost[] = [
       },
       {
         type: "h2",
-        content: "Bütçe Dört Temel Kaleme Bölünür",
+        content: "Bütçeyi Oluşturan Dört Temel Kalem",
       },
       {
         type: "ul",
         items: [
-          "%45 — Malzeme: ahşap, alüminyum, pleksi ve zemin kaplama",
-          "%25 — Tasarım ve Montaj: 3D konsept tasarım, imalat işçiliği, kurulum ve söküm",
-          "%15 — Lojistik: nakliye, gümrükleme ve fuar alanı depolama",
-          "%15 — Altyapı: elektrik pano bağlantısı, enerji tüketimi, internet ve temizlik",
+          "Malzeme: ahşap, alüminyum, pleksi ve zemin kaplama",
+          "Tasarım ve montaj: konsept tasarım, imalat işçiliği, kurulum ve söküm",
+          "Lojistik: nakliye, gümrükleme ve fuar alanı depolama",
+          "Altyapı: elektrik bağlantısı, enerji tüketimi, internet ve temizlik",
         ],
+      },
+      {
+        type: "p",
+        content:
+          "Kalemlerin bütçe içindeki payı stant tipine, fuarın ülkesine ve tasarım detaylarına göre değişir.",
       },
       {
         type: "h2",
@@ -197,6 +208,12 @@ export const blogPosts: BlogPost[] = [
         ],
       },
       {
+        type: "callout",
+        variant: "info",
+        title: "Aralıklar yaklaşıktır",
+        text: "Tablodaki değerler genel piyasa aralıklarını gösterir; fuar, şehir, malzeme ve tasarım detayına göre önemli ölçüde değişebilir.",
+      },
+      {
         type: "h2",
         content: "Sıkça Atlanan Gizli Maliyetler",
       },
@@ -204,7 +221,7 @@ export const blogPosts: BlogPost[] = [
         type: "ul",
         items: [
           "Rigging (tavandan görsel asma) bedelleri — fuar bazında değişir, sözleşmede net görülmeyebilir",
-          "Erken sipariş süresini kaçırma zammı: elektrik, internet ve rigging için Early Bird son tarihinden sonra %20–50 ek bedel",
+          "Erken sipariş süresini kaçırma: elektrik, internet ve rigging için Early Bird son tarihinden sonra ek bedel uygulanabilir",
           "Standın zamanında boşaltılmaması durumunda organizatörün uyguladığı cezalar",
           "Ana elektrik pano bağlantı ücreti (kW bazında ücretlendirilir)",
         ],
@@ -212,9 +229,9 @@ export const blogPosts: BlogPost[] = [
       {
         type: "callout",
         variant: "cta",
-        title: "24 Saatte Teklifinizi Alın",
-        text: "Alan ölçülerinizi ve fuar bilgilerinizi paylaşın, Leyonex ekibi 24 saat içinde size özel detaylı fiyat teklifi hazırlasın.",
-        buttonText: "Teklif Talep Et",
+        title: "Stant Bütçenizi Birlikte Planlayalım",
+        text: "Alan ölçülerinizi ve fuar bilgilerinizi paylaşın; markanıza ve hedeflerinize uygun stant sürecini birlikte planlayalım.",
+        buttonText: "Görüşme Talebi",
         buttonHref: "/teklif-al",
       },
     ],
@@ -260,7 +277,7 @@ export const blogPosts: BlogPost[] = [
         type: "ul",
         items: [
           "Üretim maliyetleri yüksektir",
-          "Sahadaki kurulum süresi uzundur (modülere kıyasla 2–3 kat)",
+          "Sahadaki kurulum süresi modüler sistemlere göre daha uzundur",
           "Genellikle tek kullanımlık yapısı nedeniyle çevresel sürdürülebilirlik değeri düşüktür",
           "Uluslararası fuarlarda alev geciktirici (B1) sertifika zorunluluğu ek maliyet getirir",
         ],
@@ -272,7 +289,7 @@ export const blogPosts: BlogPost[] = [
       {
         type: "p",
         content:
-          "Tekrar kullanılabilir alüminyum profillerin kilit mekanizmalarıyla birleştirilmesi ve aralarına ahşap veya tekstil panellerin yerleştirilmesiyle kurulur. Ahşap standa kıyasla %30–50 bütçe tasarrufu sağlar. Kurulumu son derece hızlı, lojistik hacmi düşük ve parçaların %100'e yakını tekrar kullanılabilir olduğundan doğa dostudur.",
+          "Tekrar kullanılabilir alüminyum profillerin kilit mekanizmalarıyla birleştirilmesi ve aralarına ahşap veya tekstil panellerin yerleştirilmesiyle kurulur. Ahşap standa kıyasla genellikle daha ekonomiktir. Kurulumu hızlı, lojistik hacmi düşüktür; parçaların büyük bölümü tekrar kullanılabildiği için çevre dostudur.",
       },
       {
         type: "ul",
@@ -299,10 +316,10 @@ export const blogPosts: BlogPost[] = [
       {
         type: "callout",
         variant: "cta",
-        title: "Markanıza Uygun Mimariyi Birlikte Belirleyelim",
-        text: "Ürününüzü, fuarınızı ve bütçenizi paylaşın; Leyonex mimarları size en uygun stand konseptini ücretsiz ön görüşmede tartışsın.",
-        buttonText: "Ücretsiz Ön Görüşme",
-        buttonHref: "/iletisim",
+        title: "Markanıza Uygun Stant Yaklaşımını Birlikte Belirleyelim",
+        text: "Ürününüzü, fuarınızı ve bütçenizi paylaşın; ilk görüşmede markanıza uygun stant yaklaşımını birlikte değerlendirelim.",
+        buttonText: "Görüşme Talebi",
+        buttonHref: "/teklif-al",
       },
     ],
   },
@@ -380,10 +397,10 @@ export const blogPosts: BlogPost[] = [
       {
         type: "callout",
         variant: "cta",
-        title: "Yurt Dışı Operasyonlarında Stres Yaşamayın",
-        text: "Leyonex'in küresel lojistik ve saha yönetim ağıyla gümrük, montaj ve İSG süreçlerinizi eksiksiz yönetin. 20'den fazla ülkede aktif operasyon deneyimi.",
-        buttonText: "Lojistik Çözümleri İnceleyin",
-        buttonHref: "/hizmetler/ulasim-shuttle",
+        title: "Yurt Dışı Fuar Katılımınızı Birlikte Planlayalım",
+        text: "LEYONEX, yurt dışı fuarlarda hazırlık ve saha süreçlerini tek iletişim noktası üzerinden koordine ediyor.",
+        buttonText: "Fuar Danışmanlığı",
+        buttonHref: "/hizmetler/fuar-danismanligi",
       },
     ],
   },
@@ -459,9 +476,9 @@ export const blogPosts: BlogPost[] = [
       {
         type: "callout",
         variant: "cta",
-        title: "Küçük Alanda Büyük Etki Yaratın",
-        text: "Leyonex mimarları 9 m²'den 500 m²'ye her ölçekte stant tasarımı için sizi dinler. 3D konsept tasarımı ücretsiz ön görüşmeye dahildir.",
-        buttonText: "Stant Tasarımı Hizmetleri",
+        title: "Küçük Alanda Güçlü Bir Stant",
+        text: "Her ölçekte stant için markanıza ve fuar hedeflerinize uygun tasarım sürecini yönetiyoruz.",
+        buttonText: "Stant Tasarımı Hizmeti",
         buttonHref: "/hizmetler/stand-tasarimi",
       },
     ],
@@ -497,25 +514,25 @@ export const blogPosts: BlogPost[] = [
       {
         type: "ol",
         items: [
-          "Erken Sipariş İndirimlerini Kaçırmak: Fuar organizatörünün elektrik, internet, su ve rigging için ilan ettiği Early Bird tarihlerini geçirmek, aynı hizmetler için %20–50 ek ödeme anlamına gelir.",
+          "Erken Sipariş İndirimlerini Kaçırmak: Fuar organizatörünün elektrik, internet, su ve rigging için ilan ettiği Early Bird tarihlerini geçirmek, aynı hizmetler için önemli ölçüde ek ödeme anlamına gelebilir.",
           "Giriş Önünde Banko Barikatı Oluşturmak: Karşılama bankosunu standın tam girişine koymak ziyaretçilerin içeri girmesini engeller; banka kenara alınmalı, koridor açık bırakılmalıdır.",
           "Yetersiz ve Hatalı Aydınlatma: Yalnızca genel ortam aydınlatması kullanmak sergilenen ürünleri sönük bırakır. Ürün bazlı spot aydınlatma ihmal edilmemelidir.",
           "Resmi Ödeme Kurallarına Uymamak: Fuar harcamalarını şirket hesabı dışından yapmak veya elden ödeme gerçekleştirmek, Ticaret Bakanlığı teşviklerinin tamamen yanmasına yol açar.",
           "DYS 90 Gün Süresini Kaçırmak: Fuar bitiminden sonraki 90 günlük yasal başvuru süresini geçirmek geri dönüşü olmayan hak kaybıdır.",
           "Eksik Malzeme Sertifikasyonu: Yanmazlık belgesi (B1) bulunmayan kumaş veya ahşap kullanan stantların açılışına fuar idaresi izin vermez.",
           "Lojistik ve Gümrük Zamanlaması Hataları: ATA Karnesi süreçlerini geç başlatmak stant malzemelerinin gümrükte kalmasına ve fuar kaçırılmasına neden olabilir.",
-          "Eğitimsiz Stant Personeli: Ürünlere hâkim olmayan ya da stantta pasif oturan personel, sıcak fırsatları soğuk lede çevirir.",
-          "Teknoloji Kullanımından Kaçınmak: Kartvizit manuel toplamak ve CRM'e geç girmek; sıcak müşteri kaçırma riskini ciddi ölçüde artırır. QR kod veya dijital form kullanın.",
-          "Hedefsiz Fuar Katılımı: Fuar öncesinde mevcut ve potansiyel müşterilere davetiye gönderilmemesi ve randevu takviminin oluşturulmaması, saha verimliliğini yarı yarıya düşürür.",
+          "Hazırlıksız Stant Personeli: Ürünlere hâkim olmayan ya da stantta pasif kalan personel, değerli görüşme fırsatlarının kaçmasına yol açar.",
+          "Ziyaretçi Kayıtlarını Düzensiz Tutmak: Kartvizitleri elle toplamak ve görüşme notlarını sonradan hatırlamaya çalışmak görüşmelerin kaybolmasına yol açar. CReMa gibi dijital bir kayıt sistemi, ziyaretçi bilgilerinin fuar sırasında düzenli biçimde kaydedilmesini destekler.",
+          "Hedefsiz Fuar Katılımı: Fuar öncesinde mevcut ve potansiyel müşterilere davet gönderilmemesi ve görüşme takviminin oluşturulmaması, sahadaki verimi önemli ölçüde düşürür.",
         ],
       },
       {
         type: "callout",
         variant: "cta",
-        title: "Bu Hataların Hiçbirini Yaşamayın",
-        text: "Leyonex'in proje yönetim ekibi fuar öncesi, esnası ve sonrasında kontrol listesini birlikte takip eder. Tek bir sertifika eksikliği veya DYS gecikmesi yaşamadan fuarınızı tamamlayın.",
-        buttonText: "Fuar Danışmanlığı Alın",
-        buttonHref: "/iletisim",
+        title: "Fuar Hazırlığınızı Birlikte Planlayalım",
+        text: "LEYONEX fuar öncesinden fuar sonrasına kadar hazırlık ve saha süreçlerinizi tek merkezden koordine ediyor.",
+        buttonText: "Fuar Danışmanlığı",
+        buttonHref: "/hizmetler/fuar-danismanligi",
       },
     ],
   },
@@ -596,9 +613,9 @@ export const blogPosts: BlogPost[] = [
       {
         type: "callout",
         variant: "cta",
-        title: "Mezanin Stant Projenizi Planlayalım",
-        text: "Statik hesap, fuar idaresi onay süreci ve mühendislik koordinasyonu dahil uçtan uca çift katlı stant hizmetimiz için bize ulaşın.",
-        buttonText: "Stant Tasarımı Hizmetleri",
+        title: "Çift Katlı Stant Projenizi Planlayalım",
+        text: "Çift katlı stant ihtiyacınızı paylaşın; tasarım ve üretim sürecini doğru ekiplerle birlikte planlayalım.",
+        buttonText: "Stant Tasarımı Hizmeti",
         buttonHref: "/hizmetler/stand-tasarimi",
       },
     ],
@@ -672,100 +689,103 @@ export const blogPosts: BlogPost[] = [
       {
         type: "callout",
         variant: "cta",
-        title: "Aydınlatmanızı Tasarımla Birlikte Planlayın",
-        text: "Leyonex'te 3D stant konsept tasarımı, aydınlatma simülasyonu ve saha montajı tek projede yönetilir. Tutarlı ve etkileyici bir stand için bize ulaşın.",
-        buttonText: "Stand Tasarımı Hizmetleri",
+        title: "Aydınlatmayı Tasarımla Birlikte Planlayın",
+        text: "Aydınlatma, stant tasarım sürecinin bir parçası olarak ele alındığında sahada sürpriz yaşanmaz.",
+        buttonText: "Stant Tasarımı Hizmeti",
         buttonHref: "/hizmetler/stand-tasarimi",
       },
     ],
   },
 
   // ─── 9 ───────────────────────────────────────────────────────────────────
+  // Adres korunur; içerik ROI formülü ve lead sınıflandırması yerine fuar sonrası
+  // değerlendirme ilkelerine odaklanır.
   {
     slug: "fuarda-lead-yonetimi-roi-hesaplama",
-    title: "Fuarda Lead Yönetimi ve ROI Hesaplama: Kartviziti Siparişe Dönüştürün",
+    title: "Fuar Sonrası Değerlendirme: Ziyaretçi Kayıtlarından Bir Sonraki Fuara",
     category: "roi-olcum",
     excerpt:
-      "Hot/Warm/Cold lead sınıflandırması, 48 saat kuralı ve devlet teşvikini dahil eden fuar ROI formülü ile katılımınızın gerçek getirisini ölçün.",
-    readTime: 7,
+      "Fuar katılımını ziyaretçi sayısıyla değil, hedeflerle değerlendirmek: düzenli ziyaretçi kaydı, zamanında takip ve bir sonraki fuara taşınacak dersler.",
+    readTime: 5,
     publishDate: "2026-03-12",
-    tags: ["fuar ROI", "lead yönetimi", "hot lead", "fuar CRM", "yatırım getirisi"],
+    tags: ["fuar sonrası", "ziyaretçi kaydı", "CReMa", "fuar değerlendirmesi", "fuar hazırlığı"],
     seo: {
       description:
-        "Fuar ROI nasıl hesaplanır? Hot/Warm/Cold lead sınıflandırması, 48 saat takip kuralı ve devlet teşvikini dahil eden ROI formülü ile gerçek katılım getirinizi ölçün.",
+        "Fuar katılımınızı hedeflerinize göre değerlendirin: kayıtları düzenli tutun, görüşmeleri zamanında takip edin, öğrendiklerinizi sonraki fuara taşıyın.",
       keywords: [
-        "fuar ROI hesaplama",
-        "fuar yatırım getirisi",
-        "fuarda lead yönetimi",
-        "hot lead fuar",
-        "fuar ROI formülü",
+        "fuar sonrası değerlendirme",
+        "fuar ziyaretçi kaydı",
+        "fuar sonrası takip",
+        "fuar katılım değerlendirmesi",
+        "CReMa",
       ],
     },
     sections: [
       {
         type: "p",
         content:
-          "Fuar katılımının başarısı, standa gelen ziyaretçi sayısından ziyade toplanan verilerin ciroya dönüştürülme oranıyla ölçülür. Sıklıkla atlanan bu fark, fuar bütçesinin gerçek değerini ortaya koyar.",
+          "Bir fuar katılımını yalnızca standa gelen ziyaretçi sayısıyla değerlendirmek yanıltıcı olabilir. Asıl soru, fuara hangi hedeflerle gidildiği ve bu hedeflere ne ölçüde yaklaşıldığıdır.",
       },
       {
         type: "h2",
-        content: "Lead Sınıflandırma Sistemi: Hot / Warm / Cold",
-      },
-      {
-        type: "ul",
-        items: [
-          "Hot Lead (Sıcak): Alım bütçesi hazır, yetkili karar verici ve 1–3 ay içinde sipariş vermeyi planlayan kişi. Fuar bitiminden sonraki ilk 48 saat içinde özel teklif hazırlanarak iletişime geçilmelidir.",
-          "Warm Lead (Ilık): Ürünle ilgilenen ancak alım takvimi net olmayan ziyaretçi. İlk 7 iş günü içinde detaylı katalog ve referans listesi paylaşılmalıdır.",
-          "Cold Lead (Soğuk): Sadece genel bilgi toplayan veya rakipleri inceleyen kişi. Uzun vadeli e-posta pazarlama listesine dahil edilmelidir.",
-        ],
-      },
-      {
-        type: "h2",
-        content: "Dijital Lead Toplama Yöntemleri",
-      },
-      {
-        type: "ul",
-        items: [
-          "QR kod formu: ziyaretçi telefonuyla tarar, veriler anında CRM'e düşer",
-          "Fuar organizatörünün badge scanner uygulaması: mevcut olduğunda en hızlı yöntem",
-          "Dijital kartvizit (NFC kart): fiziksel kartvizite kıyasla kayıp riski sıfıra yakın",
-          "Fiziksel kartvizit + fotoğraflama: son çare; OCR uygulamasıyla CRM'e aktarın",
-        ],
-      },
-      {
-        type: "h2",
-        content: "Fuar ROI Formülü",
-      },
-      {
-        type: "callout",
-        variant: "info",
-        title: "ROI (%) Formülü",
-        text: "ROI (%) = [ (Fuar Kaynaklı Net Kâr) − (Toplam Net Fuar Maliyeti) ] ÷ (Toplam Net Fuar Maliyeti) × 100\n\nToplam Net Fuar Maliyeti = Stant + Yer Kirası + Lojistik + Konaklama − Devlet Teşviki\n\nSektör benchmarkı: %100–150 ROI güçlü sonuç kabul edilir.",
-      },
-      {
-        type: "h2",
-        content: "Devlet Teşviki ROI Hesabına Nasıl Dahil Edilir?",
+        content: "Değerlendirme, fuardan önce belirlenen hedeflerle başlar",
       },
       {
         type: "p",
         content:
-          "Ticaret Bakanlığı'ndan alınan teşvik ödemesi, toplam maliyet paydasını düşürür ve gerçek ROI'yi önemli ölçüde artırır. Örneğin 500.000 TL maliyet ve 300.000 TL teşvik varsa, net maliyet 200.000 TL olur; aynı satış rakamıyla ROI yüzdesi 2,5 kat büyür.",
+          "Yeni pazarlara açılmak, distribütör görüşmeleri yapmak ya da marka bilinirliğini artırmak gibi hedefler fuardan önce netleştiğinde, fuar sonrasında neyin iyi gittiğini ve neyin geliştirilebileceğini görmek kolaylaşır.",
       },
       {
         type: "h2",
-        content: "48 Saat Kuralı",
+        content: "Ziyaretçi kayıtlarını düzenli tutun",
       },
       {
         type: "p",
         content:
-          "Araştırmalar, fuar sonrası yapılan takiplerin dönüşüm oranının fuar bitiminden sonraki ilk 48 saat içinde yapıldığında 4–5 kat daha yüksek olduğunu göstermektedir. Hot lead listesi fuar biter bitmez önce ekiple paylaşılmalı, teklif o gece hazırlanmalıdır.",
+          "CReMa, fuardaki ziyaretçi bilgilerinin dijital ortamda düzenli biçimde kaydedilmesini destekler. Kartvizit ve görüşme notu aynı kayıtta toplanır; fuar sonunda kayıtlar düzenli bir liste olarak firmaya teslim edilir.",
+      },
+      {
+        type: "p",
+        content:
+          "Organizatörlerin sunduğu yaka kartı okuyucular ya da dijital formlar da kullanılabilir. Hangi yöntem seçilirse seçilsin, önemli olan tüm görüşmelerin tek bir düzende toplanmasıdır.",
+      },
+      {
+        type: "h2",
+        content: "Her görüşmeye bir sonraki adımı not edin",
+      },
+      {
+        type: "p",
+        content:
+          "Görüşmenin hemen ardından kısa bir not almak, fuar sonrasında takibi kolaylaştırır: teklif mi gönderilecek, numune mi istenecek, yoksa yeni bir toplantı mı planlanacak?",
+      },
+      {
+        type: "h2",
+        content: "Takibi geciktirmeyin",
+      },
+      {
+        type: "p",
+        content:
+          "Fuardan sonraki ilk günler, görüşmelerin hem sizin hem ziyaretçilerinizin aklında taze olduğu dönemdir. Takip planını fuar bitmeden hazırlamak, ekibinizin bu dönemi verimli kullanmasını sağlar.",
+      },
+      {
+        type: "h2",
+        content: "Öğrendiklerinizi bir sonraki fuara taşıyın",
+      },
+      {
+        type: "ul",
+        items: [
+          "Hangi hedeflere yaklaşıldı, hangileri geride kaldı?",
+          "Stant düzeni ve ürün sunumu ziyaretçiler için anlaşılır mıydı?",
+          "Ekip görevleri ve saha akışı planlandığı gibi ilerledi mi?",
+          "Bir sonraki katılımda hangi kalemler korunmalı, hangileri değişmeli?",
+        ],
       },
       {
         type: "callout",
         variant: "cta",
-        title: "Raporlama ve Analiz Hizmetimizi İnceleyin",
-        text: "Leyonex'in Raporlama ve Analiz hizmeti lead sınıflandırmasından ROI hesaplamasına kadar fuarınızın tam getirisini ölçer. Bir sonraki fuardan daha yüksek verimle çıkın.",
-        buttonText: "Raporlama Hizmetini İncele",
+        title: "Fuar Sonrası Değerlendirme",
+        text: "LEYONEX fuar sürecini değerlendiriyor, sonraki katılımlar için gelişim önerileri sunuyor.",
+        buttonText: "Değerlendirme Hizmetini İnceleyin",
         buttonHref: "/hizmetler/raporlama-analiz",
       },
     ],
@@ -774,131 +794,109 @@ export const blogPosts: BlogPost[] = [
   // ─── 10 ──────────────────────────────────────────────────────────────────
   {
     slug: "fuar-hazirlik-kontrol-listesi",
-    title: "Başarılı Bir Fuar Katılımı İçin Adım Adım Hazırlık Kontrol Listesi",
+    title: "Fuar Hazırlık Takvimi: Hangi Karar Ne Zaman Verilmeli?",
     category: "fuar-hazirligi",
     excerpt:
-      "T-12 aydan fuar sonrası 90. güne kadar kronolojik planlama takvimi: strateji, tasarım, lojistik, onaylar, saha uygulaması ve teşvik kapatma adımlarının tamamı.",
-    readTime: 9,
+      "Fuar öncesinden fuar sonrasına genel bir planlama takvimi: strateji, tasarım, lojistik, onaylar ve fuar sonrası değerlendirme için doğru zamanlama.",
+    readTime: 6,
     publishDate: "2026-03-19",
-    tags: ["fuar hazırlık", "kontrol listesi", "fuar takvimi", "fuar planlama", "proje yönetimi"],
+    tags: ["fuar hazırlık", "fuar takvimi", "fuar planlama", "fuar hazırlığı"],
     seo: {
       description:
-        "Fuar hazırlık kontrol listesi: T-12 aydan T+90 güne kadar stant tasarımı, lojistik, onaylar, saha yönetimi ve devlet teşvik kapatma adımlarını kapsayan kronolojik rehber.",
+        "Fuar hazırlık takvimi: strateji, stant tasarımı, lojistik, onaylar ve fuar sonrası değerlendirme için hangi kararın ne zaman verilmesi gerektiği.",
       keywords: [
-        "fuar hazırlık kontrol listesi",
+        "fuar hazırlık takvimi",
         "fuar katılım takvimi",
         "fuar planlama süreci",
         "fuara nasıl hazırlanılır",
-        "fuar proje yönetimi",
+        "fuar hazırlık rehberi",
       ],
     },
     sections: [
       {
         type: "p",
         content:
-          "Saha operasyonlarında herhangi bir aksaklık yaşanmaması için fuar öncesi, esnası ve sonrasını kapsayan kronolojik planlama takvimi eksiksiz uygulanmalıdır. Aşağıdaki adımlar Leyonex'in 10+ yıllık saha deneyiminden derlenen sektör standardı kontrol listesini yansıtmaktadır.",
+          "Fuar hazırlığında sorunların çoğu, kararların geç verilmesinden kaynaklanır. Aşağıdaki takvim genel bir yol haritasıdır; süreler fuarın büyüklüğüne, ülkesine ve standın kapsamına göre değişir.",
       },
       {
         type: "h2",
-        content: "T-12 ile T-9 Ay: Strateji ve Sözleşme",
+        content: "9–12 ay önce: Hedef ve fuar kararı",
       },
       {
         type: "ul",
         items: [
-          "Hedef fuar seçimi ve rekabet analizi",
-          "Alan sözleşmesinin imzalanması (erken kapanan fuarlarda 12 ay öncesi kritiktir)",
-          "DYS firma kaydının denetlenmesi ve güncellenmesi",
-          "Bütçe tavanının ve onay hiyerarşisinin belirlenmesi",
-          "Fuarın Ticaret Bakanlığı desteklenen fuarlar listesinde olduğunun teyit edilmesi",
+          "Fuara hangi hedeflerle katılacağınızı netleştirin",
+          "Alternatif fuarları hedef pazarınıza göre değerlendirin",
+          "Erken dolan fuarlarda alan başvurusunu zamanında yapın",
+          "Fuarın destek programları kapsamında olup olmadığını kontrol edin",
         ],
       },
       {
         type: "h2",
-        content: "T-8 ile T-6 Ay: Tasarım ve Tedarikçi Seçimi",
+        content: "6–8 ay önce: Stant ve marka sunumu",
       },
       {
         type: "ul",
         items: [
-          "Stand mimarı / tasarım firması seçimi ve brifing",
-          "3D konsept tasarım ve marka onayı",
-          "Malzeme seçimleri (ahşap / modüler / hibrit)",
-          "Alev geciktirici (B1) sertifika uyumluluğunun tasarım aşamasında doğrulanması",
-          "Çift katlı yapı planlanıyorsa statik proje sürecinin başlatılması",
+          "Stantta neyi öne çıkaracağınıza karar verin",
+          "Stant tasarım sürecini başlatın",
+          "Malzeme ve yapı tercihlerini fuarın kurallarıyla birlikte ele alın",
         ],
       },
       {
         type: "h2",
-        content: "T-5 ile T-3 Ay: Lojistik ve Servisler",
+        content: "3–5 ay önce: Lojistik ve hizmetler",
       },
       {
         type: "ul",
         items: [
-          "Fuar idaresinden elektrik, internet ve rigging siparişlerinin verilmesi (Early Bird tarihleri kaçırılmamalı)",
-          "Nakliye firması seçimi ve ATA Karnesi işlemlerinin başlatılması",
-          "Konaklama ve seyahat organizasyonunun tamamlanması",
-          "Hostess / personel ajansıyla sözleşme",
-          "Fotoğraf/video ekibinin rezervasyonu",
+          "Fuar idaresinin elektrik, internet ve asma sipariş tarihlerini takip edin",
+          "Nakliye ve gümrük süreçlerini planlayın",
+          "Konaklama ve ulaşımı ekip programıyla birlikte netleştirin",
+          "Stant personeli, ikram ve çekim ihtiyaçlarını belirleyin",
         ],
       },
       {
         type: "h2",
-        content: "T-2 ile T-1 Ay: Onaylar ve Belgelendirme",
+        content: "1–2 ay önce: Onaylar ve davet",
       },
       {
         type: "ul",
         items: [
-          "Statik projelerin fuar yönetimine sunulması ve onay alınması",
-          "Alev geciktiricilik (B1) belgelerinin temininin tamamlanması",
-          "Stant personelinin vize ve seyahat işlemlerinin sonuçlandırılması",
-          "Kurumsal hediye ve stand ikramlarının temin edilmesi",
-          "Stand personeline B2B satış ve lead toplama eğitimi",
+          "Fuar idaresinin istediği teknik onayları tamamlayın",
+          "Hedef pazarınızdaki muhataplara davetlerinizi gönderin",
+          "Promosyon ve baskı işlerini teslim tarihleriyle birlikte netleştirin",
         ],
       },
       {
         type: "h2",
-        content: "T-15 Gün: Son Saha Düzenlemeleri",
+        content: "Fuar günleri: Sahada düzen",
       },
       {
         type: "ul",
         items: [
-          "Baskı grafiklerinin son kontrolü ve üretim onayı",
-          "QR kod lead formu ve dijital sistemlerin test edilmesi",
-          "Stant ürün ve malzeme envanterinin kontrol edilmesi",
-          "Personele son brifing: görev dağılımı, acil durum prosedürleri",
+          "Standı açılıştan önce teslim alın",
+          "Ziyaretçi kayıtlarını düzenli tutun",
+          "Destek programları için gereken fotoğraf ve belgeleri arşivleyin",
         ],
       },
       {
         type: "h2",
-        content: "Fuar Günleri: Saha Uygulaması",
+        content: "Fuar sonrası: Takip ve değerlendirme",
       },
       {
         type: "ul",
         items: [
-          "Standın fuar açılışından bir gün önce eksiksiz teslim alınması",
-          "Günlük Hot / Warm / Cold lead kaydı ve CRM girişi",
-          "Tüm fatura ve ödeme dekontlarının dijital arşivlenmesi",
-          "Fuar sona ermeden son gün stant fotoğraf ve video çekimi (DYS için zorunlu)",
-        ],
-      },
-      {
-        type: "h2",
-        content: "T+1 ile T+90 Gün: Satış Takibi ve Teşvik Kapatma",
-      },
-      {
-        type: "ul",
-        items: [
-          "Hot lead listesini 48 saat içinde ekiple paylaşın, teklifleri gönderin",
-          "Warm lead'lere 7 iş günü içinde katalog ve referans listesi iletin",
-          "Fuar bitiminden sonra en geç 90 gün içinde DYS'ye tüm evrakları yükleyin",
-          "İhracatçı Birliği üzerinden teşvik başvurusunu sonuçlandırın",
-          "İç fuar değerlendirme raporu hazırlayın (ROI, lead dönüşüm, maliyet analizi)",
+          "Görüşmelerin takibini geciktirmeden başlatın",
+          "Destek başvurusu varsa belge sürelerini kaçırmayın",
+          "Süreci değerlendirin, öğrendiklerinizi bir sonraki fuara taşıyın",
         ],
       },
       {
         type: "callout",
         variant: "cta",
-        title: "Bu Takvimi Birlikte Yönetelim",
-        text: "Leyonex, T-12 aydan teşvik kapatmaya kadar tüm süreci sizin adınıza koordine eder. Tek iletişim noktası, sıfır atlanan adım.",
+        title: "Fuar Hazırlığınızı Birlikte Planlayalım",
+        text: "LEYONEX fuar katılımınızı stratejiden saha yönetimine kadar tek merkezden planlıyor ve koordine ediyor.",
         buttonText: "Fuar Danışmanlığı",
         buttonHref: "/hizmetler/fuar-danismanligi",
       },

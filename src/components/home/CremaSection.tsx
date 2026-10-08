@@ -1,5 +1,7 @@
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { crema } from "./content";
-import { Kicker, Lead, SectionTitle } from "./SectionHeading";
+import { Kicker, Lead, SectionTitle, buttonClass } from "./SectionHeading";
 
 // Açık X şerit görseli: şeritler sağda, metin solda sade zeminde kalır.
 export default function CremaSection() {
@@ -13,19 +15,10 @@ export default function CremaSection() {
           <Kicker>CReMa</Kicker>
           <SectionTitle id="crema-baslik">{crema.title}</SectionTitle>
           <Lead>{crema.text}</Lead>
-          <ol className="mt-9 border-t border-lx-line">
-            {crema.steps.map((step, i) => (
-              <li
-                key={step}
-                className="flex gap-4 border-b border-lx-line bg-lx-paper/90 py-4 text-[15px] leading-relaxed text-lx-ink"
-              >
-                <span className="shrink-0 text-[13px] font-semibold tabular-nums leading-[1.6] text-lx-red">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                {step}
-              </li>
-            ))}
-          </ol>
+          <Link href={crema.href} className={`${buttonClass.ghost} mt-8`}>
+            Ziyaretçi kaydı hizmeti
+            <ArrowRight size={16} aria-hidden="true" />
+          </Link>
         </div>
       </div>
     </section>

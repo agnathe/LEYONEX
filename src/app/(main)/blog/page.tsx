@@ -12,12 +12,12 @@ import { tr } from "date-fns/locale";
 export const metadata: Metadata = {
   title: "Fuar Rehberi ve Uzman İçerikler",
   description:
-    "Stand tasarımından devlet teşviklerine, ROI hesaplamadan uluslararası fuar rehberlerine — Leyonex fuar ekibinin deneyiminden derlenen pratik içerikler.",
+    "Stand tasarımından devlet teşviklerine, fuar hazırlığından uluslararası fuarlara: fuar katılımınızı planlarken işinize yarayacak pratik içerikler.",
   keywords: [
     "fuar rehberi",
     "stand tasarımı ipuçları",
     "devlet fuar desteği",
-    "fuar ROI",
+    "fuar hazırlığı",
     "yurt dışı fuar katılımı",
     "LEYONEX blog",
   ],
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Fuar Rehberi ve Uzman İçerikler | LEYONEX",
     description:
-      "Stand tasarımından devlet teşviklerine, ROI hesaplamadan uluslararası fuar rehberlerine kadar uzman içerikler.",
+      "Stand tasarımından devlet teşviklerine, fuar hazırlığından uluslararası fuarlara pratik içerikler.",
     url: "https://leyonex.com/blog",
   },
 };
@@ -62,7 +62,7 @@ export default function BlogPage() {
               Fuar Rehberi
             </h1>
             <p className="text-lg text-[#555] max-w-xl leading-relaxed">
-              Stand tasarımından devlet teşviklerine, ROI hesaplamadan uluslararası fuar operasyonuna — saha deneyimimizden derlenen pratik içerikler.
+              Stand tasarımından devlet teşviklerine, fuar hazırlığından uluslararası fuarlara: fuar katılımınızı planlarken işinize yarayacak pratik içerikler.
             </p>
           </div>
         </section>
