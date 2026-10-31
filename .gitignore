@@ -55,3 +55,6 @@ Thumbs.db
 public/*.mp4
 public/*.mov
 public/*.webm
+
+# Kişisel Claude Code ayarları
+.claude/settings.local.json
