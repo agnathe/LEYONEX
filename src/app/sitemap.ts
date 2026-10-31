@@ -1,11 +1,12 @@
 import type { MetadataRoute } from "next";
-import { getAllServices, getAllFairs, getAllBlogPosts } from "@/lib/data";
+import { getAllServices, getUpcomingFairs, getAllBlogPosts } from "@/lib/data";
 
 const BASE = "https://leyonex.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const services = getAllServices();
-  const fairs = getAllFairs();
+  // Geçmiş fuarların sayfaları açık kalır ama site haritasına ve fuar tablosuna girmez.
+  const fairs = getUpcomingFairs();
   const blogPosts = getAllBlogPosts();
   const now = new Date();
 

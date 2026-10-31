@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import Link from "next/link";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, MapPin, Building, ExternalLink } from "lucide-react";
@@ -151,22 +152,23 @@ export default function FairsTable() {
                       <td className="px-6 py-4">
                         <div className="flex items-start gap-3">
                           <div className="flex-1">
-                            {fair.website ? (
+                            <Link
+                              href={`/fuarlar/${fair.slug}`}
+                              className="font-semibold text-[#2d2d2d] hover:text-primary transition-colors"
+                            >
+                              {fair.name.tr}
+                            </Link>
+                            {fair.website && (
                               <a
                                 href={fair.website}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex items-center gap-1.5 font-semibold text-[#2d2d2d] hover:text-primary transition-colors group/link"
+                                aria-label={`${fair.name.tr} resmi web sitesi`}
+                                className="inline-flex ml-1.5 align-middle text-[#555555] hover:text-primary transition-colors"
                                 onClick={(e) => e.stopPropagation()}
                               >
-                                {fair.name.tr}
-                                <ExternalLink
-                                  size={12}
-                                  className="opacity-0 group-hover/link:opacity-60 transition-opacity flex-shrink-0"
-                                />
+                                <ExternalLink size={12} className="flex-shrink-0" />
                               </a>
-                            ) : (
-                              <span className="font-semibold text-[#2d2d2d]">{fair.name.tr}</span>
                             )}
                             {isOngoing && (
                               <Badge className="mt-1 bg-green-500 text-white text-xs block w-fit">
