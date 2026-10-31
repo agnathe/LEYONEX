@@ -47,6 +47,7 @@ Despite `next-intl` being a dependency, there is no live `messages/*.json` i18n 
 - `src/app/(main)/` — public marketing pages: `fuarlar` (fair calendar), `hizmetler` (services), `projeler` (project portfolio), `hakkimizda` (about), `iletisim` (contact). Slugged detail pages use `[slug]/page.tsx` resolved against the static data getters.
 - `src/app/giris`, `src/app/kayit` — Clerk auth pages, each with an `sso-callback` subroute.
 - `src/app/uye/dashboard` — authenticated member dashboard.
+- `src/app/velora` — student competition page reached only by poster/QR: `noindex`, kept out of the sitemap and never linked from the site. Its content lives in `src/data/velora.ts`; don't state undecided items as final.
 - `src/app/api/quote-request` — sends the "teklif al" (quote request) form via Resend; other dashboard-related API routes (`contact`, `contact-message`, `upload`, `admin/update-fairs`) are not live yet.
 
 ### UI layer
