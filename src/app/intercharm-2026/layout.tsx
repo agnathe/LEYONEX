@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   title: 'InterCHARM 2026 Moskova | Otel + Fuar Transferi Paketi — LEYONEX',
   description:
     "InterCHARM 2026 Moskova için Türk firmalara özel otel + fuar transferi paketi. 5 gece konaklama, kahvaltı ve günlük Crocus Expo transferi dahil. Kişi başı 430 €'dan başlayan fiyatlarla.",
+  alternates: { canonical: 'https://leyonex.com/intercharm-2026' },
 };
 
 export default function IntercharmLayout({ children }: { children: React.ReactNode }) {

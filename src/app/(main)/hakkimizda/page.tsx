@@ -6,6 +6,7 @@ import { Target, TrendingUp, Shield, Users, Heart, Lightbulb, CheckCircle2, XCir
 export const metadata = {
   title: "Hakkımızda - Leyonex",
   description: "Fuar süreçlerini stratejik bir büyüme ve markalaşma yatırımı olarak ele alıyoruz.",
+  alternates: { canonical: "https://leyonex.com/hakkimizda" },
 };
 
 // Ortak stil sabitleri

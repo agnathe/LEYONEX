@@ -10,6 +10,10 @@ import CremaSection from "@/components/home/CremaSection";
 import GuideSection from "@/components/home/GuideSection";
 import ContactSection from "@/components/home/ContactSection";
 
+export const metadata = {
+  alternates: { canonical: "https://leyonex.com" },
+};
+
 export default function Home() {
   return (
     <>

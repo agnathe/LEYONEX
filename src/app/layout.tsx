@@ -62,9 +62,6 @@ export const metadata: Metadata = {
     title: 'LEYONEX — Fuar Yönetimi',
     description: 'Fuar sürecinizi uçtan uca yöneten ortağınız.',
   },
-  alternates: {
-    canonical: 'https://leyonex.com',
-  },
 };
 
 const orgSchema = {

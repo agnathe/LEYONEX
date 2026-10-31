@@ -12,9 +12,9 @@ export default clerkMiddleware(async (auth, req) => {
   }
 });
 
+// Yalnız üye ve giriş sayfaları. Kamuya açık sayfalara genişletilmemeli: Clerk geliştirme
+// anahtarıyla Accept: text/html isteyen Googlebot'u çerezsiz el sıkışma döngüsüne sokar
+// (accounts.dev'e 307) ve site dizine eklenemez.
 export const config = {
-  matcher: [
-    '/((?!_next|[^?]*\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)',
-    '/(api|trpc)(.*)',
-  ],
+  matcher: ['/uye/:path*', '/giris/:path*', '/kayit/:path*'],
 };

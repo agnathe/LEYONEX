@@ -5,6 +5,7 @@ import FairsTable from "@/components/sections/FairsTable";
 export const metadata = {
   title: "2026 ve Sonrası Fuar Takvimi - Leyonex",
   description: "2026 ve sonrası önemli fuarlar. Ülke, şehir ve sektör filtreli fuar listesi. Leyonex ile fuar organizasyonunuzu planlayın.",
+  alternates: { canonical: "https://leyonex.com/fuarlar" },
 };
 
 export default function FuarlarPage() {
