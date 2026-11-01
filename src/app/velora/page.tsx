@@ -285,6 +285,7 @@ export default function VeloraPage() {
             <strong className="text-[#2d2d2d]">{velora.jury}</strong> Sonuçlar {velora.resultsDate} tarihinde
             açıklanacaktır.
           </p>
+          <p>{velora.juryDiscretion}</p>
           <h3 className="font-semibold text-[#2d2d2d]">Kazananın üretim hazırlığı çalışması</h3>
           <p>
             Kazanandan, tüm standın eksiksiz uygulama projesi değil, LEYONEX’in belirleyeceği sınırlı alanlar veya
@@ -305,6 +306,13 @@ export default function VeloraPage() {
               ]}
             />
           </div>
+          <p>
+            Katılmayı düşünüyorsanız{" "}
+            <a href={`mailto:${velora.email}`} className={textLink}>
+              {velora.email}
+            </a>{" "}
+            adresine yazabilirsiniz. Ön kayıt katılım şartı değildir ve bu e-posta soru hakkınızdan sayılmaz.
+          </p>
         </Section>
 
         <Section title="Soru ve iletişim">

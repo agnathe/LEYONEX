@@ -20,6 +20,8 @@ export const velora = {
   submissionFormat: "PDF sunum",
   characterLimit: "3.000",
   jury: "Projeler, en az 20 yıllık sektör tecrübesine sahip 3 kişiden oluşan jürinin oylarıyla değerlendirilecektir.",
+  juryDiscretion:
+    "Jüri, yeterli düzeyde proje bulunmadığı kanaatine varırsa, Gazi Üniversitesi Mimarlık Fakültesi Dekanı Prof. Dr. Ülkü Duman’ın onayıyla, ödüllerin ve ilk 5 hakkının bir kısmını veya tamamını vermeyebilir.",
   fictionNote: "Velora, bu proje yarışması için oluşturulmuş hayali bir kozmetik markasıdır.",
   nextRound:
     "1. yarışmada tasarımı beğenilen ilk 5 katılımcı/ekip, gerçek firmalar ile düzenlenecek yarışmalara katılmaya hak kazanacaktır.",
