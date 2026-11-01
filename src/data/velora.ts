@@ -20,11 +20,9 @@ export const velora = {
   submissionFormat: "PDF sunum",
   characterLimit: "3.000",
   jury: "Projeler, en az 20 yıllık sektör tecrübesine sahip 3 kişiden oluşan jürinin oylarıyla değerlendirilecektir.",
-  juryDiscretion:
-    "Jüri, yeterli düzeyde proje bulunmadığı kanaatine varırsa, Gazi Üniversitesi Mimarlık Fakültesi Dekanı Prof. Dr. Ülkü Duman’ın onayıyla, ödüllerin ve ilk 5 hakkının bir kısmını veya tamamını vermeyebilir.",
   fictionNote: "Velora, bu proje yarışması için oluşturulmuş hayali bir kozmetik markasıdır.",
   nextRound:
-    "1. yarışmada tasarımı beğenilen ilk 5 katılımcı/ekip, gerçek firmalar ile düzenlenecek yarışmalara katılmaya hak kazanacaktır.",
+    "Tasarımı beğenilen ilk 5 katılımcı/ekip, gerçek fuar projelerinde değerlendirilmek üzere görüşülecektir.",
 
   files: {
     video: "/velora/velora-tanitim.mp4",
@@ -84,15 +82,11 @@ export const velora = {
 
   freedom: [
     "Stant içinde ikram sunulan bir banko, dış cepheye yönelen ürün deneme alanı veya farklı bir yaklaşım seçilebilir. Bu örnekler aynı anda yapılması gereken zorunlu elemanlar değildir.",
-    "Genel görüşme masalarında önceden belirlenmiş bir adet yoktur. Kullanılabilirliği ve dolaşımı koruyarak kapasite oluşturulması beklenir.",
-    "Toplantı, ürün inceleme, deneme ve servis işlevleri birbirini gereksiz yere aksatmamalıdır.",
     "Raf, ekran ve ışıklı görsel alanlarında gösterilecek ürün ve marka içerikleri mevcut kaynaklardan türetilmelidir.",
   ],
 
   cost: [
     "Oval veya eğrisel uygulamalar, özel üretim ve işçilik ihtiyacını artırabilir. Görsel katkısı güçlü, maliyet etkisi ölçülü bir odak noktası olarak kullanılabilir.",
-    "Aynı değerlendirme logolar, ekranlar, lightboxlar, duvar biçimleri, kaplamalar ve aydınlatma için de geçerlidir.",
-    "Tekrar eden ve üretimi kolay parçalar ile özel tasarım detayları dengelenebilir.",
     "En fazla ekran, en fazla eğri yüzey veya en fazla özel üretim kullanımı başlı başına bir başarı ölçütü değildir.",
     "İlk teslimde maliyet hesabı veya tedarikçi teklifi istenmemektedir. Maliyete duyarlı düşünme ve çözümlerin üretim mantığı değerlendirmede dikkate alınacaktır.",
   ],
@@ -100,12 +94,6 @@ export const velora = {
   rules: [
     "Stant elemanları, tabela, aydınlatma, ürün rafları ve mobilyalar tanımlanan alan sınırları içinde kalmalıdır.",
     "Toplam yükseklik, en yüksek tabela ve dekoratif eleman dâhil 4 m’yi aşmamalıdır.",
-    "Ziyaretçi girişleri, koridor bağlantıları ve acil kaçışa hizmet eden alanlar engellenmemelidir.",
-    "Ekran, raf ve üst yapı gibi elemanların taşınması gerçekçi bir konstrüksiyon mantığıyla düşünülmelidir.",
-    "Yapı elemanlarının fuar salonu zeminine veya duvarlarına zarar veren bağlantılara ihtiyaç duymaması gözetilmelidir.",
-    "Elektrik ve ekran kabloları ziyaretçi dolaşımında takılma riski yaratmayacak şekilde çözümlenmelidir.",
-    "İkram alanı, depo kullanımı ve servis erişimi tasarımda birlikte ele alınmalıdır.",
-    "Komşuya veya koridora bakan görünen arka yüzler tasarımın bitmiş yüzeyi olarak düşünülmelidir.",
   ],
 
   explanationTopics: [

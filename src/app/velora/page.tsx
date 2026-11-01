@@ -224,10 +224,6 @@ export default function VeloraPage() {
             teknik şartnamesi değildir.
           </p>
           <Numbered items={velora.rules} />
-          <p className="text-sm text-[#555555]">
-            Tavan askısı, ikinci kat, açık cephelerde kapatma oranı, koridor genişlikleri, zemin yükseltisi ve tesisat
-            noktaları için ayrıca bir kural konmamıştır.
-          </p>
         </Section>
 
         <Section title="Kaynak dosyalar">
@@ -285,7 +281,6 @@ export default function VeloraPage() {
             <strong className="text-[#2d2d2d]">{velora.jury}</strong> Sonuçlar {velora.resultsDate} tarihinde
             açıklanacaktır.
           </p>
-          <p>{velora.juryDiscretion}</p>
           <h3 className="font-semibold text-[#2d2d2d]">Kazananın üretim hazırlığı çalışması</h3>
           <p>
             Kazanandan, tüm standın eksiksiz uygulama projesi değil, LEYONEX’in belirleyeceği sınırlı alanlar veya
