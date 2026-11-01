@@ -1,23 +1,26 @@
-// Velora yarışma sayfasının tek veri kaynağı. Kaynak: VELORA_Yarisma_ve_VSCode_Brifi.md (sürüm 0.2).
-// Briefte "henüz belirlenmedi" olan konular burada kesin bilgiye çevrilmemeli; karar verildikçe güncellenmeli.
+// Velora yarışma sayfasının tek veri kaynağı. Kaynak: VELORA_Yarisma_ve_VSCode_Brifi.md ve 1 Kasım 2026 kararları.
+// Kesinleşmemiş konular burada kesin bilgiye çevrilmemeli; karar verildikçe güncellenmeli.
 
 export const velora = {
   url: "https://leyonex.com/velora",
-  updatedAt: "31 Ekim 2026",
+  updatedAt: "1 Kasım 2026",
   email: "info@leyonex.com",
   questionLimit: 2,
-  title: "Geleceğin fuar standını tasarla",
-  subject: "Hayali Velora parfüm markası için fuar standı tasarımı",
+  title: "Fikrini standa dönüştür",
+  subject: "Hayali Velora kozmetik markası için, parfüm ağırlıklı fuar standı tasarımı",
   organizer: "LEYONEX",
   audience: "Gazi Üniversitesi Mimarlık ve Endüstriyel Tasarım öğrencileri",
   participation: "Bireysel veya en fazla 2 kişilik ekip",
   software: "3ds Max veya SketchUp",
   deadline: "14 Aralık 2026",
+  resultsDate: "28 Aralık 2026",
   firstPrize: "15.000 TL",
   secondPrize: "5.000 TL",
   renderCount: 5,
-  textLimit: { characters: "2.500", words: 400 },
-  fictionNote: "Velora, bu proje yarışması için oluşturulmuş hayali bir parfüm markasıdır.",
+  submissionFormat: "PDF sunum",
+  characterLimit: "3.000",
+  jury: "Projeler, en az 20 yıllık sektör tecrübesine sahip 3 kişiden oluşan jürinin oylarıyla değerlendirilecektir.",
+  fictionNote: "Velora, bu proje yarışması için oluşturulmuş hayali bir kozmetik markasıdır.",
   nextRound:
     "1. yarışmada tasarımı beğenilen ilk 5 katılımcı/ekip, gerçek firmalar ile düzenlenecek yarışmalara katılmaya hak kazanacaktır.",
 
@@ -26,15 +29,23 @@ export const velora = {
     videoPoster: "/velora/velora-video-kapak.webp",
     logo: "/velora/velora-logo.png",
     icon: "/velora/velora-ikon.png",
+    plan: "/velora/velora-hol-plani.png",
   },
 
   brand: [
     { label: "Marka durumu", value: "Proje yarışması için oluşturulmuş hayali marka" },
-    { label: "Sektör", value: "Parfüm" },
+    { label: "Sektör", value: "Kozmetik" },
+    { label: "Bu fuardaki ağırlığı", value: "Parfüm" },
     { label: "Hedef tüketici", value: "Ürün gruplarına göre değişen, genç ve orta yaş grubundaki kadınlar" },
     { label: "Fiyat seviyesi", value: "Orta bant" },
     { label: "Öne çıkan özellikler", value: "Kalıcılık ve hoş kokular" },
     { label: "Fuar senaryosu", value: "BEAUTYISTANBUL / Beauty Istanbul katılımı" },
+  ],
+
+  productFocus: [
+    "Parfüm: Standın ana ürün grubudur; fuarda ağırlık parfümlerdedir.",
+    "Krem ve yağ ürünleri: Markanın bu ürünleri de vardır ama fuarda çok az yer verilmek istenir. Parfümlerden ayrı, bağımsız bir alanda gösterilmelidir.",
+    "Ruj ve fondöten: Standda yer verilmeyecektir.",
   ],
 
   goals: [
@@ -45,12 +56,17 @@ export const velora = {
 
   stand: [
     { label: "Alan tipi", value: "Yarım ada stant" },
-    { label: "Ölçüler", value: "8 m × 10 m" },
-    { label: "Toplam alan", value: "80 m²" },
-    { label: "Açık cephe", value: "3" },
+    { label: "Konum", value: "Salon 3, 312A numaralı stant" },
+    { label: "Ölçüler", value: "15 m × 8 m" },
+    { label: "Toplam alan", value: "120 m²" },
+    { label: "Açık cephe", value: "3 (planda 15 m’lik üst kenar ve 8 m’lik iki yan kenar)" },
+    { label: "Kapalı cephe", value: "Planda 15 m’lik alt kenar; komşu standa bakar" },
     { label: "Azami yükseklik", value: "4 m" },
     { label: "Stant içi kolon", value: "Yok" },
   ],
+
+  technicalNote:
+    "Bu yarışma gerçek bir uygulama projesi değildir. Odaklandığımız konu; araştırma, yorumlama ve tasarım alanlarındaki farklı kabiliyetlerinizdir. Bu nedenle teknik ayrıntılara takılmamanızı, plan ve teknik çerçeveyi genel bir yol gösterici olarak kullanıp tasarım fikrinize odaklanmanızı öneririz.",
 
   needs: [
     { label: "Kapalı toplantı odası", value: "Mevcut müşterilerle görüşmek için 1 oda; 1 masa, 4 sandalye ve 1 adet 55 inç TV" },
@@ -58,6 +74,7 @@ export const velora = {
     { label: "Genel görüşme masaları", value: "Kalan alana işlevsel biçimde yerleşebilecek sayıda masa; her masada 4 sandalye" },
     { label: "Depo / ikram hazırlık alanı", value: "Yaklaşık 4 m²" },
     { label: "Ürün rafları", value: "Parfümleri şık ve dikkat çekici biçimde sergileyen raflar" },
+    { label: "Krem ve yağ ürünleri alanı", value: "Parfümlerden ayrı, bağımsız ve küçük ölçekli bir sergileme alanı" },
     { label: "Lightbox alanları", value: "Konum, miktar ve biçim bakımından tasarımcı serbest" },
     { label: "İlave ekranlar", value: "Kapalı odadaki TV dışında konum ve kullanım yaklaşımı tasarımcıya bırakılmıştır" },
     { label: "İlgi / deneyim alanı", value: "Banko, ürün denemesi, ikram veya farklı bir amaç odaklı öneri geliştirilebilir" },
@@ -104,16 +121,5 @@ export const velora = {
     "Fuar amaçları ile tasarım kararları arasında ilişki kurma.",
     "Estetik katkı ile üretim ve maliyet yükünü dengeleme.",
     "Kaynak materyali kullanabilme ve sonraki üretim çalışmasına elverişli bir model kurma.",
-  ],
-
-  // Karar verilince buradan çıkarılıp ilgili alana taşınmalı.
-  pending: [
-    "Son teslim saati",
-    "Sonuç açıklama tarihi",
-    "Jüri ve değerlendirme yöntemi",
-    "Dosya türü, çözünürlük, dosya boyutu ve adlandırma",
-    "Proje teslim kanalı",
-    "Kapalı cephenin yönü, hol ve koridor planı",
-    "Ortak teknik senaryonun son hâli",
   ],
 };

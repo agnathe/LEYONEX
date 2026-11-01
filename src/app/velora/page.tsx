@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
   openGraph: {
     title: "Velora Stant Tasarım Yarışması | LEYONEX",
-    description: `Geleceğin fuar standını tasarla. Birincilik ${velora.firstPrize}, ikincilik ${velora.secondPrize}. Son teslim: ${velora.deadline}.`,
+    description: `${velora.title}. Birincilik ${velora.firstPrize}, ikincilik ${velora.secondPrize}. Son teslim: ${velora.deadline}.`,
     url: velora.url,
   },
 };
@@ -64,7 +64,7 @@ function Numbered({ items }: { items: string[] }) {
 const textLink = "font-semibold text-primary underline underline-offset-2";
 
 export default function VeloraPage() {
-  const { textLimit, renderCount } = velora;
+  const { characterLimit, renderCount, submissionFormat } = velora;
 
   return (
     <div className="min-h-screen bg-[#F1F0EA]">
@@ -135,7 +135,12 @@ export default function VeloraPage() {
               { label: "Katılımcılar", value: velora.audience },
               { label: "Katılım biçimi", value: velora.participation },
               { label: "Programlar", value: velora.software },
-              { label: "İlk teslim", value: `${renderCount} farklı açıdan render + kısa tasarım açıklaması` },
+              {
+                label: "Teslim",
+                value: `${submissionFormat}: ${renderCount} farklı açıdan render + en fazla ${characterLimit} karakter açıklama`,
+              },
+              { label: "Teslim adresi", value: velora.email },
+              { label: "Sonuç açıklama tarihi", value: velora.resultsDate },
             ]}
           />
           <p>Ödüller ekip başınadır; ekip üyesi başına ayrı ödül olarak sunulmaz.</p>
@@ -158,7 +163,8 @@ export default function VeloraPage() {
           </video>
           <p className="text-sm text-[#555555]">
             Video sessizdir. Ürün görsellerini incelemek için duraklatabilir, ileri ve geri sarabilir, tam ekran
-            izleyebilirsiniz.
+            izleyebilirsiniz. Video markanın genel ürün gamını gösterir; standda hangi ürünlere ne kadar yer verileceği
+            aşağıda açıklanmıştır.
           </p>
           <p className="font-semibold text-[#2d2d2d]">{velora.fictionNote}</p>
         </Section>
@@ -168,7 +174,13 @@ export default function VeloraPage() {
             <Image src={velora.files.logo} alt="Velora logosu" width={960} height={265} className="h-auto w-full max-w-sm" />
           </div>
           <Facts rows={velora.brand} />
-          <h3 className="font-semibold text-[#2d2d2d]">Velora’nın fuara katılma amaçları</h3>
+          <h3 className="font-semibold text-[#2d2d2d]">Bu fuarda hangi ürünler öne çıkacak?</h3>
+          <p>
+            Velora genel bir kozmetik markasıdır, ancak bu fuarda ağırlığı parfüm ürünlerine vermek istemektedir.
+            Kozmetik sektöründe parfüm ile cilt bakım ürünleri birbirinden çok farklı alanlardır.
+          </p>
+          <Bullets items={velora.productFocus} />
+          <h3 className="font-semibold text-[#2d2d2d]">Velora’nın fuara katılmak için 3 ana nedeni</h3>
           <Numbered items={velora.goals} />
           <p>
             Mevcut müşterilerle görüşme ihtiyacı, kapalı toplantı odasının gerekçesidir. Tasarımın genel yaklaşımı; bu
@@ -184,6 +196,18 @@ export default function VeloraPage() {
         <Section title="Stant briefi">
           <p>Bütün katılımcılar aynı alan ve aynı koşullar üzerinden çalışacaktır.</p>
           <Facts rows={velora.stand} />
+          <h3 className="font-semibold text-[#2d2d2d]">Hol planı</h3>
+          <Image
+            src={velora.files.plan}
+            alt="Salon 3 planı: Velora standı 312A, 120 metrekare; üst kenarı ve iki yanı koridora açık, alt kenarı komşu standa bitişik"
+            width={1740}
+            height={1056}
+            className="h-auto w-full border border-[#d9d6cc]"
+          />
+          <div className="border-l-4 border-primary bg-white p-5">
+            <p className="font-semibold text-[#2d2d2d]">Not</p>
+            <p className="mt-2">{velora.technicalNote}</p>
+          </div>
           <h3 className="font-semibold text-[#2d2d2d]">Mekânsal ve işlevsel ihtiyaçlar</h3>
           <Facts rows={velora.needs} />
           <h3 className="font-semibold text-[#2d2d2d]">Tasarımcıya tanınan özgürlük</h3>
@@ -196,18 +220,18 @@ export default function VeloraPage() {
           <Bullets items={velora.cost} />
           <h3 className="font-semibold text-[#2d2d2d]">Teknik çerçeve</h3>
           <p>
-            Bu kurallar yarışmaya özel, gerçek fuar kurallarından esinlenen bir taslaktır; BEAUTYISTANBUL’un resmî
-            teknik şartnamesi değildir. Ortak teknik senaryo tamamlanırken güncellenebilir.
+            Bu kurallar yarışmaya özel, gerçek fuar kurallarından esinlenen bir çerçevedir; BEAUTYISTANBUL’un resmî
+            teknik şartnamesi değildir.
           </p>
           <Numbered items={velora.rules} />
           <p className="text-sm text-[#555555]">
             Tavan askısı, ikinci kat, açık cephelerde kapatma oranı, koridor genişlikleri, zemin yükseltisi ve tesisat
-            noktaları için bu aşamada kesin kural konmamıştır.
+            noktaları için ayrıca bir kural konmamıştır.
           </p>
         </Section>
 
         <Section title="Kaynak dosyalar">
-          <div className="grid gap-px border border-[#d9d6cc] bg-[#d9d6cc] sm:grid-cols-2">
+          <div className="grid gap-px border border-[#d9d6cc] bg-[#d9d6cc] md:grid-cols-3">
             <a href={velora.files.logo} download className="group flex items-center gap-4 bg-white p-4">
               <Image src={velora.files.logo} alt="" width={960} height={265} className="h-10 w-24 object-contain" />
               <span className="font-semibold text-[#2d2d2d] group-hover:text-primary">Logoyu indir (PNG)</span>
@@ -216,8 +240,11 @@ export default function VeloraPage() {
               <Image src={velora.files.icon} alt="" width={400} height={385} className="h-10 w-24 object-contain" />
               <span className="font-semibold text-[#2d2d2d] group-hover:text-primary">İkonu indir (PNG)</span>
             </a>
+            <a href={velora.files.plan} download className="group flex items-center gap-4 bg-white p-4">
+              <Image src={velora.files.plan} alt="" width={1740} height={1056} className="h-10 w-24 object-contain" />
+              <span className="font-semibold text-[#2d2d2d] group-hover:text-primary">Hol planını indir (PNG)</span>
+            </a>
           </div>
-          <p>Ortak plan ve teknik senaryo hazırlanıyor; hazır olduğunda bu bölüme eklenecektir.</p>
           <Bullets
             items={[
               "Logo ve ikon raster görsel olarak sunulur; hazır vektörel logo dosyası verilmez.",
@@ -229,33 +256,18 @@ export default function VeloraPage() {
 
         <Section title="Teslim ve değerlendirme">
           <p>
-            Projenizi {renderCount} farklı açıdan hazırlanmış render ve stant tasarımınızın arkasındaki düşünceleri
-            anlatan kısa bir açıklama ile teslim etmenizi bekliyoruz. Açıklama metni, boşluklar dâhil{" "}
-            {textLimit.characters} karakteri ve {textLimit.words} kelimeyi geçmemelidir. Dilerseniz beş renderınızı ve
-            açıklamalarınızı tek bir sunum içinde de paylaşabilirsiniz. Bu seçenekte tüm sunumdaki açıklamaların toplamı{" "}
-            {textLimit.words} kelimeyi geçmemelidir.
+            Projenizi tek bir {submissionFormat} dosyası olarak{" "}
+            <a href={`mailto:${velora.email}`} className={textLink}>
+              {velora.email}
+            </a>{" "}
+            adresine göndermenizi bekliyoruz. Sunumda {renderCount} farklı açıdan hazırlanmış render ve stant tasarımınızın
+            arkasındaki düşünceleri anlatan, boşluklar dâhil en fazla {characterLimit} karakterlik bir yazı bulunmalıdır.
+            Bu sınır slayt başına değil, tüm sunumdaki yazıların toplamı içindir.
           </p>
-          <div className="grid gap-4 sm:grid-cols-2">
-            <div className="bg-white p-5">
-              <h3 className="font-semibold text-[#2d2d2d]">Ayrı görseller ve metin</h3>
-              <p className="mt-2 text-sm">
-                {renderCount} farklı açıdan render + kısa açıklama. Boşluklar dâhil en fazla {textLimit.characters}{" "}
-                karakter ve en fazla {textLimit.words} kelime; iki sınır birlikte sağlanır.
-              </p>
-            </div>
-            <div className="bg-white p-5">
-              <h3 className="font-semibold text-[#2d2d2d]">Tek sunum</h3>
-              <p className="mt-2 text-sm">
-                Aynı {renderCount} render ve açıklamalar tek dosyada. Açıklamalar ve açıklama niteliğindeki görsel
-                altyazıları, tüm sunumda toplam en fazla {textLimit.words} kelime; sınır slayt başına değildir.
-                Renderları veya açıklamayı ayrıca ikinci kez teslim etmeniz gerekmez.
-              </p>
-            </div>
-          </div>
           <p>
-            Alt kelime sınırı yoktur; daha kısa ve yeterli açıklamalar kabul edilir. İlk teslimde tam üretim dosyası,
-            ilave teknik plan veya kesit, ayrı araştırma raporu ya da maliyet tablosu istenmez. Beş açı için zorunlu bir
-            kamera listesi yoktur; açı seçimleri tasarımı ve gerekli alanları anlaşılır göstermelidir.
+            Alt karakter sınırı yoktur; daha kısa ve yeterli açıklamalar kabul edilir. Tam üretim dosyası, ilave teknik
+            plan veya kesit, ayrı araştırma raporu ya da maliyet tablosu istenmez. Beş açı için zorunlu bir kamera listesi
+            yoktur; açı seçimleri tasarımı ve gerekli alanları anlaşılır göstermelidir.
           </p>
           <h3 className="font-semibold text-[#2d2d2d]">Açıklamada ele alabileceğiniz konular</h3>
           <Bullets items={velora.explanationTopics} />
@@ -267,7 +279,11 @@ export default function VeloraPage() {
           <Numbered items={velora.criteria} />
           <p>
             İleri seviye yazılım hâkimiyeti veya gösterişli render tek başına belirleyici değildir. Beş render ve kısa
-            tasarım açıklaması birlikte değerlendirilir; iki teslim biçimi de aynı içerik beklentisine tabidir.
+            tasarım açıklaması birlikte değerlendirilir.
+          </p>
+          <p>
+            <strong className="text-[#2d2d2d]">{velora.jury}</strong> Sonuçlar {velora.resultsDate} tarihinde
+            açıklanacaktır.
           </p>
           <h3 className="font-semibold text-[#2d2d2d]">Kazananın üretim hazırlığı çalışması</h3>
           <p>
@@ -280,15 +296,14 @@ export default function VeloraPage() {
         </Section>
 
         <Section title="Başvuru ve proje teslimi">
-          <p>
-            Son başvuru ve proje teslim tarihi <strong className="text-[#2d2d2d]">{velora.deadline}</strong>. Teslim
-            yöntemi henüz açıklanmamıştır; netleştiğinde bu sayfada duyurulacaktır.
-          </p>
           <div className="bg-white p-5">
-            <h3 className="font-semibold text-[#2d2d2d]">Henüz belirlenmeyen ve duyurulacak konular</h3>
-            <div className="mt-3">
-              <Bullets items={velora.pending} />
-            </div>
+            <Numbered
+              items={[
+                `Projenizi ${submissionFormat} dosyası olarak hazırlayın: ${renderCount} farklı açıdan render ve en fazla ${characterLimit} karakter yazı.`,
+                `Dosyanızı ${velora.deadline} tarihine kadar ${velora.email} adresine gönderin.`,
+                `Sonuçlar ${velora.resultsDate} tarihinde açıklanacaktır.`,
+              ]}
+            />
           </div>
         </Section>
 
