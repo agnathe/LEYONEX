@@ -1,4 +1,4 @@
-import { getAllServices } from '@/lib/data';
+import { getAllServices, getAllBlogPosts } from '@/lib/data';
 import { coreBenefits, serviceGroups, servicesFaq } from '@/data/services';
 
 // llms.txt: hizmet verisinden üretilir; hizmetler değiştiğinde kendiliğinden güncel kalır.
@@ -32,12 +32,17 @@ export function GET() {
     '## Sıkça sorulanlar',
     '',
     ...servicesFaq.flatMap((f) => [`**${f.question}**`, f.answer, '']),
+    '## Fuar katılım rehberleri',
+    '',
+    ...getAllBlogPosts().map((p) => `- [${p.title}](${BASE}/blog/${p.slug}): ${p.excerpt}`),
+    '',
     '## Öne çıkan sayfalar',
     '',
     `- Ana sayfa: ${BASE}/`,
     `- Hizmetler: ${BASE}/hizmetler`,
     `- Projeler: ${BASE}/projeler`,
     `- Fuar takvimi: ${BASE}/fuarlar`,
+    `- Fuar rehberi: ${BASE}/blog`,
     `- Hakkımızda: ${BASE}/hakkimizda`,
     `- Teklif al: ${BASE}/teklif-al`,
     ''

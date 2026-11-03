@@ -20,13 +20,15 @@ export async function generateMetadata({ params }: BlogDetailPageProps): Promise
   const post = getBlogPostBySlug(slug);
   if (!post) return {};
 
+  const title = post.seo.title ?? post.title;
+
   return {
-    title: post.title,
+    title,
     description: post.seo.description,
     keywords: post.seo.keywords,
     alternates: { canonical: `${BASE}/blog/${slug}` },
     openGraph: {
-      title: `${post.title} | LEYONEX`,
+      title: `${title} | LEYONEX`,
       description: post.seo.description,
       url: `${BASE}/blog/${slug}`,
     },
@@ -136,6 +138,44 @@ function renderSection(section: BlogSection, idx: number) {
           )}
         </div>
       );
+    case "faq":
+      // Cevaplar ilk yüklemede HTML'de bulunur; akordeon veya ağdan yükleme yok.
+      return (
+        <section key={idx} className="mt-12 mb-8">
+          <h2 className="text-xl font-black text-[#1a1a1a] mb-6">Sık Sorulan Sorular</h2>
+          <div className="divide-y divide-[#E5E5E3] border-y border-[#E5E5E3]">
+            {section.faqs?.map((faq, i) => (
+              <div key={i} className="py-5">
+                <h3 className="text-base font-bold text-[#1a1a1a] mb-2">{faq.question}</h3>
+                <p className="text-[#444] text-sm leading-relaxed">{faq.answer}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      );
+    case "sources":
+      return (
+        <div key={idx} className="mt-10 mb-8 pt-6 border-t border-[#E5E5E3]">
+          <p className="text-xs font-bold uppercase tracking-wider text-[#999] mb-3">Kaynaklar</p>
+          {section.text && (
+            <p className="text-sm text-[#666] leading-relaxed mb-3">{section.text}</p>
+          )}
+          <ul className="space-y-2">
+            {section.links?.map((link, i) => (
+              <li key={i} className="text-sm">
+                <a
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#E31B23] hover:underline break-words"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      );
     default:
       return null;
   }
@@ -147,9 +187,9 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
   if (!post) notFound();
 
   const allPosts = getAllBlogPosts();
-  const related = allPosts
-    .filter((p) => p.slug !== slug && p.category === post.category)
-    .slice(0, 2);
+  const related = post.related
+    ? post.related.map(getBlogPostBySlug).filter((p): p is NonNullable<typeof p> => Boolean(p))
+    : allPosts.filter((p) => p.slug !== slug && p.category === post.category).slice(0, 2);
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -169,6 +209,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
     author: { "@type": "Organization", name: "LEYONEX Fuarcılık", url: BASE },
     publisher: { "@type": "Organization", name: "LEYONEX Fuarcılık", url: BASE },
     datePublished: post.publishDate,
+    dateModified: post.updatedDate ?? post.publishDate,
     url: `${BASE}/blog/${slug}`,
     keywords: post.tags.join(", "),
   };
@@ -206,6 +247,11 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                 <Calendar size={13} />
                 {format(new Date(post.publishDate), "d MMMM yyyy", { locale: tr })}
               </span>
+              {post.updatedDate && (
+                <span>
+                  Güncellendi: {format(new Date(post.updatedDate), "d MMMM yyyy", { locale: tr })}
+                </span>
+              )}
               <span className="flex items-center gap-1.5">
                 <Clock size={13} />
                 {post.readTime} dakika okuma

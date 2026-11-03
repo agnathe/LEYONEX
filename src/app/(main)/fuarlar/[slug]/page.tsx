@@ -3,7 +3,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
-import { getFairBySlug, getFairSlugs } from "@/lib/data";
+import { getFairBySlug, getFairSlugs, getBlogPostBySlug } from "@/lib/data";
+import { COUNTRY_GUIDES } from "@/data/blog";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -53,6 +54,8 @@ export default async function FairDetailPage({ params }: FairDetailPageProps) {
   const endDate = new Date(fair.endDate);
   const isUpcoming = startDate > new Date();
   const isOngoing = startDate <= new Date() && endDate >= new Date();
+  const countryGuideSlug = COUNTRY_GUIDES[fair.location.country];
+  const countryGuide = countryGuideSlug ? getBlogPostBySlug(countryGuideSlug) : undefined;
 
   const BASE = 'https://leyonex.com';
 
@@ -186,6 +189,21 @@ export default async function FairDetailPage({ params }: FairDetailPageProps) {
                     ))}
                   </div>
                 </div>
+
+                {countryGuide && (
+                  <div className="mt-12">
+                    <h2 className="text-2xl font-bold mb-4">
+                      {fair.location.country} Fuarlarına Hazırlık
+                    </h2>
+                    <Link
+                      href={`/blog/${countryGuide.slug}`}
+                      className="block border border-white/10 p-6 hover:border-accent transition-colors"
+                    >
+                      <p className="text-lg font-bold mb-2">{countryGuide.title}</p>
+                      <p className="text-gray-300 text-sm leading-relaxed">{countryGuide.excerpt}</p>
+                    </Link>
+                  </div>
+                )}
               </div>
 
               {/* Sidebar */}
