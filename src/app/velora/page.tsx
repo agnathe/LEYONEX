@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import type { ReactNode } from "react";
+import { Analytics } from "@vercel/analytics/next";
 import { velora } from "@/data/velora";
+import VeloraPreRegisterForm from "@/components/velora/VeloraPreRegisterForm";
 
 // Yarışma sayfasına yalnızca afiş ve QR ile gelinir: site içinden link verilmez, site haritasına
 // eklenmez ve arama sonuçlarında görünmez.
@@ -82,6 +84,12 @@ export default function VeloraPage() {
             {velora.title}
           </h1>
           <p className="mt-4 max-w-2xl text-lg text-[#444444]">{velora.audience} için.</p>
+          <a
+            href="#on-kayit"
+            className="mt-6 inline-flex bg-primary px-6 py-3 font-semibold text-white transition-opacity hover:opacity-90"
+          >
+            Ön kayıt ol
+          </a>
 
           <div className="mt-8 border-l-4 border-primary bg-white p-5 leading-relaxed text-[#444444] md:p-7">
             <h2 className="font-display text-xl font-semibold text-[#2d2d2d]">Başlamadan önce</h2>
@@ -301,13 +309,14 @@ export default function VeloraPage() {
               ]}
             />
           </div>
+          <h3 id="on-kayit" className="font-semibold text-[#2d2d2d]">
+            Ön kayıt
+          </h3>
           <p>
-            Katılmayı düşünüyorsanız{" "}
-            <a href={`mailto:${velora.email}`} className={textLink}>
-              {velora.email}
-            </a>{" "}
-            adresine yazabilirsiniz. Ön kayıt katılım şartı değildir ve bu e-posta soru hakkınızdan sayılmaz.
+            Katılmayı düşünüyorsanız aşağıdaki kısa formla ön kayıt yaptırabilirsiniz. Ön kayıt katılım şartı değildir
+            ve soru hakkınızdan sayılmaz; teslim tarihi yaklaşırken size hatırlatma göndermemizi sağlar.
           </p>
+          <VeloraPreRegisterForm contactEmail={velora.email} />
         </Section>
 
         <Section title="Soru ve iletişim">
@@ -326,6 +335,8 @@ export default function VeloraPage() {
           Düzenleyen: {velora.organizer} · Son güncelleme: {velora.updatedAt}
         </div>
       </footer>
+      {/* Çerezsiz ziyaretçi sayacı; yalnız bu sayfada çalışır. Vercel panelinde Web Analytics açık olmalıdır. */}
+      <Analytics />
     </div>
   );
 }
